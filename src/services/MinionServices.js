@@ -1,5 +1,6 @@
 import axios from "axios"; // vamos a importar axios y recordar primero que hay que instalar axios
 
+
 const URL = 'http://localhost:3000/musenion'; //guardo la url del fake api en una variable
 
 // CRUD 
@@ -28,13 +29,11 @@ const deleteMemes = async (id) => {
   }
 }
 
-deleteMemes(id)
-
 
 //CREATE - metodo POST
 
 
-const postMemes = async (URL, data) => {
+const postMemes = async (data) => {
   try {
       const response = await axios.post(URL, data);
       return response.data
@@ -44,14 +43,13 @@ const postMemes = async (URL, data) => {
   }
 }
 
-postMemes(URL, data)
 
 
 //UPDATE . metodo put
 
-const putMemes = async (URL, data) => {
+const putMemes = async (id, data) => {
   try {
-      const response = await axios.put(URL, data);
+      const response = await axios.put(`${URL}/${id}`, data);
       return response.data
   } catch (error) {
       console.error('Error al actualizar el meme:', error);
@@ -59,5 +57,4 @@ const putMemes = async (URL, data) => {
   }
 }
 
-putMemes(URL, data)
 
