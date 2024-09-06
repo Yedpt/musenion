@@ -18,9 +18,9 @@ export const getMemes = async () => {
 
 //DELETE- metodo delete
 
-const deleteMemes = async () => {
+const deleteMemes = async (id) => {
   try {
-      const response = await axios.delete(URL);
+      const response = await axios.delete((`${URL}/${id}`));
       return response.data
   } catch (error) {
       console.error('Error al pedir memes:', error);
