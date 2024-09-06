@@ -20,7 +20,7 @@ export const getMemes = async () => {
 
 const deleteMemes = async (id) => {
   try {
-      const response = await axios.delete((`${URL}/${id}`));
+      const response = await axios.delete(`${URL}/${id}`);
       return response.data
   } catch (error) {
       console.error('Error al pedir memes:', error);
@@ -28,7 +28,7 @@ const deleteMemes = async (id) => {
   }
 }
 
-deleteMemes()
+deleteMemes(id)
 
 
 //CREATE - metodo POST
@@ -44,14 +44,18 @@ deleteMemes()
 //   }
 // }
 
-// // Ejemplo de uso:
-// const url = 'https://api.example.com/data'; // Reemplaza con tu URL
-// const data = {
-//   name: 'John Doe',
-//   email: 'john.doe@example.com'
-// };
 
-// postData(url, data);
+const postMemes = async (URL, data) => {
+  try {
+      const response = await axios.post(URL, data);
+      return response.data
+  } catch (error) {
+      console.error('Error al poster el meme:', error);
+      throw error;
+  }
+}
+
+postMemes(URL, data)
 
 
 //UPDATE . metodo put
