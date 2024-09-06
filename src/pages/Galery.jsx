@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getMemes } from '../services/MinionServices';
+import { getMemes, deleteMemes } from '../services/MinionServices';
 
 const Galery = () => {
   const [memes, setMemes] = useState([]);
@@ -21,6 +21,15 @@ const Galery = () => {
     fetchMemes();
   }, []);
 
+  const handleDelete = async (id) => {
+    try {
+      await deleteMemes(id); // Llama al servicio de eliminación
+      setMemes(memes.filter(meme => meme.id !== id)); // Filtra y actualiza la lista de memes
+    } catch (error) {
+      console.error(`Error al eliminar el meme con id ${id}:`, error);
+    }
+  };
+
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -37,6 +46,7 @@ const Galery = () => {
               style={{ width: "200px", height: "200px", objectFit: "cover" }}
             />
             <p>{meme.title}</p>
+            <button onClick={() => handleDelete(meme.id)}>Eliminar</button> {/* Botón para eliminar */}
           </div>
         ))}
       </div>

@@ -19,7 +19,7 @@ export const getMemes = async () => {
 
 //DELETE- metodo delete
 
-const deleteMemes = async (id) => {
+export const deleteMemes = async (id) => {
   try {
       const response = await axios.delete(`${URL}/${id}`);
       return response.data
