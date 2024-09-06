@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home.jsx";
 import Layout from "../layout/Layout";
 import CreateMeme from "../pages/CreateMeme.jsx";
+import Galery from "../pages/Galery.jsx";
 
 export const router = createBrowserRouter([{
     
@@ -13,7 +14,11 @@ export const router = createBrowserRouter([{
             element: <Home/>
     },
     {
-        path: 'newmeme',
+        path: 'gallery',
+        element: <Galery/>
+    },
+    {
+        path:'creatememe',
         element: <CreateMeme/>
     },
     {

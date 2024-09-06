@@ -11,7 +11,7 @@ export const getMemes = async () => {
     const response = await axios.get(URL); // espero la respuesta del db.json
     return response.data;
   } catch (error) {
-    console.error('Error fetching memes:', error);
+    console.error('Error al pedir memes:', error);
     throw error;
   }
 };
