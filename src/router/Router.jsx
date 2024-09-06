@@ -23,7 +23,11 @@ export const router = createBrowserRouter([{
     },
     {
         path:'edit',
-        element: <editMeme/>
+        element: <EditMeme/>
+    },
+    {
+        path:'contactus',
+        element: <MemeDetail/>
     }
 ]
 

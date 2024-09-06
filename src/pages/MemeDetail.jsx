@@ -1,11 +1,17 @@
-import React from 'react'
 
-const MemeDetail = () => {
+import { useForm, SubmitHandler } from "react-hook-form"
+
+
+export default function App() {
+  const { register, handleSubmit } = useForm<IFormInput>()
+  const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data)
+
+
   return (
-    <div>
-      
-    </div>
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <label>First Name</label>
+      <input {...register("firstName")} />
+      <input type="submit" />
+    </form>
   )
 }
-
-export default MemeDetail
