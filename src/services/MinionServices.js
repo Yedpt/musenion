@@ -23,7 +23,7 @@ const deleteMemes = async (id) => {
       const response = await axios.delete(`${URL}/${id}`);
       return response.data
   } catch (error) {
-      console.error('Error al pedir memes:', error);
+      console.error('Error al borrar el meme:', error);
       throw error;
   }
 }
@@ -32,17 +32,6 @@ deleteMemes(id)
 
 
 //CREATE - metodo POST
-
-// const axios = require('axios');
-
-// async function postData(url, data) {
-//   try {
-//     const response = await axios.post(url, data);
-//     console.log('Data posted successfully:', response.data);
-//   } catch (error) {
-//     console.error('Error posting data:', error);
-//   }
-// }
 
 
 const postMemes = async (URL, data) => {
@@ -59,3 +48,16 @@ postMemes(URL, data)
 
 
 //UPDATE . metodo put
+
+const putMemes = async (URL, data) => {
+  try {
+      const response = await axios.put(URL, data);
+      return response.data
+  } catch (error) {
+      console.error('Error al actualizar el meme:', error);
+      throw error;
+  }
+}
+
+putMemes(URL, data)
+
