@@ -14,7 +14,7 @@ const Home = () => {
         </StyledFigure>
       </section>
 
-      <section>
+      <SectionTwo>
         <div>
           <h2>Sobre el museo</h2>
           <p>¡Bienvenidos al Museo Virtual Musenion! 
@@ -24,7 +24,7 @@ const Home = () => {
             ¡No te lo pierdas, crea, comparte y sé parte de la historia del museo! 
           </p>
         </div>
-      </section>
+      </SectionTwo>
     </StyledBody>
     </>
   )
@@ -34,21 +34,17 @@ const StyledBody = styled.body `
   background: linear-gradient(to bottom, #FFDC59, #E2730C);
 `;
 
-/* const section2 = styled.section `
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-
-  
-` */
-
 const StyledFigure = styled.figure`
   display: flex;
   justify-content: center;
   flex-direction: column;
   width: 100%;
-  
 
+`;
+
+const SectionTwo = styled.section `
+  display: flex;
+  margin: 8%;
 `
   
 
