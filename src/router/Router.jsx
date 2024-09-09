@@ -3,7 +3,8 @@ import Home from "../pages/Home.jsx";
 import Layout from "../layout/Layout";
 import CreateMeme from "../pages/CreateMeme.jsx";
 import Galery from "../pages/Galery.jsx";
-import Form from "../pages/MemeDetail.jsx"
+import Contact from "../pages/Contact.jsx"
+
 
 export const router = createBrowserRouter([{
     
@@ -28,12 +29,12 @@ export const router = createBrowserRouter([{
     },
     {
         path:'contactus',
-        element: <Form/>
+        element: <Contact/>
     },
-    {
-        path:'detail',
-        element: <MemeDetail/>
-    }
+    // {
+    //     path:'detail',
+    //     element: <MemeDetail/>
+    // }
 ]
 
 }])
