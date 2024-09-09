@@ -20,6 +20,7 @@ const PageContainer = styled.body`
       margin-top: 1px;
       margin-bottom: 20px;
       font-size: 24px;
+      padding: 5px;
   `
 
   const FormContainer = styled.form`
@@ -30,7 +31,7 @@ const PageContainer = styled.body`
     padding: 20px;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    background-color: white;
+    background-color: #ffffff6e;
   `;
 
   const Label = styled.label`
