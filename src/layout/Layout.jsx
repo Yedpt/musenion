@@ -5,9 +5,9 @@ import { Outlet } from 'react-router-dom'
 const layout = () => {
   return (
     <>
-      <nav>Mi nav</nav>
+      {/* <nav>Mi nav</nav> */}
       <Outlet/>
-      <footer>Mi footer</footer>
+      {/* <footer>Mi footer</footer> */}
     </>
   
   )
