@@ -7,7 +7,7 @@ const layout = () => {
     <>
       <nav>Mi nav</nav>
       <Outlet/>
-    <footer>Mi footer</footer>
+      <footer>Mi footer</footer>
     </>
   
   )
