@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
-import { getMemes, deleteMemes, postMemes } from '../services/MinionServices';
+import { getMemes, deleteMemes, postMemes, putMemes } from '../services/MinionServices'; // Importamos putMemes
 
 const Galery = () => {
   const [memes, setMemes] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [newMeme, setNewMeme] = useState({ title: '', url: '' }); // Estado para el nuevo meme
+  const [newMeme, setNewMeme] = useState({ title: '', url: '' });
+  const [editingMeme, setEditingMeme] = useState(null); // Estado para el meme que se va a editar
 
   useEffect(() => {
     const fetchMemes = async () => {
       try {
-        const data = await getMemes(); // obtenemos los memes
+        const data = await getMemes();
         setMemes(data);
         setLoading(false);
       } catch (error) {
@@ -23,8 +24,8 @@ const Galery = () => {
 
   const handleDelete = async (id) => {
     try {
-      await deleteMemes(id); // Llama al servicio de eliminación
-      setMemes(memes.filter(meme => meme.id !== id)); // Filtra y actualiza la lista de memes
+      await deleteMemes(id);
+      setMemes(memes.filter(meme => meme.id !== id));
     } catch (error) {
       console.error(`Error al eliminar el meme con id ${id}:`, error);
     }
@@ -32,13 +33,31 @@ const Galery = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    try {
-      const addedMeme = await postMemes(newMeme); // Llama al servicio de POST
-      setMemes([...memes, addedMeme]); // Actualiza la lista de memes con el nuevo meme
-      setNewMeme({ title: '', url: '' }); // Reinicia el formulario
-    } catch (error) {
-      console.error('Error al agregar el meme:', error);
+    if (editingMeme) {
+      // Si estamos editando un meme
+      try {
+        const updatedMeme = await putMemes(editingMeme.id, newMeme); // Llama al servicio PUT
+        setMemes(memes.map(meme => meme.id === editingMeme.id ? updatedMeme : meme)); // Actualiza la lista con el meme editado
+        setEditingMeme(null); // Resetea el estado de edición
+        setNewMeme({ title: '', url: '' });
+      } catch (error) {
+        console.error('Error al editar el meme:', error);
+      }
+    } else {
+      // Si estamos agregando un nuevo meme
+      try {
+        const addedMeme = await postMemes(newMeme);
+        setMemes([...memes, addedMeme]);
+        setNewMeme({ title: '', url: '' });
+      } catch (error) {
+        console.error('Error al agregar el meme:', error);
+      }
     }
+  };
+
+  const handleEdit = (meme) => {
+    setEditingMeme(meme); // Guardamos el meme que estamos editando
+    setNewMeme({ title: meme.title, url: meme.url }); // Rellenamos el formulario con los datos del meme a editar
   };
 
   if (loading) {
@@ -47,9 +66,9 @@ const Galery = () => {
 
   return (
     <div>
-      <h2>Lista de Memes</h2>
+      <h2>{editingMeme ? 'Editar Meme' : 'Lista de Memes'}</h2>
       
-      {/* Formulario para agregar nuevos memes */}
+      {/* Formulario para agregar o editar memes */}
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -65,7 +84,8 @@ const Galery = () => {
           onChange={(e) => setNewMeme({ ...newMeme, url: e.target.value })}
           required
         />
-        <button type="submit">Agregar Meme</button>
+        <button type="submit">{editingMeme ? 'Actualizar Meme' : 'Agregar Meme'}</button>
+        {editingMeme && <button type="button" onClick={() => setEditingMeme(null)}>Cancelar</button>}
       </form>
       
       <div style={{ display: "flex", flexWrap: "wrap" }}>
@@ -78,6 +98,7 @@ const Galery = () => {
             />
             <p>{meme.title}</p>
             <button onClick={() => handleDelete(meme.id)}>Eliminar</button>
+            <button onClick={() => handleEdit(meme)}>Editar</button> {/* Botón para editar */}
           </div>
         ))}
       </div>
