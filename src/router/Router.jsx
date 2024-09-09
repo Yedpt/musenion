@@ -3,6 +3,7 @@ import Home from "../pages/Home.jsx";
 import Layout from "../layout/Layout";
 import CreateMeme from "../pages/CreateMeme.jsx";
 import Galery from "../pages/Galery.jsx";
+import Form from "../pages/MemeDetail.jsx"
 
 export const router = createBrowserRouter([{
     
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([{
     {
         path:'edit',
         element: <editMeme/>
+    },
+    {
+        path:'contactus',
+        element: <Form/>
     },
     {
         path:'detail',
