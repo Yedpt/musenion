@@ -1,11 +1,11 @@
-import React from 'react'
+import React from 'react';
+import styled from 'styled-components';
 
 const Home = () => {
   return (
     <>
-     {/*  <Nav /> */}
-
-      <section id="section1">
+    <StyledBody>
+    <section>
         <title>
           <h1>Musenion</h1>
         </title>
@@ -14,7 +14,7 @@ const Home = () => {
         </figure>
       </section>
 
-      <section id="section2">
+      <section>
         <div>
           <h2>Sobre el museo</h2>
           <p>¡Bienvenidos al Museo Virtual Musenion! 
@@ -25,17 +25,30 @@ const Home = () => {
           </p>
         </div>
       </section>
-
-    {/*   <Footer /> */}
+    </StyledBody>
     </>
   )
 }
 
-const section1 = styled.section1 `
+const StyledBody = styled.body `
+  background: linear-gradient(to bottom, #FFDC59, #E2730C);
+`;
+
+/* const section2 = styled.section `
   display: flex;
   justify-content: center;
+  flex-direction: column;
+
   
-`
+` */
+
+/* const figure = styled.figure`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+
+` */
   
 
 export default Home
