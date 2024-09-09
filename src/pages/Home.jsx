@@ -9,9 +9,9 @@ const Home = () => {
         <title>
           <h1>Musenion</h1>
         </title>
-        <figure>
+        <StyledFigure>
           <img src="src\assets\2-minions.png" alt="" />
-        </figure>
+        </StyledFigure>
       </section>
 
       <section>
@@ -42,13 +42,14 @@ const StyledBody = styled.body `
   
 ` */
 
-/* const figure = styled.figure`
+const StyledFigure = styled.figure`
   display: flex;
   justify-content: center;
   flex-direction: column;
   width: 100%;
+  
 
-` */
+`
   
 
 export default Home
