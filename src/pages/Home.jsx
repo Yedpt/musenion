@@ -10,7 +10,7 @@ const Home = () => {
           <h1>Musenion</h1>
         </title>
         <StyledFigure>
-          <img src="src\assets\2-minions.png" alt="" />
+          <img src="src\assets\HomeMobile.png" alt="" />
         </StyledFigure>
       </section>
 
@@ -39,7 +39,11 @@ const StyledFigure = styled.figure`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  width: 100%;
+  background-image: url('src/assets/HomeMobile.png');
+
+@media (min-width: 960px) {
+  background-image: url(src\assets\HomeDesktop.png); 
+}
 
 `;
 
@@ -60,5 +64,6 @@ const Pwhite = styled.p`
   color: white;
   margin-top: 5%;
 `
+
 
 export default Home
