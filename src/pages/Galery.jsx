@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { getMemes, deleteMemes, postMemes, putMemes } from '../services/MinionServices'; // Importamos putMemes
 
+
+// aqui estara el slider listando las imagenes (memes) y que al darle click te lleve a visualizar el meme con su descripcion () y debajo un boton
+
 const Galery = () => {
   const [memes, setMemes] = useState([]);
   const [loading, setLoading] = useState(true);

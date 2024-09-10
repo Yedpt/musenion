@@ -3,7 +3,7 @@ import React from 'react'
 const Home = () => {
   return (
     <>
-      <Nav />
+      {/* <Nav /> */}
 
       <section id="section1">
         <img src="" alt="" />
@@ -15,7 +15,7 @@ const Home = () => {
         <p>Este es el contenido de la segunda sección.</p>
       </section>
 
-      <Footer />
+      {/* <Footer /> */}
     </>
   )
 }
