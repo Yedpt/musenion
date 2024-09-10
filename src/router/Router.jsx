@@ -5,6 +5,7 @@ import CreateMeme from "../pages/CreateMeme.jsx";
 import Galery from "../pages/Galery.jsx";
 import Contact from "../pages/Contact.jsx"
 import AboutUs from "../pages/AboutUs.jsx";
+import EditMeme from "../pages/EditMeme.jsx";
 
 
 export const router = createBrowserRouter([{
