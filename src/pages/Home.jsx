@@ -42,9 +42,8 @@ const StyledFigure = styled.figure`
   background-image: url('src/assets/HomeMobile.png');
 
 @media (min-width: 960px) {
-  background-image: url(src\assets\HomeDesktop.png); 
+  background-image: url('src\assets\HomeDesktop.png'); 
 }
-
 `;
 
 const SectionTwo = styled.section `
