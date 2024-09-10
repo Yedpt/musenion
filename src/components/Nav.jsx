@@ -1,12 +1,19 @@
-import React from 'react'
+import React, {useState} from 'react'
 import styled from 'styled-components'
+import BurgerButton from './BurgerButton'
 
-const Nav = () => {
-  return (
-    <>
+function Nav () {
+
+    const [clicked,setClicked] = useState(false)
+    const handleClick = () => {
+        //cuando true, lo transforma en false y viceversa
+        setClicked(!clicked)
+    }
+    return (
+        <>
         <NavContainer>
             <h2>Navbar <span>Responsive</span></h2>
-            <ul>
+            <ul className={`links ${clicked ? 'active': ''}`}>
                 <li><a href='/'>Home</a></li>
                 <li><a href='/'>Galeria Virtual</a></li>
                 <li><a href='/'>Sube tu Meme</a></li>
@@ -14,9 +21,13 @@ const Nav = () => {
                 <li><a href='/'>Creadores</a></li>
                 <li><a href='/'>Contacto</a></li>
             </ul>
+            <div className='burger'>
+                <BurgerButton clicked={clicked} handleClick={handleClick} />
+            </div>
+            
         </NavContainer>
-    </>
-  )
+        </>
+    )
 }
 
 export default Nav
@@ -38,5 +49,46 @@ const NavContainer = styled.nav`
         color: white;
         text-text-decoration: none;
         margin-right: 1rem;
+    }
+    .links{
+        position: absolute;
+        top: -700px;
+        left: -200px;
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        a{
+            color: black;
+            font-size: 2rem;
+            display: block;
+        }
+        @media(min-width: 768px){
+            position: initial;
+            margin: 0;
+            a{
+                font-size: 1rem;
+                color: white;
+                display:inline;
+
+            }
+        }
+
+    }
+
+    .links.acive{
+        width: 100%;
+        display: block;
+        position: absolute;
+        margin-left: auto;
+        margin-right: auto;
+        top:30%;
+        left: 0;
+        right: 0;
+        text-align: center;
+    }
+    .burger{
+        @media(min-width: 768px) {
+            display: none;
+        }
     }
 `
