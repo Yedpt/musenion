@@ -1,47 +1,54 @@
-import React, { useEffect, useState } from 'react';
-import { getMemes } from '../services/MinionServices';
+import React from 'react';
+import styled from 'styled-components';
 
 const Home = () => {
-  const [memes, setMemes] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchMemes = async () => {
-      try {
-        const data = await getMemes(); // recibimos getMemes que es la funcion/servicio que traera nuestras imagenes del db.json
-        //console.log(data); // Verifica los datos en la consola
-        setMemes(data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error loading memes:", error);
-        setLoading(false);
-      }
-    };
-
-    fetchMemes();
-  }, []);
-
-  if (loading) {
-    return <div>Loading...</div>;
-  }
-
   return (
-    <div>
-      <h2>Lista de Memes</h2>
-      <div style={{ display: "flex", flexWrap: "wrap" }}>
-        {memes.map((meme) => (
-          <div key={meme.id} style={{ margin: "10px", textAlign: "center" }}>
-            <img
-              src={meme.url}  /* Aquí cambias meme.image por meme.url */
-              alt={meme.title}
-              style={{ width: "200px", height: "200px", objectFit: "cover" }}
-            />
-            <p>{meme.title}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
+    <>
+    <StyledBody>
+    <section>
+        <title>
+          <h1>Musenion</h1>
+        </title>
+        <figure>
+          <img src="src\assets\2-minions.png" alt="" />
+        </figure>
+      </section>
 
-export default Home;
+      <section>
+        <div>
+          <h2>Sobre el museo</h2>
+          <p>¡Bienvenidos al Museo Virtual Musenion! 
+            Te invitamos a descubrir un espacio único donde el humor y la creatividad se dan la mano para ofrecer una experiencia digital inolvidable. 
+            ¡Tú también puedes ser parte del museo! Anímate a subir tus propios memes de Minions y competir por un lugar en nuestra prestigiosa galería, tu creación podría ser la próxima obra destacada de nuestra colección permanente. No hay límites para la imaginación, y cada meme tiene su oportunidad de convertirse en una obra maestra.
+            Musenion te espera para que explores, te diviertas y participes activamente en esta comunidad.
+            ¡No te lo pierdas, crea, comparte y sé parte de la historia del museo! 
+          </p>
+        </div>
+      </section>
+    </StyledBody>
+    </>
+  )
+}
+
+const StyledBody = styled.body `
+  background: linear-gradient(to bottom, #FFDC59, #E2730C);
+`;
+
+/* const section2 = styled.section `
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  
+` */
+
+/* const figure = styled.figure`
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+
+` */
+  
+
+export default Home
