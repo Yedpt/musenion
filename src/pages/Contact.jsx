@@ -152,7 +152,7 @@ function Contact() {
   const onSubmit = async (data) => {
     try {
       const response = await axios.post("https://jsonplaceholder.typicode.com/posts", data);
-      setSuccessMessage(`Hola ${data.nombre}, gracias por ponerte en contacto con nosotros. En breve, recibirás respuesta.`);
+      setSuccessMessage(`¡Hola ${data.nombre}!, Gracias por ponerte en contacto con nosotros. En breve, recibirás respuesta.`);
       setShowModal(true);
     } catch (error) {
       console.error("Error:", error);
