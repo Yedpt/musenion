@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import styled, { keyframes, css } from 'styled-components';
 
-const radius = 440;
+const radius = 240; // Reduzco el radio para móviles
 const autoRotate = true;
 const rotateSpeed = -60;
-const imgWidth = 220;
-const imgHeight = 270;
+const imgWidth = 120; // Reduzco el tamaño de las imágenes para móviles
+const imgHeight = 170;
 
 const Carousel3D = ({ memes }) => {
   useEffect(() => {
@@ -36,13 +36,13 @@ const Carousel3D = ({ memes }) => {
 
 export default Carousel3D;
 
-// Styled-components para el carrusel
+// Styled-components para el carrusel, mobile-first
 const DragContainer = styled.div`
   position: relative;
   display: flex;
   margin: auto;
   transform-style: preserve-3d;
-  perspective: 1000px;
+  perspective: 800px; // Ajustamos perspectiva para móviles
 `;
 
 const SpinContainer = styled.div`
@@ -57,10 +57,10 @@ const SpinContainer = styled.div`
     position: absolute;
     width: 100%;
     height: 100%;
-    box-shadow: 0 0 8px #fff;
+    box-shadow: 0 0 5px #fff;
     transition: transform 1s;
     &:hover {
-      box-shadow: 0 0 15px #fffd;
+      box-shadow: 0 0 10px #fffd;
     }
   }
 
@@ -70,16 +70,35 @@ const SpinContainer = styled.div`
       animation: ${rotateSpeed > 0 ? spin : spinRevert} ${Math.abs(rotateSpeed)}s infinite linear;
     `
   }
+
+  /* Media query para pantallas más grandes (desktop) */
+  @media (min-width: 1024px) {
+    width: 220px; /* Aumentamos tamaño para desktop */
+    height: 270px;
+
+    img {
+      box-shadow: 0 0 8px #fff;
+      &:hover {
+        box-shadow: 0 0 15px #fffd;
+      }
+    }
+  }
 `;
 
 const Ground = styled.div`
-  width: ${radius * 3}px;
-  height: ${radius * 3}px;
+  width: ${radius * 2}px; // Reducimos el tamaño en móvil
+  height: ${radius * 2}px;
   position: absolute;
   top: 100%;
   left: 50%;
   transform: translate(-50%, -50%) rotateX(90deg);
   background: radial-gradient(circle, #9993, transparent);
+
+  /* Media query para desktop */
+  @media (min-width: 1024px) {
+    width: ${radius * 3}px;
+    height: ${radius * 3}px;
+  }
 `;
 
 // Animaciones con keyframes
@@ -100,3 +119,4 @@ const spinRevert = keyframes`
     transform: rotateY(0deg);
   }
 `;
+
