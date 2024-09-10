@@ -1,12 +1,14 @@
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
+import { useState } from "react";
+import axios from "axios";
 
 const PageContainer = styled.body`
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      width: 100vw;   /* 100% del ancho de la ventana */
+      width: 100vw;
       margin: 0;
       background: linear-gradient(to bottom, #FFDC59, #E2730C);
   `;
@@ -17,10 +19,8 @@ const PageContainer = styled.body`
       align-items: center;
       flex-direction: column;
       color: #0C2849;
-      margin-top: 1px;
-      margin-bottom: 20px;
+      margin-top: 20px;
       font-size: 24px;
-      padding: 5px;
   `
 
   const FormContainer = styled.form`
@@ -29,7 +29,9 @@ const PageContainer = styled.body`
     max-width: 80%;
     max-height: 90%;
     padding: 20px;
-    border-radius: 8px;
+    margin-bottom: 40px;
+    margin-top: 30px;
+    border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     background-color: #ffffff6e;
   `;
@@ -105,21 +107,67 @@ const PageContainer = styled.body`
   color: red;
   `;
 
+const ModalOverlay = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+`;
+
+const ModalContent = styled.div`
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+`;
+
+const CloseButton = styled.button`
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #c82333;
+  }
+`;
+
+
 function Contact() {
-  const {register, handleSubmit, formState: {errors}} = useForm();
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const [successMessage, setSuccessMessage] = useState("");
+  const [showModal, setShowModal] = useState(false);
 
-  console.log(errors)
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.post("https://jsonplaceholder.typicode.com/posts", data);
+      setSuccessMessage(`Hola ${data.nombre}, gracias por ponerte en contacto con nosotros. En breve, recibirás respuesta.`);
+      setShowModal(true);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
 
-  const onSubmit = handleSubmit((data) => {
-    console.log(data);
-
-  });
+  const closeModal = () => {
+    setShowModal(false);
+  };
 
   return (
     
     <PageContainer>
         <TitlePage>Contáctanos</TitlePage>
-        <FormContainer onSubmit={onSubmit}>
+        <FormContainer onSubmit={handleSubmit(onSubmit)}>
 
           <Label htmlFor="nombre">Nombre</Label>
           <Input 
@@ -187,10 +235,19 @@ function Contact() {
         </Conditions>
 
           <SubmitButton type="submit">Enviar</SubmitButton>
-        </FormContainer>   
+        </FormContainer> 
+        {showModal && (
+        <ModalOverlay>
+          <ModalContent>
+            {successMessage && <p>{successMessage}</p>}
+            <CloseButton onClick={closeModal}>Cerrar</CloseButton>
+          </ModalContent>
+        </ModalOverlay>
+      )}
     </PageContainer>
     
   )
 }
+
 
 export default Contact;
