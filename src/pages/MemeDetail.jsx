@@ -1,13 +1,44 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { getMemeById } from '../services/MinionServices'; // Asegúrate de importar el servicio
 
-
-// aqui tiene que listar el meme a visualizar con dos botones de BORRAR que ejecuta el DELETE y borra el meme y te redirige con Navigate al Home luego el boton de EDITAR que te lleve a EditMEME y te permita editar la descripcion del memee
 const MemeDetail = () => {
+  const { id } = useParams(); // Obtener el id de la URL
+  const [meme, setMeme] = useState(null); // Estado para guardar los detalles del meme
+  const [loading, setLoading] = useState(true); // Estado para manejar la carga
+  const [error, setError] = useState(null); // Estado para manejar errores
+
+  useEffect(() => {
+    const fetchMeme = async () => {
+      try {
+        const memeData = await getMemeById(id); // Llamada a la API para obtener el meme por ID
+        setMeme(memeData);
+      } catch (error) {
+        setError('Error al cargar el meme.');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchMeme();
+  }, [id]); // Efecto se ejecuta cuando cambia el id
+
+  if (loading) return <p>Cargando meme...</p>;
+  if (error) return <p>{error}</p>;
+
   return (
     <div>
-      hola
+      {meme ? (
+        <div>
+          <h2>{meme.title}</h2>
+          <img src={meme.url} alt={meme.title} style={{ width: '300px', height: 'auto' }} />
+          <p>{meme.description}</p>
+        </div>
+      ) : (
+        <p>Meme no encontrado.</p>
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default MemeDetail
+export default MemeDetail;

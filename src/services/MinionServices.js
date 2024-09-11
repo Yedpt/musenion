@@ -17,6 +17,18 @@ export const getMemes = async () => {
   }
 };
 
+//READ-metodo get pero por ID
+export const getMemeById = async (id) => {
+  try {
+    const response = await axios.get(`${URL}/${id}`);
+    // const meme = await response.json();
+    return response.data;
+  } catch (error) {
+    console.error('Error al obtener el meme:', error);
+    throw error;
+  }
+};
+
 //DELETE- metodo delete
 
 export const deleteMemes = async (id) => {
