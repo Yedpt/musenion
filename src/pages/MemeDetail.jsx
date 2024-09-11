@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMemeById } from '../services/MinionServices'; // Asegúrate de importar el servicio
 
+
 const MemeDetail = () => {
   const { id } = useParams(); // Obtener el id de la URL
   const [meme, setMeme] = useState(null); // Estado para guardar los detalles del meme
@@ -25,6 +26,8 @@ const MemeDetail = () => {
 
   if (loading) return <p>Cargando meme...</p>;
   if (error) return <p>{error}</p>;
+
+  // apartir de aqui se puede trabajar llamando al metodo DELETE Y PUT :D
 
   return (
     <div>
