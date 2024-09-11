@@ -1,5 +1,7 @@
 import React from 'react'
 
+
+// aqui estara la peticion POST 
 const CreateMeme = () => {
   return (
     <div>
