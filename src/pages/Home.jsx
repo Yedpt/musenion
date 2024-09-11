@@ -39,6 +39,7 @@ const StyledFigure = styled.figure`
   display: flex;
   justify-content: center;
   flex-direction: column;
+  width:100%;
   background-image: url('src/assets/HomeMobile.png');
 
 @media (min-width: 960px) {

@@ -9,3 +9,5 @@ const MemeDetail = () => {
 }
 
 export default MemeDetail
+
+/* hacer delete y editar */
