@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getMemeById } from '../services/MinionServices'; // Asegúrate de importar el servicio
+import { deleteMemes } from '../services/MinionServices';
+import { getMemes } from '../services/MinionServices';
 
 
 const MemeDetail = () => {
   const { id } = useParams(); // Obtener el id de la URL
   const [meme, setMeme] = useState(null); // Estado para guardar los detalles del meme
+  const [memes, setMemes] = useState([]); //con esto guardas todos los memes y lo llamas en el segundo efect para delete
   const [loading, setLoading] = useState(true); // Estado para manejar la carga
   const [error, setError] = useState(null); // Estado para manejar errores
 
@@ -24,12 +27,38 @@ const MemeDetail = () => {
     fetchMeme();
   }, [id]); // Efecto se ejecuta cuando cambia el id
 
-  if (loading) return <p>Cargando meme...</p>;
-  if (error) return <p>{error}</p>;
-
   // apartir de aqui se puede trabajar llamando al metodo DELETE Y PUT :D
 
-  return (
+      useEffect(() => {
+        const fetchMemes = async () => {
+          try {
+            const allMemes = await getMemes(); // Llamada a la API para obtener el meme por ID
+            setMeme(allMemes);
+          } catch (error) {
+            setError('Error al cargar los memes.');
+          } finally {
+            setLoading(false);
+          }
+        };
+    
+        fetchMemes();
+      }, []);
+
+      const handleDelete = async (id) => {
+
+        try {
+          await deleteMemes(id);
+          setMemes(memes.filter(meme => meme.id !== id));
+
+        } catch (error) {
+          setError ('Error al cargar la lista de memes.')
+        }
+      };
+
+      if (loading) return <p>Cargando meme...</p>;
+      if (error) return <p>{error}</p>;
+
+return (
     <div>
       {meme ? (
         <div>
@@ -40,8 +69,11 @@ const MemeDetail = () => {
       ) : (
         <p>Meme no encontrado.</p>
       )}
+       <button onClick={() => handleDelete(meme.id)}>Eliminar</button>
     </div>
   );
 };
 
 export default MemeDetail;
+
+
