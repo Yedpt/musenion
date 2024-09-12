@@ -77,7 +77,9 @@ return (
   );
 };
 
-const Body = styled.body``;
+const Body = styled.body`
+background-image: url('src\assets\images\fondo-detail-memes-mobile.png')
+`;
 const CardMeme = styled.div``;
 const TitleMeme = styled.h2``;
 const Description = styled.p``;
