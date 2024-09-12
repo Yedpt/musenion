@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getMemeById } from '../services/MinionServices';
+import { getMemeById, putMemes } from '../services/MinionServices';
 import { useForm } from 'react-hook-form';
 
 const FormPutMeme = () => {
@@ -28,11 +28,12 @@ const FormPutMeme = () => {
     fetchMeme();
   }, [id, reset]); // Agregamos reset como dependencia
 
-  const onSubmit = async (data) => {
-    // Aquí puedes hacer la llamada PUT a la API para actualizar el meme
-    try {
-      // Supón que la actualización fue exitosa, redirigimos a la página del meme
-      navigate(`/meme/${id}`);
+ // Función para manejar el envío del formulario
+ const onSubmit = async (data) => {
+  try {
+    // Actualizamos el meme en la base de datos
+    await putMemes (id, data); // Aquí hacemos la solicitud PUT con los datos actualizados
+    navigate('/gallery'); // Redirigimos a la galería después de guardar los cambios
     } catch (error) {
       setError('Error al actualizar el meme.');
     }
@@ -44,6 +45,8 @@ const FormPutMeme = () => {
   return (
     <div>
       <h2>Editar Meme</h2>
+      {/* Mostrar la imagen del meme antes del formulario */}
+      {meme && <img src={meme.url} alt={meme.title} style={{ width: '300px', height: 'auto' }} />}
       {meme && (
         <form onSubmit={handleSubmit(onSubmit)}>
           <div>
