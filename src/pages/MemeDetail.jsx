@@ -8,4 +8,8 @@ const MemeDetail = () => {
   )
 }
 
+/* delete y put en diferentes ramas */
+
+
+
 export default MemeDetail
