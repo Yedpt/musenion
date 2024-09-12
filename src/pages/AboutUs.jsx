@@ -3,13 +3,14 @@ import styled from 'styled-components';
 
 const AboutUs = () => {
   return (
-   // <div className="aboutus">
+   <div className="aboutus">
    <PageContainer>
       <header className="aboutus-header">
         <div className="menu-icon">
           {/* Add your menu icon here */}
         </div>
       </header>
+      
       <div className="aboutus-content">
         <div className="section">
           <h2>SOBRE NOSOTROS</h2>
@@ -54,18 +55,22 @@ const AboutUs = () => {
           </div>
         </div>
       </div>
+    
       </PageContainer>
-    //</div>
+    </div>
   );
 };
 
 const PageContainer = styled.body`
+family-font: "Montserrat", sans-serif;
+color: #0C2849;
 display: flex;
 flex-direction: column;
 justify-content: center;
 align-items: center;
 width: 100vw;   /* 100% del ancho de la ventana */
 margin: 0;
+padding: 10%;
 background: linear-gradient(to bottom, #FFDC59, #E2730C);
 `;
 
@@ -79,5 +84,14 @@ margin-top: 1px;
 margin-bottom: 20px;
 font-size: 24px;
 `
+// const Wrap = styled.section`
+// display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   justify-content: center;
+//   width: 100%;
+//   padding: 10%;
+// `
+
 
 export default AboutUs;
