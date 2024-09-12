@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { getMemeById } from '../services/MinionServices'; // Asegúrate de importar el servicio
 import { deleteMemes } from '../services/MinionServices';
 import { getMemes } from '../services/MinionServices';
@@ -11,6 +11,7 @@ const MemeDetail = () => {
   const [memes, setMemes] = useState([]); //con esto guardas todos los memes y lo llamas en el segundo efect para delete
   const [loading, setLoading] = useState(true); // Estado para manejar la carga
   const [error, setError] = useState(null); // Estado para manejar errores
+  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMeme = async () => {
@@ -33,7 +34,7 @@ const MemeDetail = () => {
         const fetchMemes = async () => {
           try {
             const allMemes = await getMemes(); // Llamada a la API para obtener el meme por ID
-            setMeme(allMemes);
+            setMemes(allMemes);
           } catch (error) {
             setError('Error al cargar los memes.');
           } finally {
@@ -49,6 +50,7 @@ const MemeDetail = () => {
         try {
           await deleteMemes(id);
           setMemes(memes.filter(meme => meme.id !== id));
+          navigate('/gallery'); 
 
         } catch (error) {
           setError ('Error al cargar la lista de memes.')
@@ -70,9 +72,11 @@ return (
         <p>Meme no encontrado.</p>
       )}
        <button onClick={() => handleDelete(meme.id)}>Eliminar</button>
+       <button>Actualizar</button>
     </div>
   );
 };
+
 
 export default MemeDetail;
 
