@@ -17,9 +17,21 @@ export const getMemes = async () => {
   }
 };
 
+//READ-metodo get pero por ID
+export const getMemeById = async (id) => {
+  try {
+    const response = await axios.get(`${URL}/${id}`);
+    // const meme = await response.json();
+    return response.data;
+  } catch (error) {
+    console.error('Error al obtener el meme:', error);
+    throw error;
+  }
+};
+
 //DELETE- metodo delete
 
-const deleteMemes = async (id) => {
+export const deleteMemes = async (id) => {
   try {
       const response = await axios.delete(`${URL}/${id}`);
       return response.data
@@ -33,7 +45,7 @@ const deleteMemes = async (id) => {
 //CREATE - metodo POST
 
 
-const postMemes = async (data) => {
+export const postMemes = async (data) => {
   try {
       const response = await axios.post(URL, data);
       return response.data
@@ -47,7 +59,7 @@ const postMemes = async (data) => {
 
 //UPDATE . metodo put
 
-const putMemes = async (id, data) => {
+export const putMemes = async (id, data) => {
   try {
       const response = await axios.put(`${URL}/${id}`, data);
       return response.data
