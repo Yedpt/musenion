@@ -1,15 +1,36 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { keyframes, css } from 'styled-components';
-import MemeDetail from '../pages/MemeDetail';
 
-const radius = 240;
 const imgWidth = 120;
 const imgHeight = 170;
 
 const Carousel3D = ({ memes, autoRotate = true, rotateSpeed = -60 }) => {
+  const [radius, setRadius] = useState(240); // Estado para gestionar el radio
   const spinContainerRef = useRef(null); // Referencia al contenedor giratorio
   const navigate = useNavigate(); // Hook para redirigir
+
+  useEffect(() => {
+    const updateRadius = () => {
+      const screenWidth = window.innerWidth;
+      if (screenWidth >= 1440) {
+        setRadius(500); // Más espacio para pantallas grandes (1440px y mayores)
+      } else if (screenWidth >= 1024) {
+        setRadius(400); // Espacio mayor para escritorio (1024px y mayores)
+      } else if (screenWidth >= 768) {
+        setRadius(300); // Esquina mayor para tablet
+      } else {
+        setRadius(240); // Valor por defecto para móvil
+      }
+    };
+
+    updateRadius(); // Ejecuta la función al cargar
+    window.addEventListener('resize', updateRadius); // Escuchar cambios en el tamaño de la pantalla
+
+    return () => {
+      window.removeEventListener('resize', updateRadius); // Limpieza del listener
+    };
+  }, []);
 
   useEffect(() => {
     let animationFrameId;
@@ -18,13 +39,12 @@ const Carousel3D = ({ memes, autoRotate = true, rotateSpeed = -60 }) => {
 
     const initCarousel = (delayTime) => {
       aEle.forEach((ele, i) => {
-        ele.style.transform = `rotateY(${i * (360 / aEle.length)}deg) translateZ(${radius}px)`;
+        ele.style.transform = `rotateY(${i * (360 / aEle.length)}deg) translateZ(${radius}px)`; // Usa el radio dinámico
         ele.style.transition = "transform 1s";
         ele.style.transitionDelay = `${delayTime || (aEle.length - i) / 4}s`;
       });
     };
 
-    // Lógica de animación continua
     const animateCarousel = () => {
       if (spinContainerRef.current && autoRotate) {
         spinContainerRef.current.style.transform = `rotateY(${Date.now() / 100 % 360}deg)`; // Movimiento continuo
@@ -37,19 +57,17 @@ const Carousel3D = ({ memes, autoRotate = true, rotateSpeed = -60 }) => {
       animateCarousel(); // Iniciar la animación
     }
 
-    // Listener para redimensionar ventana y reiniciar carrusel
     const handleResize = () => {
       initCarousel(0); // Reiniciar cuando cambie el tamaño de la ventana
     };
 
     window.addEventListener('resize', handleResize);
 
-    // Cleanup
     return () => {
       cancelAnimationFrame(animationFrameId); // Detener la animación
       window.removeEventListener('resize', handleResize);
     };
-  }, [memes, autoRotate]);
+  }, [memes, autoRotate, radius]); // Dependemos del valor de radius
 
   const handleImageClick = (meme) => {
     navigate(`/MemeDetail/${meme.id}`); // Navegar a la página de detalles del meme
@@ -58,17 +76,17 @@ const Carousel3D = ({ memes, autoRotate = true, rotateSpeed = -60 }) => {
   return (
     <DragContainer>
       <SpinContainer ref={spinContainerRef} $rotateSpeed={rotateSpeed}>
-        {memes.slice(0, 10).map((meme, index) => ( // Solo 10 primeros memes
+        {memes.slice(0, 10).map((meme, index) => (
           <img
             key={index}
             src={meme.url}
             alt={meme.title}
             className="carousel-item"
-            onClick={() => handleImageClick(meme)} // Redirigir al hacer click
+            onClick={() => handleImageClick(meme)}
           />
         ))}
       </SpinContainer>
-      <Ground />
+      <Ground $radius={radius} />
     </DragContainer>
   );
 };
@@ -81,7 +99,15 @@ const DragContainer = styled.div`
   display: flex;
   margin: auto;
   transform-style: preserve-3d;
-  perspective: 800px;
+  perspective: 1000px;
+
+  @media (min-width: 1024px) {
+    perspective: 1400px; // Aumenta la profundidad en pantallas grandes
+  }
+
+  @media (min-width: 1440px) {
+    perspective: 1800px; // Mayor perspectiva para pantallas aún más grandes
+  }
 `;
 
 const SpinContainer = styled.div`
@@ -92,13 +118,17 @@ const SpinContainer = styled.div`
   width: ${imgWidth}px;
   height: ${imgHeight}px;
 
-  /* Media queries para pantallas más grandes */
   @media (min-width: 768px) { /* Tablet */
     width: ${imgWidth * 2}px;
     height: ${imgHeight * 2}px;
   }
 
   @media (min-width: 1024px) { /* Desktop */
+    width: ${imgWidth * 2.5}px;
+    height: ${imgHeight * 2.5}px;
+  }
+
+  @media (min-width: 1440px) { /* Pantallas más grandes */
     width: ${imgWidth * 2}px;
     height: ${imgHeight * 2}px;
   }
@@ -111,21 +141,20 @@ const SpinContainer = styled.div`
     transition: transform 0.5s, box-shadow 0.5s;
 
     &:hover {
-      transform: scale(1.2); // Agrandar al pasar el ratón
+      transform: scale(1.2);
       box-shadow: 0 0 10px #fffd;
       cursor: pointer;
     }
   }
 
-  /* Animación continua usando spin o spinRever */
   ${({ $rotateSpeed }) => $rotateSpeed && css`
     animation: ${$rotateSpeed > 0 ? spin : spinRevert} ${Math.abs($rotateSpeed)}s infinite linear;
   `}
 `;
 
 const Ground = styled.div`
-  width: ${radius * 2}px;
-  height: ${radius * 2}px;
+  width: ${({ $radius }) => $radius * 2}px;
+  height: ${({ $radius }) => $radius * 2}px;
   position: absolute;
   top: 100%;
   left: 50%;
@@ -133,7 +162,6 @@ const Ground = styled.div`
   background: radial-gradient(circle, #9993, transparent);
 `;
 
-// Animaciones
 const spin = keyframes`
   from {
     transform: rotateY(0deg);
