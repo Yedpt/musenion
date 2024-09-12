@@ -69,7 +69,7 @@ const FormPutMeme = () => {
               {...register('url', {
                 required: 'La URL es obligatoria',
                 pattern: {
-                  value: /^(https?:\/\/.*\.(?:png|jpg|jpeg|gif))$/,
+                  value: /^(https?:\/\/[^\s$.?#].[^\s]*)$/,
                   message: 'Formato de URL inválido',
                 },
               })}

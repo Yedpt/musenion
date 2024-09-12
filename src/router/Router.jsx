@@ -43,6 +43,10 @@ export const router = createBrowserRouter([{
         element: <AboutUs/>
     },
     {
+        path: "/meme/:id", // Ruta para ver los detalles del meme
+        element: <MemeDetail />,
+    },
+    {
         path:'/edit/:id', // Ruta para editar el meme
         element: <FormPutMeme/>, //la página de edición
     },
