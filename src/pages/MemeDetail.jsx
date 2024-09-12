@@ -4,7 +4,6 @@ import { getMemeById } from '../services/MinionServices'; // Asegúrate de impor
 import { deleteMemes } from '../services/MinionServices';
 import { getMemes } from '../services/MinionServices';
 
-
 const MemeDetail = () => {
   const { id } = useParams(); // Obtener el id de la URL
   const [meme, setMeme] = useState(null); // Estado para guardar los detalles del meme
@@ -57,26 +56,30 @@ const MemeDetail = () => {
         }
       };
 
+      const handleEdit = () => {
+        navigate(`/edit/${id}`); // Redirige a la nueva página de edición con el ID del meme
+      };
+
       if (loading) return <p>Cargando meme...</p>;
       if (error) return <p>{error}</p>;
 
-return (
-    <div>
-      {meme ? (
+      return (
         <div>
-          <h2>{meme.title}</h2>
-          <img src={meme.url} alt={meme.title} style={{ width: '300px', height: 'auto' }} />
-          <p>{meme.description}</p>
+          {meme ? (
+            <div>
+              <h2>{meme.title}</h2>
+              <img src={meme.url} alt={meme.title} style={{ width: '300px', height: 'auto' }} />
+              <p>{meme.description}</p>
+    
+              <button onClick={() => handleDelete(meme.id)}>Eliminar</button>
+              <button onClick={handleEdit}>Actualizar</button> {/* Llama a handleEdit */}
+            </div>
+          ) : (
+            <p>Meme no encontrado.</p>
+          )}
         </div>
-      ) : (
-        <p>Meme no encontrado.</p>
-      )}
-       <button onClick={() => handleDelete(meme.id)}>Eliminar</button>
-       <button>Actualizar</button>
-    </div>
-  );
-};
-
+      );
+    };
 
 export default MemeDetail;
 
