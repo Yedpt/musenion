@@ -74,6 +74,7 @@ return (
   );
 };
 
+
 export default MemeDetail;
 
 
