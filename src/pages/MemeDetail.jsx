@@ -79,10 +79,12 @@ return (
       ) : (
         <ErrorMessage>Meme no encontrado.</ErrorMessage>
       )}
-       <ButtonDelete onClick={() => handleDelete(meme.id)}>Eliminar</ButtonDelete>
-       <ButtonUpdate onClick={() => handleEdit()}>Actualizar</ButtonUpdate>
-       <ImageFloor src="public/assets/images/suelo-museo-3.png" alt="Fondo" />
-       </PageContainer>
+      <Buttons>
+        <ButtonUpdate onClick={() => handleEdit()}>Actualizar</ButtonUpdate>
+        <ButtonDelete onClick={() => handleDelete(meme.id)}>Eliminar</ButtonDelete>
+      </Buttons>
+        <ImageFloor src="public/assets/images/suelo-museo-3.png" alt="Fondo" />
+        </PageContainer>
   );
 };
 
@@ -93,7 +95,6 @@ const PageContainer = styled.div`
   align-items: center;
   flex-direction: column; /* Asegúrate de que los elementos estén en columna */
   width: 100vw;
-  height: 100vh;
   background: #BFAC9E;
   background-size: cover;
   background-position: center;
@@ -110,15 +111,16 @@ const FrameContainer = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   width: 80%; /* Ajusta según sea necesario */
-  max-width: 600px; /* Ajusta según sea necesario */
+  max-width: 400px; /* Ajusta según sea necesario */
   height: fit-content;
+  margin-top: 30px;
 `;
 
 const CardMeme = styled.div`
 padding: 0;
 `;
 const TitleMeme = styled.h2`
-padding: 0;
+  padding: 0;
 `;
 const ImageMeme = styled.img`
   max-width: 100%;
@@ -130,13 +132,51 @@ const Description = styled.p`
 padding: 0;
 `;
 const ErrorMessage = styled.p`
-padding: 0;
+  padding: 0;
 `;
-const ButtonDelete = styled.button`
-padding: 0;
+const Buttons = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column; 
+  width: 100vw;
+
+  @media (min-width: 600px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row; 
+    width: 100vw;
+    margin-bottom: 50px;
+    margin-top: 50px;
+  }
 `;
 const ButtonUpdate = styled.button`
-padding: 0;
+  padding: 5px;
+  width: 30%;
+  background-color: #FFDA58;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+
+  @media (min-width: 600px) {
+    margin: 0;
+    margin-right: 20px;
+    width: 15%;
+  }
+`;
+const ButtonDelete = styled.button`
+  padding: 5px;
+  width: 30%;
+  background-color: #FFDA58;
+  margin-bottom: 30px;
+  border-radius: 5px;
+
+  @media (min-width: 600px) {
+    margin: 0;
+    margin-right: 20px;
+    width: 15%;
+  }
 `;
 const ImageFloor = styled.img`
   position: absolute;
