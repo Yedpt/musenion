@@ -88,14 +88,14 @@ const FormPutMeme = () => {
   );
 };
 
-const Page = styled.divPage`
-   display: flex;
+const Page = styled.div`
+  display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      width: 100vw;
-      margin: 0;
+      width: 100%;
       background: linear-gradient(to bottom, #FFDC59, #E2730C);
 `;
+
 
 export default FormPutMeme;
