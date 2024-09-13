@@ -7,6 +7,10 @@ import Contact from "../pages/Contact.jsx"
 import AboutUs from "../pages/AboutUs.jsx";
 import EditMeme from "../pages/EditMeme.jsx";
 import MemeDetail from "../pages/MemeDetail.jsx";
+import Nav from "../components/Nav.jsx";
+import Footer from "../components/Footer.jsx";
+
+
 
 
 export const router = createBrowserRouter([{
@@ -41,6 +45,14 @@ export const router = createBrowserRouter([{
     {
         path:'aboutus',
         element: <AboutUs/>
+    },
+    {
+        path:'nav',
+        element: <Nav/>
+    },
+    {
+        path:'footer',
+        element: <Footer/>
     },
 ]
 

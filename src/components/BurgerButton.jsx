@@ -17,7 +17,7 @@ function BurgerButton(props) {
 
 export default BurgerButton
 
-const Burger=syled.div`
+const Burger=styled.div`
 .nav-icon-6{
   width: 35px;
   height: 30px;

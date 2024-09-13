@@ -2,7 +2,8 @@
 // import styled from 'styled-components'
 // import BurgerButton from './BurgerButton'
 import { useState } from 'react'
-import  styles from './Nav';
+import styled from 'styled-components'
+import  styles from './Nav'
 
 
 // function Nav () {
@@ -96,6 +97,10 @@ import  styles from './Nav';
 //     }
 // `
 
+const StyledNav = styled.nav `
+  background: linear-gradient(to bottom, #FFDC59, #E2730C);
+`;
+
 function Navbar() {
     // adding the states 
     const [isActive, setIsActive] = useState(false);
@@ -110,6 +115,7 @@ function Navbar() {
     return (
       <div className="App">
         <header className="App-header">
+        <StyledNav>
           <nav className={`${styles.navbar}`}>
             {/* logo */}
             <a href='#home' className={`${styles.logo}`}>Dev. </a>
@@ -118,10 +124,16 @@ function Navbar() {
                 <a href='#home' className={`${styles.navLink}`}>Home</a>
               </li>
               <li onClick={removeActive}>
-                <a href='#home' className={`${styles.navLink}`}>Catalog</a>
+                <a href='#home' className={`${styles.navLink}`}>Galeria Virtual</a>
               </li>
               <li onClick={removeActive}>
-                <a href='#home' className={`${styles.navLink}`}>All products</a>
+                <a href='#home' className={`${styles.navLink}`}>Sobre tu Meme</a>
+              </li>
+              <li onClick={removeActive}>
+                <a href='#home' className={`${styles.navLink}`}>Sobre Nosotros</a>
+              </li>
+              <li onClick={removeActive}>
+                <a href='#home' className={`${styles.navLink}`}>Los Creadores</a>
               </li>
               <li onClick={removeActive}>
                 <a href='#home' className={`${styles.navLink}`}>Contact</a>
@@ -133,6 +145,7 @@ function Navbar() {
               <span className={`${styles.bar}`}></span>
             </div>
           </nav>
+          </StyledNav>
         </header>
       </div>
     );
