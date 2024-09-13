@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getMemeById, putMemes } from '../services/MinionServices';
 import { useForm } from 'react-hook-form';
+import styled from 'styled-components';
 
 const FormPutMeme = () => {
   const { id } = useParams(); // Obtener el id del meme desde la URL
@@ -43,7 +44,7 @@ const FormPutMeme = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
+    <Page>
       <h2>Editar Meme</h2>
       {/* Mostrar la imagen del meme antes que el formulario */}
       {meme && <img src={meme.url} alt={meme.title} style={{ width: '300px', height: 'auto' }} />}
@@ -83,8 +84,18 @@ const FormPutMeme = () => {
           <button type="button" onClick={() => reset(meme)}>Cancelar</button> {/* Resetear el formulario */}
         </form>
       )}
-    </div>
+    </Page>
   );
 };
+
+const Page = styled.divPage`
+   display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100vw;
+      margin: 0;
+      background: linear-gradient(to bottom, #FFDC59, #E2730C);
+`;
 
 export default FormPutMeme;
