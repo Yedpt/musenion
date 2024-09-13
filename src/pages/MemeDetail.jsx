@@ -80,7 +80,7 @@ return (
         <ErrorMessage>Meme no encontrado.</ErrorMessage>
       )}
        <ButtonDelete onClick={() => handleDelete(meme.id)}>Eliminar</ButtonDelete>
-       <ButtonUpdate>Actualizar</ButtonUpdate>
+       <ButtonUpdate onClick={() => handleEdit()}>Actualizar</ButtonUpdate>
        <ImageFloor src="public/assets/images/suelo-museo-3.png" alt="Fondo" />
        </PageContainer>
   );
