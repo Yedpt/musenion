@@ -5,6 +5,7 @@ import { deleteMemes } from '../services/MinionServices';
 import { getMemes } from '../services/MinionServices';
 
 
+
 const MemeDetail = () => {
   const { id } = useParams(); // Obtener el id de la URL
   const [meme, setMeme] = useState(null); // Estado para guardar los detalles del meme
@@ -61,22 +62,31 @@ const MemeDetail = () => {
       if (error) return <p>{error}</p>;
 
 return (
-    <div>
+    <Body>
       {meme ? (
-        <div>
-          <h2>{meme.title}</h2>
-          <img src={meme.url} alt={meme.title} style={{ width: '300px', height: 'auto' }} />
-          <p>{meme.description}</p>
-        </div>
+        <CardMeme>
+          <TitleMeme>{meme.title}</TitleMeme>
+          <Image src={meme.url} alt={meme.title} style={{ width: '300px', height: 'auto' }} />
+          <Description>{meme.description}</Description>
+        </CardMeme>
       ) : (
-        <p>Meme no encontrado.</p>
+        <Error>Meme no encontrado.</Error>
       )}
-       <button onClick={() => handleDelete(meme.id)}>Eliminar</button>
-       <button>Actualizar</button>
-    </div>
+       <ButtonDelete onClick={() => handleDelete(meme.id)}>Eliminar</ButtonDelete>
+       <ButtonUpdate>Actualizar</ButtonUpdate>
+    </Body>
   );
 };
 
+const Body = styled.body`
+background-image: url('src\assets\images\fondo-detail-memes-mobile.png')
+`;
+const CardMeme = styled.div``;
+const TitleMeme = styled.h2``;
+const Description = styled.p``;
+const Error = ``;
+const ButtonDelete = ``;
+const ButtonUpdate = ``;
 
 export default MemeDetail;
 
