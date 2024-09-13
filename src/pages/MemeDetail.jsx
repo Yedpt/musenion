@@ -59,6 +59,10 @@ const MemeDetail = () => {
         }
       };
 
+      const handleEdit = () => {
+        navigate(`/edit/${id}`); // Redirige a la nueva página de edición con el ID del meme
+      };
+
       if (loading) return <p>Cargando meme...</p>;
       if (error) return <p>{error}</p>;
 
