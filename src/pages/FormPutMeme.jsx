@@ -94,8 +94,12 @@ const Page = styled.div`
       justify-content: center;
       align-items: center;
       width: 100%;
+      margin-top: 20%;
       background: linear-gradient(to bottom, #FFDC59, #E2730C);
+      
 `;
+
+
 
 
 export default FormPutMeme;
