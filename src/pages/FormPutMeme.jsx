@@ -31,9 +31,9 @@ const FormPutMeme = () => {
  // Función para manejar el envío del formulario
  const onSubmit = async (data) => {
   try {
-    // Actualizamos el meme en la base de datos
-    await putMemes (id, data); // Aquí hacemos la solicitud PUT con los datos actualizados
-    navigate('/gallery'); // Redirigimos a la galería después de guardar los cambios
+    // Actualizo el meme en la base de datos
+    await putMemes (id, data); // solicitud PUT con los datos actualizados
+    navigate('/gallery'); // después de guardar los cambios vamos a la galeria
     } catch (error) {
       setError('Error al actualizar el meme.');
     }
@@ -45,7 +45,7 @@ const FormPutMeme = () => {
   return (
     <div>
       <h2>Editar Meme</h2>
-      {/* Mostrar la imagen del meme antes del formulario */}
+      {/* Mostrar la imagen del meme antes que el formulario */}
       {meme && <img src={meme.url} alt={meme.title} style={{ width: '300px', height: 'auto' }} />}
       {meme && (
         <form onSubmit={handleSubmit(onSubmit)}>
