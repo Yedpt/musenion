@@ -82,7 +82,7 @@ const NavContainer = styled.div`
   top: 0;
   left: 0;
   z-index: 100;
-  background-color: #33517D;
+  background-color: #244C87FF;
 `;
 
 const Nav = styled.nav`

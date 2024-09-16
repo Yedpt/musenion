@@ -4,17 +4,11 @@ import img2 from '../../public/assets/images/white-minion2.svg'; // Asegúrate d
 
 const Footer = () => { 
   return (
-    <FooterContainer>
-      <FooterBottom>
-        <CopyRightText>Copyright © 2024 Musenion</CopyRightText>
-        <FooterImages>
-          <img src={img1} alt="Image 1" />
-          <img src={img2} alt="Image 2" />
-        </FooterImages>
-      </FooterBottom>
-    </FooterContainer>
-  );
-};
+    <div>
+      
+    </div>
+  )
+}
 
 export default Footer;
 
