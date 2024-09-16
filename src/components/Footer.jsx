@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import img1 from '../assets/images/white-minion1.svg'; // Asegúrate de ajustar la ruta según la ubicación real
-import img2 from '../assets/images/white-minion2.svg'; // Asegúrate de ajustar la ruta según la ubicación real
+import img1 from '../../public/assets/images/white-minion1.svg'; // Asegúrate de ajustar la ruta según la ubicación real
+import img2 from '../../public/assets/images/white-minion2.svg'; // Asegúrate de ajustar la ruta según la ubicación real
 
-const Footer = () => {
+const Footer = () => { 
   return (
     <FooterContainer>
       <FooterBottom>
