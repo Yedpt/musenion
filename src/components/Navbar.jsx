@@ -1,10 +1,18 @@
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import { Link, useLocation } from "react-router-dom";
 import BurgerButton from "./BurgerButton";
 
 function Navbar() {
   const [clicked, setClicked] = useState(false);
   const [activeLetter, setActiveLetter] = useState(null);
+  const [isHome, setIsHome] = useState(false); // Para verificar si estamos en la home
+  const location = useLocation(); // Para determinar la página actual
+
+  useEffect(() => {
+    // Verifica si estamos en la Home
+    setIsHome(location.pathname === "/");
+  }, [location]);
 
   const handleClick = () => {
     setClicked(!clicked);
@@ -18,22 +26,46 @@ function Navbar() {
     setActiveLetter(index);
   };
 
+  // Efecto aleatorio cada 5 segundos para las letras de MUSENION
   useEffect(() => {
     const spans = document.querySelectorAll(".word span");
-    spans.forEach((span, idx) => {
-      setTimeout(() => {
-        span.classList.add("active");
-      }, 750 * (idx + 1));
-    });
+    const animateRandomly = () => {
+      const randomIndex = Math.floor(Math.random() * spans.length);
+      setActiveLetter(randomIndex);
+    };
+    const intervalId = setInterval(animateRandomly, 5000);
+    return () => clearInterval(intervalId);
   }, []);
 
   return (
-    <NavContainer>
+    <NavContainer isHome={isHome}>
       <Nav>
-        {/* Burger Button */}
+        {/* Burger Button para versión móvil */}
         <BurgerButton handleClick={handleClick} clicked={clicked} />
 
-        {/* Logo */}
+        {/* Menu (pantallas mayores a 960px) */}
+        <Menu isHome={isHome} className={clicked ? "active" : ""}>
+          <li className={location.pathname === "/" ? "selected" : ""}>
+            <Link to="../src/pages/Home.jsx" onClick={closeMenu}>Home</Link>
+          </li>
+          <li className={location.pathname === "/galeria" ? "selected" : ""}>
+            <Link to="../src/pages/Galery.jsx" onClick={closeMenu}>Galería Virtual</Link>
+          </li>
+          <li className={location.pathname === "/meme" ? "selected" : ""}>
+            <Link to="../src/pages/EditMeme.jsx" onClick={closeMenu}>Sobre tu Meme</Link>
+          </li>
+          <li className={location.pathname === "/nosotros" ? "selected" : ""}>
+            <Link to="../src/pages/AboutUs.jsx" onClick={closeMenu}>Sobre Nosotros</Link>
+          </li>
+          <li className={location.pathname === "/creadores" ? "selected" : ""}>
+            <Link to="../src/pages/AboutUs.jsx" onClick={closeMenu}>Los Creadores</Link>
+          </li>
+          <li className={location.pathname === "/contact" ? "selected" : ""}>
+            <Link to="../src/pages/Contact.jsx" onClick={closeMenu}>Contacto</Link>
+          </li>
+        </Menu>
+
+        {/* Logo MUSENION */}
         <Logo href="#home">
           <TextContainer>
             <span className={activeLetter === 0 ? "active" : ""} onClick={() => handleLetterClick(0)}>M</span>
@@ -47,28 +79,7 @@ function Navbar() {
           </TextContainer>
         </Logo>
 
-        {/* Menu */}
-        <Menu className={clicked ? "active" : ""}>
-          <li>
-            <a href="#home" onClick={closeMenu}>Home</a>
-          </li>
-          <li>
-            <a href="#galeria" onClick={closeMenu}>Galería Virtual</a>
-          </li>
-          <li>
-            <a href="#meme" onClick={closeMenu}>Sobre tu Meme</a>
-          </li>
-          <li>
-            <a href="#nosotros" onClick={closeMenu}>Sobre Nosotros</a>
-          </li>
-          <li>
-            <a href="#creadores" onClick={closeMenu}>Los Creadores</a>
-          </li>
-          <li>
-            <a href="#contact" onClick={closeMenu}>Contacto</a>
-          </li>
-        </Menu>
-        <BgDiv className={`initial ${clicked ? "active" : ""}`} />
+        <BgDiv className={`initial ${clicked ? "active" : ""}`} onClick={closeMenu} />
       </Nav>
     </NavContainer>
   );
@@ -82,7 +93,11 @@ const NavContainer = styled.div`
   top: 0;
   left: 0;
   z-index: 100;
-  background-color: #244C87FF;
+  background-color: ${(props) => (props.isHome ? "transparent" : "#33517D")};
+
+  @media (max-width: 960px) {
+    background-color: transparent;
+  }
 `;
 
 const Nav = styled.nav`
@@ -90,12 +105,12 @@ const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem;
-  background: transparent ;
+  background: transparent;
   transition: all 0.3s ease;
 
   @media (max-width: 960px) {
     padding: 1.2rem 1rem;
-    background: transparent
+    background: transparent;
   }
 `;
 
@@ -119,8 +134,15 @@ const Menu = styled.ul`
     transition: 0.3s;
   }
 
+  li.selected a {
+    color: #33517d;
+    background-color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+  }
+
   li a:hover {
-    color: #F4DA4BFF;
+    color: #f4da4b;
   }
 
   @media (max-width: 960px) {
@@ -133,7 +155,7 @@ const Menu = styled.ul`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to bottom, #FFDB59, #E2730C);
+    background: linear-gradient(to bottom, #ffdb59, #e2730c);
     gap: 2rem;
     transition: all 0.3s ease;
 

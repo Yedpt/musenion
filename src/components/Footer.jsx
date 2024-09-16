@@ -2,20 +2,26 @@ import styled from 'styled-components';
 import img1 from '../../public/assets/images/white-minion1.svg'; // Asegúrate de ajustar la ruta según la ubicación real
 import img2 from '../../public/assets/images/white-minion2.svg'; // Asegúrate de ajustar la ruta según la ubicación real
 
-const Footer = () => { 
+const Footer = () => {
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <FooterContainer>
+      <FooterBottom>
+        <CopyRightText>Copyright © 2024 Musenion</CopyRightText>
+        <FooterImages>
+          <img src={img1} alt="Image 1" />
+          <img src={img2} alt="Image 2" />
+        </FooterImages>
+      </FooterBottom>
+    </FooterContainer>
+  );
+};
 
 export default Footer;
 
 const FooterContainer = styled.footer`
   position: relative;
   width: 100%;
-  min-height: 100px; /* Ajusta según sea necesario */
+  min-height: 100px;
   background-color: transparent;
 `;
 
@@ -27,7 +33,7 @@ const FooterBottom = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 10px; /* Ajusta según sea necesario */
+  padding: 10px;
   box-sizing: border-box;
   
   @media (max-width: 960px) {
@@ -40,7 +46,6 @@ const CopyRightText = styled.p`
   color: white;
   font-size: 1rem;
   margin: 0;
-  position: relative;
   
   @media (max-width: 960px) {
     text-align: left;
@@ -48,22 +53,26 @@ const CopyRightText = styled.p`
 `;
 
 const FooterImages = styled.div`
-  display: flex ;
-  gap: 50px;
+  display: flex;
+  gap: 20px;
   position: absolute;
-  left: 85%;
-  bottom: 3rem;
-  
+  right: 20px;
+  bottom: 0;
+
+  img {
+    height: 60px;
+    width: auto;
+    position: relative;
+    top: -40px; /* Las imágenes sobresalen 40px del footer hacia arriba */
+  }
+
   @media (max-width: 960px) {
-    display: flex;
-    gap: 10px;
-    position: absolute;
-    right: 20px;
-    bottom: 40px;
-    
+    right: 10px;
+    bottom: 0;
+
     img {
-      height: 60px; /* Ajusta el tamaño según sea necesario */
-      width: auto;
+      height: 50px; /* Ajusta el tamaño de las imágenes para pantallas pequeñas */
+      top: -30px; /* También sobresalen, pero ajustamos un poco el valor */
     }
   }
 `;

@@ -1,85 +1,64 @@
-import React from "react";
 import styled from "styled-components";
 
 function BurgerButton({ handleClick, clicked }) {
   return (
-    <Burger>
-      <div 
-        onClick={handleClick}
-        className={`icon nav-icon-6 ${clicked ? 'open' : ''}`}
-      >
+    <Wrapper onClick={handleClick} clicked={clicked}>
+      <div className={`icon nav-icon-5 ${clicked ? "open" : ""}`}>
         <span></span>
         <span></span>
         <span></span>
       </div>
-    </Burger>
+    </Wrapper>
   );
 }
 
 export default BurgerButton;
 
-const Burger = styled.div`
-  .nav-icon-6 {
+const Wrapper = styled.div`
+  .nav-icon-5 {
     width: 35px;
     height: 30px;
-    margin: 10px 10px;
+    margin: 10px;
     position: relative;
     cursor: pointer;
     display: inline-block;
   }
 
-  .nav-icon-6 span {
-    background-color: #fff;
+  .nav-icon-5 span {
+    background-color: white;
     position: absolute;
     border-radius: 2px;
-    transition: 0.3s cubic-bezier(0.8, 0.5, 0.2, 1.4);
+    transition: 0.3s;
     width: 100%;
     height: 4px;
   }
 
-  .nav-icon-6 span:nth-child(1) {
+  .nav-icon-5 span:nth-child(1) {
     top: 0px;
     left: 0px;
   }
 
-  .nav-icon-6 span:nth-child(2) {
+  .nav-icon-5 span:nth-child(2) {
     top: 13px;
     left: 0px;
   }
 
-  .nav-icon-6 span:nth-child(3) {
-    bottom: 0px;
+  .nav-icon-5 span:nth-child(3) {
+    top: 26px;
     left: 0px;
   }
 
-  .nav-icon-6:not(.open):hover span:nth-child(1) {
-    transform: scaleY(1.2);
-    left: -5px;
-  }
-
-  .nav-icon-6:not(.open):hover span:nth-child(2) {
-    transform: rotate(5deg) scaleY(1.1);
-  }
-
-  .nav-icon-6:not(.open):hover span:nth-child(3) {
-    transform: scaleY(1.2);
-    left: 5px;
-  }
-
-  .nav-icon-6.open span:nth-child(1) {
-    transform: rotate(45deg) scaleX(0.7);
+  .nav-icon-5.open span:nth-child(1) {
     top: 13px;
-    left: -8px;
+    transform: rotate(45deg);
   }
 
-  .nav-icon-6.open span:nth-child(2) {
-    transform: scale(0);
-    transition-duration: 50ms;
+  .nav-icon-5.open span:nth-child(2) {
+    opacity: 0;
   }
 
-  .nav-icon-6.open span:nth-child(3) {
-    transform: rotate(-45deg) scaleX(0.7);
+  .nav-icon-5.open span:nth-child(3) {
     top: 13px;
-    left: 7px;
+    transform: rotate(-45deg);
   }
 `;
