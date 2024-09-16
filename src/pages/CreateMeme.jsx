@@ -1,7 +1,4 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { useForm } from "react-hook-form"
-import { postMemes } from '../../src/services/MinionServices'
+import React from 'react'
 
 const CreateMeme = () => {
 
@@ -39,45 +36,9 @@ const CreateMeme = () => {
 
 
   return (
-    <Container>
-    <Header>
-    </Header>
-    <Title>SUBE TU MINION MEME</Title>
-    <UploadArea>
-      {/* <ImagePreview>
-        {previewUrl && <img src={previewUrl} alt="Preview" style={{maxWidth: '100%', maxHeight: '100%'}} />}
-      </ImagePreview> */}
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <Input 
-          type="file" 
-          accept="image/*"
-          {...register('image', { 
-            required: 'Please select an image',
-            validate: {
-              fileSize: (files) => files[0]?.size <= 500 * 1024 || 'Image size should be less than 500KB',
-            }
-          })}
-          onChange={handleFileChange}
-        />
-        {errors.image && <ErrorMessage>{errors.image.message}</ErrorMessage>}
-        
-        <p>CONDICIONES DE LA IMAGEN</p>
-        <p>La imagen debe estar en uno de los siguientes formatos: PNG, JPG o SVG.</p>
-        <p>El tamaño del archivo debe ser menor a 500 KB.</p>
-        
-        <Input 
-          type="text" 
-          placeholder="Detalle de tu meme"
-          {...register('memeText', { required: 'Please enter meme text' })}
-        />
-        {errors.memeText && <ErrorMessage>{errors.memeText.message}</ErrorMessage>}
-        
-        <Button type="submit">SUBIR</Button>
-        {submitStatus.error && <ErrorMessage>{submitStatus.error}</ErrorMessage>}
-        {submitStatus.success && <SuccessMessage>{submitStatus.success}</SuccessMessage>}
-      </Form>
-    </UploadArea>
-  </Container>
+    <div>
+      
+    </div>
   )
 }
 
