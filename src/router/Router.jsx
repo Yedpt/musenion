@@ -4,6 +4,9 @@ import Layout from "../layout/Layout";
 import CreateMeme from "../pages/CreateMeme.jsx";
 import Galery from "../pages/Galery.jsx";
 import Contact from "../pages/Contact.jsx"
+import AboutUs from "../pages/AboutUs.jsx";
+import EditMeme from "../pages/EditMeme.jsx";
+import MemeDetail from "../pages/MemeDetail.jsx";
 
 
 export const router = createBrowserRouter([{
@@ -25,16 +28,20 @@ export const router = createBrowserRouter([{
     },
     {
         path:'edit',
-        element: <editMeme/>
+        element: <EditMeme/>
     },
     {
         path:'contactus',
         element: <Contact/>
     },
-    // {
-    //     path:'detail',
-    //     element: <MemeDetail/>
-    // }
+    {
+        path:'MemeDetail/:id',
+        element: <MemeDetail/>
+    },
+    {
+        path:'aboutus',
+        element: <AboutUs/>
+    },
 ]
 
 }])

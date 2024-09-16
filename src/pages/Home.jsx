@@ -1,7 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
+// import { useNavigate } from 'react-router-dom'; hay que importar esto para poder usar el useNavigate
 
 const Home = () => {
+
+  /* const navigate = useNavigate () , permite ejecutar una accion de navegacion sin necesidad de acceder directamente al dispatch */
   return (
     <>
     <StyledBody>
