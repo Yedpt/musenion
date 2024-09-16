@@ -13,7 +13,7 @@ const Home = () => {
           <h1>Musenion</h1>
         </title>
         <figure>
-          <img src="src\assets\2-minions.png" alt="" />
+          <img src="public\assets\images\2-minions.png" alt="" />
         </figure>
       </section>
 
@@ -33,7 +33,7 @@ const Home = () => {
   )
 }
 
-const StyledBody = styled.body `
+const StyledBody = styled.div `
   background: linear-gradient(to bottom, #FFDC59, #E2730C);
 `;
 

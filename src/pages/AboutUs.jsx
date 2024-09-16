@@ -3,81 +3,146 @@ import styled from 'styled-components';
 
 const AboutUs = () => {
   return (
-   // <div className="aboutus">
-   <PageContainer>
-      <header className="aboutus-header">
-        <div className="menu-icon">
-          {/* Add your menu icon here */}
-        </div>
-      </header>
-      <div className="aboutus-content">
-        <div className="section">
-          <h2>SOBRE NOSOTROS</h2>
-          <p>
+    <PageContainer>
+      <Content>
+        <Section>
+          <Title><span className="medium">SOBRE</span> <span className="bold">NOSOTROS</span></Title>
+          <Paragraph>
             Hay muchas variaciones de los pasajes de Lorem Ipsum disponibles,
             pero la mayoría han sufrido alteraciones en alguna manera, ya sea
             porque se le agregó humor, o palabras aleatorias que no parecen ni
             un poco creíbles.
-          </p>
-        </div>
-        <div className="creators">
-          <div className="creator">
-          <h2>LOS CREADORES</h2>
-            <div className="creator-image">
-              <img src="/placeholder.png" alt="Yeder Pimentel" />
-            </div>
-            <div className="creator-name">YEDER PIMENTEL</div>
-          </div>
-          <div className="creator">
-            <div className="creator-image">
-              <img src="/placeholder.png" alt="Laura de Vega" />
-            </div>
-            <div className="creator-name">LAURA DE VEGA</div>
-          </div>
-          <div className="creator">
-            <div className="creator-image">
-              <img src="/placeholder.png" alt="Anca Bacria" />
-            </div>
-            <div className="creator-name">ANCA BACRIA</div>
-          </div>
-          <div className="creator">
-            <div className="creator-image">
-              <img src="/placeholder.png" alt="Mariela Adimari" />
-            </div>
-            <div className="creator-name">MARIELA ADIMARI</div>
-          </div>
-          <div className="creator">
-            <div className="creator-image">
-              <img src="/placeholder.png" alt="Ana Maria Garcia" />
-            </div>
-            <div className="creator-name">ANA MARIA GARCIA</div>
-          </div>
-        </div>
-      </div>
-      </PageContainer>
-    //</div>
+          </Paragraph>
+          <Title><span className="medium">LOS</span> <span className="bold">CREADORES</span></Title>
+        </Section>
+          
+          <Creators>
+          <Creator>
+            <CreatorImage>
+              <img src="../src/assets/2-minions.png" alt="Yeder Pimentel" />
+            </CreatorImage>
+            <CreatorName><span className="medium">YEDER</span> <span className="bold">PIMENTEL</span></CreatorName>
+          </Creator>
+          <Creator>
+            <CreatorImage>
+              <img src="../src/assets/2-minions.png" alt="Laura de Vega" />
+            </CreatorImage>
+            <CreatorName><span className="medium">LAURA</span> <span className="bold">DE VEGA</span></CreatorName>
+          </Creator>
+          <Creator>
+            <CreatorImage>
+              <img src="../src/assets/2-minions.png" alt="Anca Bacria" />
+            </CreatorImage>
+            <CreatorName><span className="medium">ANCA</span> <span className="bold">BACRIA</span></CreatorName>
+          </Creator>
+          <Creator>
+            <CreatorImage>
+              <img src="../src/assets/2-minions.png" alt="Mariela Adimari" />
+            </CreatorImage>
+            <CreatorName><span className="medium">MARIELA</span>  <span className="bold">ADIMARI</span></CreatorName>
+          </Creator>
+          <Creator>
+            <CreatorImage>
+              <img src="../src/assets/2-minions.png" alt="Ana Maria Garcia" />
+            </CreatorImage>
+            <CreatorName><span className="medium">ANA MARIA</span> <span className="bold">GARCIA</span></CreatorName>
+          </Creator>
+        </Creators>
+      </Content>
+    </PageContainer>
   );
 };
 
-const PageContainer = styled.body`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-width: 100vw;   /* 100% del ancho de la ventana */
-margin: 0;
-background: linear-gradient(to bottom, #FFDC59, #E2730C);
+// Styled Components
+const PageContainer = styled.div`
+  font-family: "Montserrat", sans-serif;
+  color: #0C2849;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #FFDC59, #E2730C);
+  padding: 20px 10px;
 `;
 
-const TitlePage = styled.h2`
-display: flex;
-justify-content: center;
-align-items: center;
-flex-direction: column;
-color: #0C2849;
-margin-top: 1px;
-margin-bottom: 20px;
-font-size: 24px;
-`
+const Content = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Section = styled.div`
+  text-align: left;
+  margin-bottom: 10px;
+`;
+
+const Title = styled.h2`
+  color: #0C2849;
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 0px;
+  padding: 20px 20px;
+
+  .medium {
+    font-weight: 500; /* Montserrat Medium */
+  }
+
+  .bold {
+    font-weight: 700; /* Montserrat Bold */
+  }
+`;
+
+const Paragraph = styled.p`
+  color: #333;
+  font-size: 16px;
+  line-height: 1.5;
+  padding: 0 20px;
+  max-width: 800px;
+  text-align: left;
+`;
+
+const Creators = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+
+`;
+
+const Creator = styled.div`
+  text-align: center;
+`;
+
+const CreatorImage = styled.div`
+  width: 150px;
+  height: 150px;
+  margin: 0 auto;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+    background-color: #ccc;  /* Placeholder background color */
+  }
+`;
+
+const CreatorName = styled.div`
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: bold;
+  color: #0C2849;
+
+   .medium {
+    font-weight: 500; /* Montserrat Medium */
+  }
+
+  .bold {
+    font-weight: 700; /* Montserrat Bold */
+  }
+`;
 
 export default AboutUs;
+

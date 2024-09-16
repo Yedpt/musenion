@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useState } from "react";
 import axios from "axios";
 
-const PageContainer = styled.body`
+const PageContainer = styled.div`
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -13,15 +13,46 @@ const PageContainer = styled.body`
       background: linear-gradient(to bottom, #FFDC59, #E2730C);
   `;
 
-  const TitlePage = styled.h2`
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
-      color: #0C2849;
-      margin-top: 20px;
-      font-size: 24px;
-  `
+  const MainContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+  `;
+
+    const TitlePage = styled.h2`
+    display: flex;
+    justify-content: left;
+    color: #0C2849;
+    margin-top: 20px;
+    font-size: 24px;
+    
+    @media (min-width: 960px) {
+      padding: 10px;
+    }
+`
+
+  const SecondContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+
+    @media (min-width: 960px){
+      flex-direction: row;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+`;
+
+  const MinionImage = styled.img`
+    display: none;
+  
+  @media (min-width: 960px){
+    display: flex;
+    width: 600px;
+    height: 650px;
+  }
+  `;
 
   const FormContainer = styled.form`
     display: flex;
@@ -34,7 +65,29 @@ const PageContainer = styled.body`
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     background-color: #ffffff6e;
+
+    @media (min-width: 960px){
+      width: 600px;
+      height: 650px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 0px;
+      margin-bottom: 0px;
+      margin-top: 0px;
+    }
   `;
+
+const ImageContainer = styled.div`
+display: none;
+
+@media (min-width: 960px){
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+`;
+
 
   const Label = styled.label`
   width: 90%;
@@ -84,27 +137,65 @@ const PageContainer = styled.body`
   
   `;
 
-  const Conditions = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    width: 90%;
-    padding: 10px;
-    font-size: 12px;
-  `;
+  const TermsAndSubmit = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 960px){
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  margin-top: 30px;
+  }
+`;
 
   const AcceptButton = styled.input`
   
+  @media (min-width: 960px){
+margin-bottom: 10px;
+  }
   `;
 
   const SubmitButton = styled.button`
   width: 90%;
   padding: 5px;
   border-radius: 5px;
+  background-color: #FFDC59;
+
+  @media (min-width: 960px){
+    width: 30%;
+    height: 30px;
+
+  }
   `;
+
+const Conditions = styled.div`
+display: flex;
+flex-direction: row;
+flex-wrap: nowrap;
+width: 90%;
+padding: 10px;
+font-size: 12px;
+
+@media (min-width: 960px){
+width: 50%;
+padding: 0px;
+}
+`;
+
+const EmailImage = styled.img`
+display: none;
+
+@media (min-width: 960px){
+  display: flex;
+  width: 20%;
+  margin-top: 10%;
+}
+`;
 
   const Advise = styled.span`
   color: red;
+  font-size: 13px;
   `;
 
 const ModalOverlay = styled.div`
@@ -168,7 +259,10 @@ function Contact() {
   return (
     
     <PageContainer>
-        <TitlePage>Contáctanos</TitlePage>
+    <MainContainer>
+    <TitlePage>CONTÁCTANOS</TitlePage>
+    <SecondContainer>
+       <MinionImage src="../../public/assets/images/callcenter_minion.jpg"/>
         <FormContainer onSubmit={handleSubmit(onSubmit)}>
 
           <Label htmlFor="nombre">Nombre</Label>
@@ -225,18 +319,27 @@ function Contact() {
           errors.message && <Advise>Espacio requerido.</Advise>
         }
 
-        <Label htmlFor="files">📎</Label>
+        <Label htmlFor="files"></Label>
         <SearchFiles
           type="file"
           id="files"
           {...register("files")}
         />
-        <Conditions>
-          <Label htmlFor="terms">Acepto términos y condiciones.</Label>
-          <AcceptButton type="checkbox" id="terms" {...register("terms")} />
+        <TermsAndSubmit>
+        <Conditions> 
+            <Label htmlFor="terms">Acepto términos y condiciones.</Label>
+            <AcceptButton type="checkbox" id="terms" {...register("terms", {
+              required: "Debes aceptar los términos y condiciones."
+            })} />
+            {
+              errors.terms && <Advise>{errors.terms.message}</Advise>
+            }
         </Conditions>
-
-          <SubmitButton type="submit">Enviar</SubmitButton>
+        <SubmitButton type="submit">Enviar</SubmitButton>
+        </TermsAndSubmit>
+          <ImageContainer>
+            <EmailImage src="../../public/assets/images/logo-correo-desktop.png"/>
+          </ImageContainer>
         </FormContainer> 
         {showModal && (
         <ModalOverlay>
@@ -246,7 +349,9 @@ function Contact() {
           </ModalContent>
         </ModalOverlay>
       )}
-    </PageContainer>
+    </SecondContainer>
+    </MainContainer>
+  </PageContainer>
     
   )
 }
