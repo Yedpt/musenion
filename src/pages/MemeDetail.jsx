@@ -109,7 +109,6 @@ const WallFrame = styled.div`
     min-height: 700px;
   }
 `;
-const FrameContainer = styled.div`  /*Imagen del marco */
 
 const FrameContainer = styled.div`
   display: flex;
@@ -124,15 +123,16 @@ const FrameContainer = styled.div`
   width: 80%; /*Ajusta según sea necesario*/
   max-width: 400px;  /*Ajusta según sea necesario */
   min-width: 300px;  /* Evitar que el marco se haga demasiado pequeño */
-  /* height: fit-content; */
+  height: fit-content;
   margin-top: 30px;
   aspect-ratio: 1 / 1;
 
   @media (min-width: 960px) {
     width: 60%;
-    /* max-width: 400px; */
+    max-width: 400px;
     min-width: 450px;
-  }`;
+  }
+  `;
 
   const ImageMeme = styled.img`
     max-width: 100%;
