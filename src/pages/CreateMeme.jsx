@@ -4,7 +4,8 @@ import { postMemes, subirImagenCloudinary } from '../services/MinionServices'; /
 
 const CreateMeme = () => {
   const [title, setTitle] = useState('');
-  const [imageFile, setImageFile] = useState(null); // Cambiar de imageUrl a imageFile
+  const [description, setDescription] = useState(''); // Nuevo estado para la descripción
+  const [imageFile, setImageFile] = useState(null);
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState('');
 
@@ -18,7 +19,8 @@ const CreateMeme = () => {
 
       // Preparar los datos del meme
       const memeData = {
-        title: title,
+        nombre: title,
+        descripcion: description, // Añadir la descripción
         url: imageUrl,
       };
 
@@ -28,6 +30,7 @@ const CreateMeme = () => {
       setSuccessMessage('¡Meme creado con éxito!');
       setError(null);
       setTitle('');
+      setDescription(''); // Limpiar la descripción
       setImageFile(null); // Limpiar el archivo seleccionado
     } catch (err) {
       setError('Hubo un error al crear el meme.');
@@ -46,6 +49,13 @@ const CreateMeme = () => {
           onChange={(e) => setTitle(e.target.value)}
           required
         />
+        <MemeLabel>Descripción del meme:</MemeLabel>
+        <MemeInput
+          type="text" // Input para la descripción
+          value={description}
+          onChange={(e) => setDescription(e.target.value)} // Capturar el valor de la descripción
+          required
+        />
         <MemeLabel>Subir imagen del meme:</MemeLabel>
         <MemeInput
           type="file" // Cambia a file para subir imágenes
@@ -62,7 +72,6 @@ const CreateMeme = () => {
 };
 
 export default CreateMeme;
-
 
 // Estilos minionescos usando styled-components
 const MemeContainer = styled.div`
@@ -130,133 +139,3 @@ const ErrorMessage = styled.p`
   font-size: 1.1rem;
   text-align: center;
 `;
-
-
-// // Importamos React y el hook useState para manejar el estado del componente
-// import React, { useState } from 'react';
-// // Importamos useForm de react-hook-form para manejar formularios
-// import { useForm } from 'react-hook-form';
-// // Importamos funciones de servicios para subir imágenes y crear memes
-// import { subirImagenCloudinary, createMeme, getMemes } from '../services/services';
-// // Importamos useNavigate para manejar la navegación
-// import { useNavigate } from 'react-router-dom';
-
-// // Definimos el componente funcional Create
-// function Create() {
-//     // Inicializamos el hook useNavigate para la navegación
-//     const navigate = useNavigate();
-//     // Inicializamos useForm y extraemos funciones y estado
-//     const { register, handleSubmit, formState: { errors } } = useForm();
-//     // Estado para almacenar la imagen seleccionada
-//     const [image, setImage] = useState(null);
-//     // Estado para manejar el estado de carga
-//     const [loading, setLoading] = useState(false);
-//     // Estado para manejar errores
-//     const [error, setError] = useState('');
-//     // Estado para manejar mensajes de éxito
-//     const [mensaje, setMensaje] = useState('');
-
-//     // Función que se ejecuta al enviar el formulario
-//     const onSubmit = async (data) => {
-//         // Activamos el estado de carga
-//         setLoading(true);
-//         // Limpiamos los estados de error y mensaje
-//         setError('');
-//         setMensaje('');
-
-//         try {
-//             // Subimos la imagen a Cloudinary
-//             const imageUrl = await subirImagenCloudinary(image);
-
-//             // Creamos el personaje en la API
-//             const personajeCreado = await createMeme({
-//                 name: data.name,
-//                 year: data.year,
-//                 description: data.description,
-//                 author: data.author,
-//                 image: imageUrl
-//             });
-
-//             // Redireccionamos a la galería después de crear el meme
-//             navigate('/gallery');
-
-//         } catch (error) {
-//             // Manejamos el error si ocurre
-//             setError('Error al crear el personaje.');
-//         } finally {
-//             // Desactivamos el estado de carga
-//             setLoading(false);
-//         }
-//     };
-
-//     // Renderizamos el componente
-//     return (
-//         <div className="w-full max-w-md mx-auto">
-//             <h1 className="text-xl font-bold mb-4">Crear Personaje</h1>
-
-//             {/* Mostramos mensajes de error o éxito si existen */}
-//             {error && <p className="text-red-500">{error}</p>}
-//             {mensaje && <p className="text-green-500">{mensaje}</p>}
-
-//             {/* Formulario */}
-//             <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col space-y-4">
-//                 {/* Campo de nombre */}
-//                 <input
-//                     type="text"
-//                     placeholder="Nombre del personaje"
-//                     {...register("name", { required: "Este campo es requerido" })}
-//                     className="border p-2 rounded"
-//                 />
-//                 {errors.name && <p className="text-red-500">{errors.name.message}</p>}
-
-//                 {/* Campo de año */}
-//                 <input
-//                     type="number"
-//                     placeholder="Año"
-//                     {...register("year", { required: "Este campo es requerido" })}
-//                     className="border p-2 rounded"
-//                 />
-//                 {errors.year && <p className="text-red-500">{errors.year.message}</p>}
-
-//                 {/* Campo de descripción */}
-//                 <input
-//                     type="text"
-//                     placeholder="Descripción del personaje"
-//                     {...register("description", { required: "Este campo es requerido" })}
-//                     className="border p-2 rounded"
-//                 />
-//                 {errors.description && <p className="text-red-500">{errors.description.message}</p>}
-
-//                 {/* Campo de autor */}
-//                 <input
-//                     type="text"
-//                     placeholder="Autor"
-//                     {...register("author", { required: "Este campo es requerido" })}
-//                     className="border p-2 rounded"
-//                 />
-//                 {errors.author && <p className="text-red-500">{errors.author.message}</p>}
-
-//                 {/* Campo para subir imagen */}
-//                 <input
-//                     type="file"
-//                     accept="image/*"
-//                     onChange={(e) => setImage(e.target.files[0])}
-//                     className="border p-2 rounded"
-//                     required
-//                 />
-
-//                 {/* Botón de envío */}
-//                 <button
-//                     type="submit"
-//                     className="bg-blue-500 text-white py-2 rounded"
-//                     disabled={loading}
-//                 >
-//                     {loading ? 'Creando...' : 'Crear Personaje'}
-//                 </button>
-//             </form>
-//         </div>
-//     );
-// }
-
-// // Exportamos el componente
-// export default Create;
