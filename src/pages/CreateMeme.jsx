@@ -1,18 +1,93 @@
 import React, { useState } from "react";
-import axios from "axios";
 import styled from "styled-components";
+import { postMemes, subirImagenCloudinary } from '../services/MinionServices'; // Importar ambos servicios
 
 
-// Función para hacer el POST
-const postMemes = async (data) => {
-  try {
-    const response = await axios.post("http://localhost:3000/musenion", data); ç
-    return response.data;
-  } catch (error) {
-    console.error("Error al postear el meme:", error);
-    throw error;
-  }
+const CreateMeme = () => {
+  const [title, setTitle] = useState("");
+  // const [imageUrl, setImageUrl] = useState("");
+  const [description, setDescription] = useState(''); // Nuevo estado para la descripción
+  const [imageFile, setImageFile] = useState(null);
+  const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState("");
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      // Subir la imagen a Cloudinary primero
+      const imageUrl = await subirImagenCloudinary(imageFile);
+
+      // Preparar los datos del meme
+      const memeData = {
+        nombre: title,
+        descripcion: description, // Añadir la descripción
+        url: imageUrl,
+      };
+
+      // Enviar los datos del meme a la fake API
+      await postMemes(memeData);
+      
+      setSuccessMessage('¡Meme creado con éxito!');
+      setError(null);
+      setTitle('');
+      setDescription(''); // Limpiar la descripción
+      setImageFile(null); // Limpiar el archivo seleccionado
+    } catch (err) {
+      setError('Hubo un error al crear el meme.');
+      setSuccessMessage('');
+    }
+  };
+
+  return (
+    <Container>
+      <MemeLayout>
+       <ImageContainer>
+        <img src="/public/minion_artist.jpg" alt="Minion artist"/>
+        </ImageContainer>
+      <MemeContainer>
+        <TitleDiv>
+          <MemeTitle>
+            <span className="medium">¡SUBE TU</span>
+          </MemeTitle>
+          <MemeTitle>
+            <span className="bold">MINION MEME!</span>
+          </MemeTitle>
+        </TitleDiv>
+       
+        <MemeForm onSubmit={handleSubmit}>
+          <MemeLabel>Título del meme:</MemeLabel>
+          <MemeInput
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+          <MemeLabel>Descripción del meme:</MemeLabel>
+        <MemeInput
+          type="text" // Input para la descripción
+          value={description}
+          onChange={(e) => setDescription(e.target.value)} // Capturar el valor de la descripción
+          required
+        />
+        <StyledParagraph>Subir imagen del meme:</StyledParagraph>
+        <MemeInput
+          type="file" // Cambia a file para subir imágenes
+          onChange={(e) => setImageFile(e.target.files[0])} // Almacena el archivo seleccionado
+          required
+        />
+        <MemeButton type="submit">Crear Meme</MemeButton>
+      </MemeForm>
+
+      {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
+      {error && <ErrorMessage>{error}</ErrorMessage>}
+    </MemeContainer>
+    </MemeLayout>
+    </Container>
+  );
 };
+
+export default CreateMeme;
 
 // Estilos minionescos usando styled-components
 
@@ -38,6 +113,7 @@ const MemeLayout = styled.div`
     border-radius: 0;
   }
 `;
+
 
 const ImageContainer = styled.div`
   flex: 1;
@@ -127,74 +203,3 @@ const ErrorMessage = styled.p`
   font-size: 1.1rem;
   text-align: center;
 `;
-const CreateMeme = () => {
-  const [title, setTitle] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [error, setError] = useState(null);
-  const [successMessage, setSuccessMessage] = useState("");
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const memeData = {
-      title: title,
-      imageUrl: imageUrl,
-    };
-
-    try {
-      const response = await postMemes(memeData);
-      setSuccessMessage("¡Meme creado con éxito!");
-      setError(null);
-      setTitle("");
-      setImageUrl("");
-    } catch (err) {
-      setError("Hubo un error al crear el meme.");
-      setSuccessMessage("");
-    }
-  };
-
-  return (
-    <Container>
-      <MemeLayout>
-       <ImageContainer>
-        <img src="/public/minion_artist.jpg" alt="Minion artist"/>
-        </ImageContainer>
-      <MemeContainer>
-        <TitleDiv>
-          <MemeTitle>
-            <span className="medium">¡SUBE TU</span>
-          </MemeTitle>
-          <MemeTitle>
-            <span className="bold">MINION MEME!</span>
-          </MemeTitle>
-        </TitleDiv>
-       
-        <MemeForm onSubmit={handleSubmit}>
-          <MemeLabel>Título del meme:</MemeLabel>
-          <MemeInput
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-          <MemeLabel>URL de la imagen:</MemeLabel>
-          <MemeInput
-            type="text"
-            value={imageUrl}
-            onChange={(e) => setImageUrl(e.target.value)}
-            required
-          />
-
-          <StyledParagraph>La imagen debe ser cuadrada.</StyledParagraph>
-          <MemeButton type="submit">Crear Meme</MemeButton>
-        </MemeForm>
-
-        {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
-        {error && <ErrorMessage>{error}</ErrorMessage>}
-      </MemeContainer>
-      </MemeLayout>
-    </Container>
-  );
-};
-
-export default CreateMeme;
