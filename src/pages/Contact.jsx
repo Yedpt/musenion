@@ -12,7 +12,25 @@ const PageContainer = styled.div`
       margin: 0;
       background: linear-gradient(to bottom, #FFDC59, #E2730C);
   `;
+
   const MainContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+  `;
+
+    const TitlePage = styled.h2`
+    display: flex;
+    justify-content: left;
+    color: #0C2849;
+    margin-top: 20px;
+    font-size: 24px;
+    
+    @media (min-width: 960px) {
+      padding: 10px;
+    }
+`
+
+  const SecondContainer = styled.div`
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -25,23 +43,16 @@ const PageContainer = styled.div`
       margin-bottom: 30px;
     }
 `;
+
   const MinionImage = styled.img`
     display: none;
   
   @media (min-width: 960px){
     display: flex;
-    width: 550px;
+    width: 600px;
     height: 650px;
   }
   `;
-
-  const TitlePage = styled.h2`
-      display: flex;
-      justify-content: left;
-      color: #0C2849;
-      margin-top: 20px;
-      font-size: 24px;
-  `
 
   const FormContainer = styled.form`
     display: flex;
@@ -56,7 +67,7 @@ const PageContainer = styled.div`
     background-color: #ffffff6e;
 
     @media (min-width: 960px){
-      width: 750px;
+      width: 600px;
       height: 650px;
       justify-content: center;
       align-items: center;
@@ -248,8 +259,9 @@ function Contact() {
   return (
     
     <PageContainer>
-    <TitlePage>CONTÁCTANOS</TitlePage>
     <MainContainer>
+    <TitlePage>CONTÁCTANOS</TitlePage>
+    <SecondContainer>
        <MinionImage src="../../public/assets/images/callcenter_minion.jpg"/>
         <FormContainer onSubmit={handleSubmit(onSubmit)}>
 
@@ -333,8 +345,9 @@ function Contact() {
           </ModalContent>
         </ModalOverlay>
       )}
+    </SecondContainer>
     </MainContainer>
-    </PageContainer>
+  </PageContainer>
     
   )
 }
