@@ -30,8 +30,22 @@ function Navbar() {
   return (
     <NavContainer>
       <Nav>
+        {/* Burger Button */}
+        <BurgerButton handleClick={handleClick} clicked={clicked} />
+
         {/* Logo */}
-        <Logo href="#home">Dev.</Logo>
+        <Logo href="#home">
+          <TextContainer>
+            <span className={activeLetter === 0 ? "active" : ""} onClick={() => handleLetterClick(0)}>M</span>
+            <span className={activeLetter === 1 ? "active" : ""} onClick={() => handleLetterClick(1)}>U</span>
+            <span className={activeLetter === 2 ? "active" : ""} onClick={() => handleLetterClick(2)}>S</span>
+            <span className={activeLetter === 3 ? "active" : ""} onClick={() => handleLetterClick(3)}>E</span>
+            <span className={activeLetter === 4 ? "active" : ""} onClick={() => handleLetterClick(4)}>N</span>
+            <span className={activeLetter === 5 ? "active" : ""} onClick={() => handleLetterClick(5)}>I</span>
+            <span className={activeLetter === 6 ? "active" : ""} onClick={() => handleLetterClick(6)}>O</span>
+            <span className={activeLetter === 7 ? "active" : ""} onClick={() => handleLetterClick(7)}>N</span>
+          </TextContainer>
+        </Logo>
 
         {/* Menu */}
         <Menu className={clicked ? "active" : ""}>
@@ -54,22 +68,6 @@ function Navbar() {
             <a href="#contact" onClick={closeMenu}>Contacto</a>
           </li>
         </Menu>
-
-        {/* Burger Button */}
-        <BurgerButton handleClick={handleClick} clicked={clicked} />
-
-        {/* Animated Text MUSENION */}
-        <TextContainer>
-          <span className={activeLetter === 0 ? "active" : ""} onClick={() => handleLetterClick(0)}>M</span>
-          <span className={activeLetter === 1 ? "active" : ""} onClick={() => handleLetterClick(1)}>U</span>
-          <span className={activeLetter === 2 ? "active" : ""} onClick={() => handleLetterClick(2)}>S</span>
-          <span className={activeLetter === 3 ? "active" : ""} onClick={() => handleLetterClick(3)}>E</span>
-          <span className={activeLetter === 4 ? "active" : ""} onClick={() => handleLetterClick(4)}>N</span>
-          <span className={activeLetter === 5 ? "active" : ""} onClick={() => handleLetterClick(5)}>I</span>
-          <span className={activeLetter === 6 ? "active" : ""} onClick={() => handleLetterClick(6)}>O</span>
-          <span className={activeLetter === 7 ? "active" : ""} onClick={() => handleLetterClick(7)}>N</span>
-        </TextContainer>
-
         <BgDiv className={`initial ${clicked ? "active" : ""}`} />
       </Nav>
     </NavContainer>
@@ -84,7 +82,7 @@ const NavContainer = styled.div`
   top: 0;
   left: 0;
   z-index: 100;
-  background-color: transparent;
+  background-color: #244C87FF;
 `;
 
 const Nav = styled.nav`
@@ -92,11 +90,12 @@ const Nav = styled.nav`
   justify-content: space-between;
   align-items: center;
   padding: 1.5rem;
-  background: linear-gradient(to bottom, rgba(255, 220, 89, 0.5), rgba(226, 115, 12, 0.5));
+  background: transparent ;
   transition: all 0.3s ease;
 
   @media (max-width: 960px) {
     padding: 1.2rem 1rem;
+    background: transparent
   }
 `;
 
@@ -121,7 +120,7 @@ const Menu = styled.ul`
   }
 
   li a:hover {
-    color: #E2730C00;
+    color: #F4DA4BFF;
   }
 
   @media (max-width: 960px) {
@@ -134,7 +133,7 @@ const Menu = styled.ul`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to bottom, #FFDB5900, #E2730C00);
+    background: linear-gradient(to bottom, #FFDB59, #E2730C);
     gap: 2rem;
     transition: all 0.3s ease;
 
@@ -204,6 +203,20 @@ const TextContainer = styled.div`
   }
 
   span.active:nth-child(5) {
+    animation: toplong 1.5s linear;
+  }
+
+  span.active:nth-child(6) {
+    animation: shrinkjump 1s ease-in-out;
+    transform-origin: bottom center;
+  }
+
+  span.active:nth-child(7) {
+    animation: falling 2s ease-out;
+    transform-origin: bottom center;
+  }
+
+  span.active:nth-child(8) {
     animation: toplong 1.5s linear;
   }
 
