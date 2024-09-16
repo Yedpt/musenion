@@ -10,7 +10,7 @@ const PageContainer = styled.div`
       align-items: center;
       width: 100vw;
       margin: 0;
-      background: linear-gradient(to bottom, #FFDC59, #E2730C);
+      // background: linear-gradient(to bottom, #FFDC59, #E2730C);
   `;
 
   const MainContainer = styled.div`
