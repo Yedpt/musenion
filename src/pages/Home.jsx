@@ -1,4 +1,4 @@
-import React from 'react';
+import react from 'react';
 import styled from 'styled-components';
 // import { useNavigate } from 'react-router-dom'; hay que importar esto para poder usar el useNavigate
 
