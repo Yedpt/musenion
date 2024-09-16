@@ -52,9 +52,10 @@ const StyledFigure = styled.figure`
 
 @media (min-width: 960px) {
   background-image: url(${homeDesktop}); 
-  height: 80vh;  
+  height: 104vh;  
   background-size: cover;
   background-position: center;
+  background-position: top;
 }
 `;
 
