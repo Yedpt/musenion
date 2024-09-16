@@ -57,7 +57,7 @@ const StyledFigure = styled.figure`
   background-position: center;
   background-position: top;
 }
-`;
+`
 
 const SectionTwo = styled.section `
   display: flex;
@@ -65,9 +65,10 @@ const SectionTwo = styled.section `
 
   @media (min-width: 960px) {
     margin-top: 4%;
-
+    margin-left: 16%;
+    margin-right: 16%;
+    height: 35vh;
 }
-
 `
 const TituloA = styled.h2`
   text-transform: uppercase;
@@ -84,7 +85,9 @@ const Pwhite = styled.p`
   font-size: 2.6vh;
 
   @media (min-width: 960px) {
-    font-size: 3.5vh;
+    font-size: 3.3vh;
+    line-height:1.3;
+    margin-top: 3%;
 }
 `
 
