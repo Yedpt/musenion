@@ -58,7 +58,6 @@ const FooterImages = styled.div`
   gap: 50px;
   position: absolute;
   left: 85%;
-  right:;
   bottom: 3rem;
   
   @media (max-width: 960px) {

@@ -1,23 +1,28 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+<<<<<<< HEAD
 import { getMemeById } from '../services/MinionServices'; // Asegúrate de importar el servicio
 import { deleteMemes } from '../services/MinionServices';
 import { getMemes } from '../services/MinionServices';
 import styled from "styled-components";
+=======
+import { getMemeById, deleteMemes, getMemes } from '../services/MinionServices';
+import styled from 'styled-components';
+>>>>>>> 10bd5a040b64b386ce84f284cbc268f326e9490c
 
 
 const MemeDetail = () => {
-  const { id } = useParams(); // Obtener el id de la URL
-  const [meme, setMeme] = useState(null); // Estado para guardar los detalles del meme
-  const [memes, setMemes] = useState([]); //con esto guardas todos los memes y lo llamas en el segundo efect para delete
-  const [loading, setLoading] = useState(true); // Estado para manejar la carga
-  const [error, setError] = useState(null); // Estado para manejar errores
+  const { id } = useParams(); 
+  const [meme, setMeme] = useState(null); 
+  const [memes, setMemes] = useState([]); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMeme = async () => {
       try {
-        const memeData = await getMemeById(id); // Llamada a la API para obtener el meme por ID
+        const memeData = await getMemeById(id);
         setMeme(memeData);
       } catch (error) {
         setError('Error al cargar el meme.');
@@ -27,67 +32,181 @@ const MemeDetail = () => {
     };
 
     fetchMeme();
-  }, [id]); // Efecto se ejecuta cuando cambia el id
+  }, [id]);
 
-  // apartir de aqui se puede trabajar llamando al metodo DELETE Y PUT :D
+  useEffect(() => {
+    const fetchMemes = async () => {
+      try {
+        const allMemes = await getMemes();
+        setMemes(allMemes);
+      } catch (error) {
+        setError('Error al cargar los memes.');
+      } finally {
+        setLoading(false);
+      }
+    };
 
-      useEffect(() => {
-        const fetchMemes = async () => {
-          try {
-            const allMemes = await getMemes(); // Llamada a la API para obtener el meme por ID
-            setMemes(allMemes);
-          } catch (error) {
-            setError('Error al cargar los memes.');
-          } finally {
-            setLoading(false);
-          }
-        };
-    
-        fetchMemes();
-      }, []);
+    fetchMemes();
+  }, []);
 
-      const handleDelete = async (id) => {
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm('¿Estás seguro de que deseas eliminar este meme?');
+    if (confirmDelete) {
+      try {
+        await deleteMemes(id);
+        setMemes(memes.filter(meme => meme.id !== id));
+        navigate('/gallery');
+      } catch (error) {
+        setError('Error al eliminar el meme.');
+      }
+    }
+  };
 
-        try {
-          await deleteMemes(id);
-          setMemes(memes.filter(meme => meme.id !== id));
-          navigate('/gallery'); 
+  const handleEdit = () => {
+    navigate(`/edit/${id}`);
+  };
 
-        } catch (error) {
-          setError ('Error al cargar la lista de memes.')
-        }
-      };
+  if (loading) return <p>Cargando meme...</p>;
+  if (error) return <p>{error}</p>;
 
-      if (loading) return <p>Cargando meme...</p>;
-      if (error) return <p>{error}</p>;
-
-return (
-    <Body>
-      {meme ? (
+  return (
+    <PageContainer>
+          <WallFrame>
+          <FrameContainer>
+            <ImageMeme src={meme.url} alt={meme.title} style={{ width: '300px', height: 'auto' }} />
+          </FrameContainer>
+        {meme ? (
         <CardMeme>
           <TitleMeme>{meme.title}</TitleMeme>
-          <Image src={meme.url} alt={meme.title} style={{ width: '300px', height: 'auto' }} />
           <Description>{meme.description}</Description>
         </CardMeme>
       ) : (
-        <Error>Meme no encontrado.</Error>
+        <ErrorMessage>Meme no encontrado.</ErrorMessage>
       )}
-       <ButtonDelete onClick={() => handleDelete(meme.id)}>Eliminar</ButtonDelete>
-       <ButtonUpdate>Actualizar</ButtonUpdate>
-    </Body>
+      </WallFrame>
+      <Buttons>
+        <ButtonUpdate onClick={() => handleEdit()}>Actualizar</ButtonUpdate>
+        <ButtonDelete onClick={() => handleDelete(meme.id)}>Eliminar</ButtonDelete>
+      </Buttons>
+    </PageContainer>
   );
 };
 
-const Body = styled.body`
-background-image: url('src\assets\images\fondo-detail-memes-mobile.png')
+
+const PageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100vw;
+  background: linear-gradient(to bottom, #FFDC59, #E2730C);
 `;
-const CardMeme = styled.div``;
-const TitleMeme = styled.h2``;
-const Description = styled.p``;
-const Error = ``;
-const ButtonDelete = ``;
-const ButtonUpdate = ``;
+
+const WallFrame = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100vw;
+  min-height: 680px;
+  background-image: url('../../public/assets/images/fondo-mobile.png');
+  background-repeat: no-repeat;
+
+  @media (min-width: 500px) {
+    background-image: url('../../public/assets/images/fondo-desktop.png');
+    width: 100vw;
+    min-height: 700px;
+  }
+`;
+
+const FrameContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  padding: 10%;
+  background-image: url('/assets/images/marco_aislado.png');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 80%; /*Ajusta según sea necesario*/
+  max-width: 400px;  /*Ajusta según sea necesario */
+  min-width: 300px;  /* Evitar que el marco se haga demasiado pequeño */
+  height: fit-content;
+  margin-top: 30px;
+  aspect-ratio: 1 / 1;
+
+  @media (min-width: 960px) {
+    width: 60%;
+    max-width: 400px;
+    min-width: 450px;
+  }
+  `;
+
+  const ImageMeme = styled.img`
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 8px; 
+    object-fit: contain;
+`;
+
+const CardMeme = styled.div`
+  background: white;
+  padding: 0;
+  border-color: black;
+`;
+
+const TitleMeme = styled.h2`
+  font-size: 32px;
+  color: black;
+`;
+
+const Description = styled.p`
+  font-size: 13px;
+  color: black;
+`;
+
+const ErrorMessage = styled.p`
+  color: red;
+`;
+
+const Buttons = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+ 
+  @media (min-width: 960px) {
+    flex-direction: row;
+    margin-top: 50px;
+  }
+`;
+
+const ButtonUpdate = styled.button`
+  padding: 5px;
+  width: 30%;
+  background-color: #FFDA58;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+
+  @media (min-width: 960px) {
+    width: 15%;
+    margin-right: 20px;
+  }
+`;
+
+const ButtonDelete = styled.button`
+  padding: 5px;
+  width: 30%;
+  background-color: #FFDA58;
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+
+  @media (min-width: 960px) {
+    width: 15%;
+  }
+`;
 
 export default MemeDetail;
-
-

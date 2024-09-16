@@ -8,7 +8,11 @@ const Home = () => {
           <h1>Musenion</h1>
         </title>
         <figure>
+<<<<<<< HEAD
           <img src="src/assets/2-minions.png" alt="Minions" />
+=======
+          <img src="public\assets\images\2-minions.png" alt="" />
+>>>>>>> 10bd5a040b64b386ce84f284cbc268f326e9490c
         </figure>
       </section>
 
@@ -24,7 +28,11 @@ const Home = () => {
   );
 };
 
+<<<<<<< HEAD
 const StyledContainer = styled.div`
+=======
+const StyledBody = styled.div `
+>>>>>>> 10bd5a040b64b386ce84f284cbc268f326e9490c
   background: linear-gradient(to bottom, #FFDC59, #E2730C);
   min-height: 100vh;
   padding: 1rem;

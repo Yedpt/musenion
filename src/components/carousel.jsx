@@ -1,74 +1,79 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import styled, { keyframes, css } from 'styled-components';
-import MemeDetail from '../pages/MemeDetail';
 
-const radius = 240;
 const imgWidth = 120;
 const imgHeight = 170;
 
-const Carousel3D = ({ memes, autoRotate = true, rotateSpeed = -60 }) => {
-  const spinContainerRef = useRef(null); // Referencia al contenedor giratorio
-  const navigate = useNavigate(); // Hook para redirigir
+const Carousel3D = ({ memes, autoRotate = true, rotateSpeed = -20 }) => {
+  const [radius, setRadius] = useState(240);
+  const [angle, setAngle] = useState(0);
+  const spinContainerRef = useRef(null);
+  const navigate = useNavigate();
 
+  // Cambiar el radio dinámico basado en el tamaño de la pantalla
+  useEffect(() => {
+    const updateRadius = () => {
+      const screenWidth = window.innerWidth;
+      if (screenWidth >= 1440) {
+        setRadius(500);
+      } else if (screenWidth >= 1024) {
+        setRadius(450);
+      } else if (screenWidth >= 768) {
+        setRadius(400);
+      } else {
+        setRadius(340);
+      }
+    };
+
+    updateRadius();
+    window.addEventListener('resize', updateRadius);
+
+    return () => {
+      window.removeEventListener('resize', updateRadius);
+    };
+  }, []);
+
+  // Manejar la rotación automática del carrusel
   useEffect(() => {
     let animationFrameId;
 
-    const aEle = document.querySelectorAll('.carousel-item');
-
-    const initCarousel = (delayTime) => {
-      aEle.forEach((ele, i) => {
-        ele.style.transform = `rotateY(${i * (360 / aEle.length)}deg) translateZ(${radius}px)`;
-        ele.style.transition = "transform 1s";
-        ele.style.transitionDelay = `${delayTime || (aEle.length - i) / 4}s`;
-      });
+    const rotateCarousel = () => {
+      setAngle(prev => (prev + rotateSpeed / 100) % 360);
+      animationFrameId = requestAnimationFrame(rotateCarousel);
     };
 
-    // Lógica de animación continua
-    const animateCarousel = () => {
-      if (spinContainerRef.current && autoRotate) {
-        spinContainerRef.current.style.transform = `rotateY(${Date.now() / 100 % 360}deg)`; // Movimiento continuo
-      }
-      animationFrameId = requestAnimationFrame(animateCarousel);
-    };
-
-    initCarousel(100);
     if (autoRotate) {
-      animateCarousel(); // Iniciar la animación
+      rotateCarousel();
     }
 
-    // Listener para redimensionar ventana y reiniciar carrusel
-    const handleResize = () => {
-      initCarousel(0); // Reiniciar cuando cambie el tamaño de la ventana
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    // Cleanup
     return () => {
-      cancelAnimationFrame(animationFrameId); // Detener la animación
-      window.removeEventListener('resize', handleResize);
+      cancelAnimationFrame(animationFrameId);
     };
-  }, [memes, autoRotate]);
+  }, [autoRotate, rotateSpeed]);
 
   const handleImageClick = (meme) => {
-    navigate(`/MemeDetail/${meme.id}`); // Navegar a la página de detalles del meme
+    navigate(`/MemeDetail/${meme.id}`);
   };
 
   return (
     <DragContainer>
-      <SpinContainer ref={spinContainerRef} $rotateSpeed={rotateSpeed}>
-        {memes.slice(0, 10).map((meme, index) => ( // Solo 10 primeros memes
+      <SpinContainer ref={spinContainerRef} style={{ transform: `rotateY(${angle}deg)` }}>
+        {memes.slice(0, 10).map((meme, index) => (
           <img
             key={index}
             src={meme.url}
             alt={meme.title}
             className="carousel-item"
-            onClick={() => handleImageClick(meme)} // Redirigir al hacer click
+            style={{
+              // Colocamos las imágenes a 360 grados para que se distribuyan equitativamente en círculo
+              transform: `rotateY(${index * (360 / 10)}deg) translateZ(${radius}px)`, // Distribución más equitativa en el círculo
+            }}
+            onClick={() => handleImageClick(meme)}
           />
         ))}
       </SpinContainer>
-      <Ground />
+      <Ground $radius={radius} />
     </DragContainer>
   );
 };
@@ -81,7 +86,15 @@ const DragContainer = styled.div`
   display: flex;
   margin: auto;
   transform-style: preserve-3d;
-  perspective: 800px;
+  perspective: 1000px;
+
+  @media (min-width: 1024px) {
+    perspective: 1200px;
+  }
+
+  @media (min-width: 1440px) {
+    perspective: 1800px;
+  }
 `;
 
 const SpinContainer = styled.div`
@@ -92,15 +105,19 @@ const SpinContainer = styled.div`
   width: ${imgWidth}px;
   height: ${imgHeight}px;
 
-  /* Media queries para pantallas más grandes */
-  @media (min-width: 768px) { /* Tablet */
-    width: ${imgWidth * 2}px;
-    height: ${imgHeight * 2}px;
+  @media (min-width: 768px) {
+    width: ${imgWidth * 1.2}px;
+    height: ${imgHeight * 1.2}px;
   }
 
-  @media (min-width: 1024px) { /* Desktop */
-    width: ${imgWidth * 2}px;
-    height: ${imgHeight * 2}px;
+  @media (min-width: 1024px) {
+    width: ${imgWidth * 1.5}px;
+    height: ${imgHeight * 1.5}px;
+  }
+
+  @media (min-width: 1440px) {
+    width: ${imgWidth * 1.5}px;
+    height: ${imgHeight * 1.5}px;
   }
 
   img {
@@ -111,43 +128,19 @@ const SpinContainer = styled.div`
     transition: transform 0.5s, box-shadow 0.5s;
 
     &:hover {
-      transform: scale(1.2); // Agrandar al pasar el ratón
+      transform: scale(1.2);
       box-shadow: 0 0 10px #fffd;
       cursor: pointer;
     }
   }
-
-  /* Animación continua usando spin o spinRever */
-  ${({ $rotateSpeed }) => $rotateSpeed && css`
-    animation: ${$rotateSpeed > 0 ? spin : spinRevert} ${Math.abs($rotateSpeed)}s infinite linear;
-  `}
 `;
 
 const Ground = styled.div`
-  width: ${radius * 2}px;
-  height: ${radius * 2}px;
+  width: ${({ $radius }) => $radius * 2}px;
+  height: ${({ $radius }) => $radius * 2}px;
   position: absolute;
   top: 100%;
   left: 50%;
   transform: translate(-50%, -50%) rotateX(90deg);
   background: radial-gradient(circle, #9993, transparent);
-`;
-
-// Animaciones
-const spin = keyframes`
-  from {
-    transform: rotateY(0deg);
-  }
-  to {
-    transform: rotateY(360deg);
-  }
-`;
-
-const spinRevert = keyframes`
-  from {
-    transform: rotateY(360deg);
-  }
-  to {
-    transform: rotateY(0deg);
-  }
 `;

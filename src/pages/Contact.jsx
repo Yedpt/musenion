@@ -3,7 +3,7 @@ import { useForm } from 'react-hook-form';
 import { useState } from "react";
 import axios from "axios";
 
-const PageContainer = styled.body`
+const PageContainer = styled.div`
       display: flex;
       flex-direction: column;
       justify-content: center;
