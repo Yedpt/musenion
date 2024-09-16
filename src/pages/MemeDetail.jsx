@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { getMemeById } from '../services/MinionServices'; // Asegúrate de importar el servicio
-import { deleteMemes } from '../services/MinionServices';
-import { getMemes } from '../services/MinionServices';
+import { getMemeById, deleteMemes, getMemes } from '../services/MinionServices';
 import styled from 'styled-components';
 
 const MemeDetail = () => {
-  const { id } = useParams(); // Obtener el id de la URL
-  const [meme, setMeme] = useState(null); // Estado para guardar los detalles del meme
-  const [memes, setMemes] = useState([]); //con esto guardas todos los memes y lo llamas en el segundo efect para delete
-  const [loading, setLoading] = useState(true); // Estado para manejar la carga
-  const [error, setError] = useState(null); // Estado para manejar errores
+  const { id } = useParams(); 
+  const [meme, setMeme] = useState(null); 
+  const [memes, setMemes] = useState([]); 
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchMeme = async () => {
       try {
-        const memeData = await getMemeById(id); // Llamada a la API para obtener el meme por ID
+        const memeData = await getMemeById(id);
         setMeme(memeData);
       } catch (error) {
         setError('Error al cargar el meme.');
@@ -26,46 +24,44 @@ const MemeDetail = () => {
     };
 
     fetchMeme();
-  }, [id]); // Efecto se ejecuta cuando cambia el id
+  }, [id]);
 
-  // apartir de aqui se puede trabajar llamando al metodo DELETE Y PUT :D
+  useEffect(() => {
+    const fetchMemes = async () => {
+      try {
+        const allMemes = await getMemes();
+        setMemes(allMemes);
+      } catch (error) {
+        setError('Error al cargar los memes.');
+      } finally {
+        setLoading(false);
+      }
+    };
 
-      useEffect(() => {
-        const fetchMemes = async () => {
-          try {
-            const allMemes = await getMemes(); // Llamada a la API para obtener el meme por ID
-            setMemes(allMemes);
-          } catch (error) {
-            setError('Error al cargar los memes.');
-          } finally {
-            setLoading(false);
-          }
-        };
-    
-        fetchMemes();
-      }, []);
+    fetchMemes();
+  }, []);
 
-      const handleDelete = async (id) => {
-        const confirmDelete = window.confirm('¿Estás seguro de que deseas eliminar este meme?');
-        if (confirmDelete) {
-          try {
-            await deleteMemes(id);
-            setMemes(memes.filter(meme => meme.id !== id));
-            navigate('/gallery');
-          } catch (error) {
-            setError('Error al eliminar el meme.');
-          }
-        }
-      };
+  const handleDelete = async (id) => {
+    const confirmDelete = window.confirm('¿Estás seguro de que deseas eliminar este meme?');
+    if (confirmDelete) {
+      try {
+        await deleteMemes(id);
+        setMemes(memes.filter(meme => meme.id !== id));
+        navigate('/gallery');
+      } catch (error) {
+        setError('Error al eliminar el meme.');
+      }
+    }
+  };
 
-      const handleEdit = () => {
-        navigate(`/edit/${id}`); // Redirige a la nueva página de edición con el ID del meme
-      };
+  const handleEdit = () => {
+    navigate(`/edit/${id}`);
+  };
 
-      if (loading) return <p>Cargando meme...</p>;
-      if (error) return <p>{error}</p>;
+  if (loading) return <p>Cargando meme...</p>;
+  if (error) return <p>{error}</p>;
 
-return (
+  return (
     <PageContainer>
           <WallFrame>
           <FrameContainer>
@@ -90,33 +86,32 @@ return (
 
 
 const PageContainer = styled.div`
-  position: relative;
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
   width: 100vw;
-  /* background: linear-gradient(to bottom, #FFDC59, #E2730C); */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background: linear-gradient(to bottom, #FFDC59, #E2730C);
 `;
+
 const WallFrame = styled.div`
   display: flex;
-  background-image: url('/assets/images/pared_suelo_mobile.png');
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
+  align-items: center;
   width: 100vw;
-  
-  @media (min-width: 960px) {
-    background-image: url('/assets/images/pared_suelo_desktop.png'); 
-    background-size: cover;
-    background-repeat: no-repeat;
+  min-height: 680px;
+  background-image: url('../../public/assets/images/fondo-mobile.png');
+  background-repeat: no-repeat;
+
+  @media (min-width: 500px) {
+    background-image: url('../../public/assets/images/fondo-desktop.png');
     width: 100vw;
+    min-height: 700px;
   }
 `;
 const FrameContainer = styled.div`  /*Imagen del marco */
+
+const FrameContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -151,65 +146,59 @@ const CardMeme = styled.div`
   padding: 0;
   border-color: black;
 `;
+
 const TitleMeme = styled.h2`
-  padding: 0;
   font-size: 32px;
   color: black;
 `;
+
 const Description = styled.p`
   font-size: 13px;
-  padding: 0;
   color: black;
 `;
+
 const ErrorMessage = styled.p`
-  padding: 0;
   color: red;
 `;
+
 const Buttons = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  flex-direction: column; 
   width: 100vw;
-
+ 
   @media (min-width: 960px) {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: row; 
-    width: 100vw;
-    margin-bottom: 50px;
+    flex-direction: row;
     margin-top: 50px;
   }
 `;
+
 const ButtonUpdate = styled.button`
   padding: 5px;
   width: 30%;
   background-color: #FFDA58;
-  margin-top: 10px;
+  margin-top: 5px;
   margin-bottom: 10px;
   border-radius: 5px;
 
   @media (min-width: 960px) {
-    margin: 0;
-    margin-right: 20px;
     width: 15%;
+    margin-right: 20px;
   }
 `;
+
 const ButtonDelete = styled.button`
   padding: 5px;
   width: 30%;
   background-color: #FFDA58;
-  margin-bottom: 30px;
+  margin-top: 5px;
+  margin-bottom: 10px;
   border-radius: 5px;
 
   @media (min-width: 960px) {
-    margin: 0;
-    margin-right: 20px;
     width: 15%;
   }
 `;
 
 export default MemeDetail;
-
-
