@@ -45,6 +45,9 @@ const FormPutMeme = () => {
 
   return (
     <Page>
+      <section>
+
+      </section>
       <h2>Editar Meme</h2>
       {/* Mostrar la imagen del meme antes que el formulario */}
       {meme && <img src={meme.url} alt={meme.title} style={{ width: '300px', height: 'auto' }} />}
@@ -94,10 +97,12 @@ const Page = styled.div`
       justify-content: center;
       align-items: center;
       width: 100%;
-      margin-top: 20%;
       background: linear-gradient(to bottom, #FFDC59, #E2730C);
-      
 `;
+
+
+
+
 
 
 
