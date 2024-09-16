@@ -12,12 +12,17 @@ const PageContainer = styled.div`
       margin: 0;
       background: linear-gradient(to bottom, #FFDC59, #E2730C);
   `;
+  const MainContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+`;
 
   const TitlePage = styled.h2`
       display: flex;
-      justify-content: center;
-      align-items: center;
-      flex-direction: column;
+      justify-content: left;
       color: #0C2849;
       margin-top: 20px;
       font-size: 24px;
@@ -94,13 +99,13 @@ const PageContainer = styled.div`
   `;
 
   const AcceptButton = styled.input`
-  
   `;
 
   const SubmitButton = styled.button`
   width: 90%;
   padding: 5px;
   border-radius: 5px;
+  background-color: #FFDC59;
   `;
 
   const Advise = styled.span`
@@ -168,7 +173,9 @@ function Contact() {
   return (
     
     <PageContainer>
-        <TitlePage>Contáctanos</TitlePage>
+    <TitlePage>CONTÁCTANOS</TitlePage>
+    <MainContainer>
+       <MinionImage> src="" </MinionImage>
         <FormContainer onSubmit={handleSubmit(onSubmit)}>
 
           <Label htmlFor="nombre">Nombre</Label>
@@ -246,6 +253,8 @@ function Contact() {
           </ModalContent>
         </ModalOverlay>
       )}
+      <EmailImage></EmailImage>
+    </MainContainer>
     </PageContainer>
     
   )
