@@ -52,7 +52,7 @@ const StyledFigure = styled.figure`
 
 @media (min-width: 960px) {
   background-image: url(${homeDesktop}); 
-  height: 140vh;  
+  height: 80vh;  
   background-size: cover;
   background-position: center;
 }
@@ -60,7 +60,13 @@ const StyledFigure = styled.figure`
 
 const SectionTwo = styled.section `
   display: flex;
-  margin: 8%;
+  margin: 10%;
+
+  @media (min-width: 960px) {
+    margin-top: 4%;
+
+}
+
 `
 const TituloA = styled.h2`
   text-transform: uppercase;
@@ -74,7 +80,7 @@ const TituloB = styled.h2`
 const Pwhite = styled.p`
   color: white;
   margin-top: 5%;
-  font-size: 2.8vh;
+  font-size: 2.6vh;
 
   @media (min-width: 960px) {
     font-size: 3.5vh;
