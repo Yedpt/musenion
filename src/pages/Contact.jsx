@@ -17,8 +17,23 @@ const PageContainer = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 80%;
+    width: 95%;
+
+    @media (min-width: 960px){
+      flex-direction: row;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
 `;
+  const MinionImage = styled.img`
+    display: none;
+  
+  @media (min-width: 960px){
+    display: flex;
+    width: 550px;
+    height: 650px;
+  }
+  `;
 
   const TitlePage = styled.h2`
       display: flex;
@@ -39,7 +54,29 @@ const PageContainer = styled.div`
     border-radius: 10px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     background-color: #ffffff6e;
+
+    @media (min-width: 960px){
+      width: 750px;
+      height: 650px;
+      justify-content: center;
+      align-items: center;
+      border-radius: 0px;
+      margin-bottom: 0px;
+      margin-top: 0px;
+    }
   `;
+
+const ImageContainer = styled.div`
+display: none;
+
+@media (min-width: 960px){
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+`;
+
 
   const Label = styled.label`
   width: 90%;
@@ -89,16 +126,23 @@ const PageContainer = styled.div`
   
   `;
 
-  const Conditions = styled.div`
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    width: 90%;
-    padding: 10px;
-    font-size: 12px;
-  `;
+  const TermsAndSubmit = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  @media (min-width: 960px){
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-around;
+  margin-top: 30px;
+  }
+`;
 
   const AcceptButton = styled.input`
+  
+  @media (min-width: 960px){
+margin-bottom: 10px;
+  }
   `;
 
   const SubmitButton = styled.button`
@@ -106,7 +150,38 @@ const PageContainer = styled.div`
   padding: 5px;
   border-radius: 5px;
   background-color: #FFDC59;
+
+  @media (min-width: 960px){
+    width: 30%;
+    height: 30px;
+
+  }
   `;
+
+const Conditions = styled.div`
+display: flex;
+flex-direction: row;
+flex-wrap: nowrap;
+width: 90%;
+padding: 10px;
+font-size: 12px;
+
+@media (min-width: 960px){
+width: 50%;
+padding: 0px;
+}
+`;
+
+const EmailImage = styled.img`
+display: none;
+
+@media (min-width: 960px){
+  display: flex;
+  width: 20%;
+  margin-top: 10%;
+}
+`;
+
 
   const Advise = styled.span`
   color: red;
@@ -175,7 +250,7 @@ function Contact() {
     <PageContainer>
     <TitlePage>CONTÁCTANOS</TitlePage>
     <MainContainer>
-       <MinionImage> src="" </MinionImage>
+       <MinionImage src="../../public/assets/images/callcenter_minion.jpg"/>
         <FormContainer onSubmit={handleSubmit(onSubmit)}>
 
           <Label htmlFor="nombre">Nombre</Label>
@@ -232,18 +307,23 @@ function Contact() {
           errors.message && <Advise>Espacio requerido.</Advise>
         }
 
-        <Label htmlFor="files">📎</Label>
+        <Label htmlFor="files"></Label>
         <SearchFiles
           type="file"
           id="files"
           {...register("files")}
         />
+        <TermsAndSubmit>
         <Conditions>
           <Label htmlFor="terms">Acepto términos y condiciones.</Label>
           <AcceptButton type="checkbox" id="terms" {...register("terms")} />
         </Conditions>
+        <SubmitButton type="submit">Enviar</SubmitButton>
+        </TermsAndSubmit>
 
-          <SubmitButton type="submit">Enviar</SubmitButton>
+          <ImageContainer>
+            <EmailImage src="../../public/assets/images/logo-correo-desktop.png"/>
+          </ImageContainer>
         </FormContainer> 
         {showModal && (
         <ModalOverlay>
@@ -253,7 +333,6 @@ function Contact() {
           </ModalContent>
         </ModalOverlay>
       )}
-      <EmailImage></EmailImage>
     </MainContainer>
     </PageContainer>
     
