@@ -3,6 +3,7 @@ import { getMemes } from '../services/MinionServices'; // Servicios para obtener
 import Carousel3D from '../components/carousel'; // Componente del carrusel 3D
 import { Link, useNavigate } from 'react-router-dom'; // Añadir useNavigate para la redirección
 import styled from 'styled-components'; // Importación de styled-components
+import nubeIcon from '../../public/assets/images/flecha_nube.png'; // Importamos la imagen de la nube
 
 const Gallery = () => {
   const [memes, setMemes] = useState([]);
@@ -41,7 +42,8 @@ const Gallery = () => {
         <Link to="/createMeme">
           <StyledHeading5>Sube tu minion meme</StyledHeading5>
           <StyledButton>
-            <i className="fas fa-upload" style={{ marginRight: '8px' }}></i>
+            <MobileIcon className="fas fa-upload" />
+            <TabletDesktopIcon src={nubeIcon} alt="Icono de nube" />
           </StyledButton>
         </Link>
       </MemeButtonWrapper>
@@ -80,7 +82,7 @@ const Heading2 = styled.h2`
   text-align: center;
   font-size: 1.8rem;
   margin-top: 20px;
-  margin-bottom: 100px;
+  margin-bottom: 50px;
 
   @media (min-width: 768px) {
     font-size: 2.4rem;
@@ -133,12 +135,13 @@ const StyledButton = styled.button`
   background-color: #0C2849; /* Fondo minioneszco */
   color: #fff;
   border: none;
-  padding: 10px 20px;
+  padding: 5px 10px;
   font-size: 1.5rem;
   display: inline-flex;
   align-items: center;
   cursor: pointer;
   border-radius: 5px;
+  position: relative; /* Esto permite superponer íconos de manera condicional */
 
   &:hover {
     background-color: #08305a;
@@ -150,5 +153,30 @@ const StyledButton = styled.button`
 
   @media (min-width: 1024px) {
     font-size: 2rem;
+  }
+`;
+
+// Ícono que se muestra en mobile
+const MobileIcon = styled.i`
+  display: inline-block;
+  margin-right: 0.5px;
+
+  @media (min-width: 768px) {
+    display: none; /* Ocultar en tablet y desktop */
+    margin-right: 0.5px;
+
+  }
+    
+`;
+
+// Imagen de nube que se muestra en tablet y desktop
+const TabletDesktopIcon = styled.img`
+  display: none;
+
+  @media (min-width: 768px) {
+    display: inline-block; /* Mostrar en tablet y desktop */
+    width: 30px; /* Ajusta el tamaño según sea necesario */
+    height: 30px;
+    margin-left: 0.5px;
   }
 `;
