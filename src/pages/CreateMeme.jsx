@@ -128,73 +128,12 @@ const ErrorMessage = styled.p`
   text-align: center;
 `;
 const CreateMeme = () => {
-  const [title, setTitle] = useState("");
-  const [imageUrl, setImageUrl] = useState("");
-  const [error, setError] = useState(null);
-  const [successMessage, setSuccessMessage] = useState("");
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    const memeData = {
-      title: title,
-      imageUrl: imageUrl,
-    };
-
-    try {
-      const response = await postMemes(memeData);
-      setSuccessMessage("¡Meme creado con éxito!");
-      setError(null);
-      setTitle("");
-      setImageUrl("");
-    } catch (err) {
-      setError("Hubo un error al crear el meme.");
-      setSuccessMessage("");
-    }
-  };
-
   return (
-    <Container>
-      <MemeLayout>
-       <ImageContainer>
-        <img src="/public/minion_artist.jpg" alt="Minion artist"/>
-        </ImageContainer>
-      <MemeContainer>
-        <TitleDiv>
-          <MemeTitle>
-            <span className="medium">¡SUBE TU</span>
-          </MemeTitle>
-          <MemeTitle>
-            <span className="bold">MINION MEME!</span>
-          </MemeTitle>
-        </TitleDiv>
-       
-        <MemeForm onSubmit={handleSubmit}>
-          <MemeLabel>Título del meme:</MemeLabel>
-          <MemeInput
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-          <MemeLabel>URL de la imagen:</MemeLabel>
-          <MemeInput
-            type="text"
-            value={imageUrl}
-            onChange={(e) => setImageUrl(e.target.value)}
-            required
-          />
+    <div>
+      
+    </div>
+  )
+}
 
-          <StyledParagraph>La imagen debe ser cuadrada.</StyledParagraph>
-          <MemeButton type="submit">Crear Meme</MemeButton>
-        </MemeForm>
+export default CreateMeme
 
-        {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
-        {error && <ErrorMessage>{error}</ErrorMessage>}
-      </MemeContainer>
-      </MemeLayout>
-    </Container>
-  );
-};
-
-export default CreateMeme;
