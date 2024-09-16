@@ -32,10 +32,6 @@ export const router = createBrowserRouter([{
         path:'contactus',
         element: <Contact/>
     },
-    // {
-    //     path:'detail',
-    //     element: <MemeDetail/>
-    // },
     {
         path:'aboutus',
         element: <AboutUs/>
