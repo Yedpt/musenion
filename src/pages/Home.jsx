@@ -7,7 +7,7 @@ const Home = () => {
   /* const navigate = useNavigate () , permite ejecutar una accion de navegacion sin necesidad de acceder directamente al dispatch */
   return (
     <>
-    <StyledBody>
+    <div>
     <section>
         <title>
           <h1>Musenion</h1>
@@ -29,14 +29,11 @@ const Home = () => {
           </Pwhite>
         </div>
       </SectionTwo>
-    </StyledBody>
+    </div>
     </>
   )
 }
 
-const StyledBody = styled.body `
-  background: linear-gradient(to bottom, #FFDC59, #E2730C);
-`;
 
 const StyledFigure = styled.figure`
   display: flex;
