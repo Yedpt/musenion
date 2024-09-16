@@ -114,21 +114,23 @@ const FrameContainer = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  padding: 10%;
+  
   background-image: url('/assets/images/marco_aislado.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  padding: 15%;
   width: 80%;
   max-width: 300px;  /* Ajustado para no hacerse muy pequeño */
   min-width: 300px;  /* Evitar que el marco se haga demasiado pequeño */
   aspect-ratio: 1 / 1; /* Mantiene la proporción del marco */
   margin-top: 30px;
 
-  @media (min-width: 960px) {
+  @media (min-width: 700px) {
     width: 50%; /* Reducir el ancho */
     max-width: 250px; /* Reducir el tamaño máximo */
     min-width: 250px; /* Mantén un tamaño mínimo */
+    padding: 5%;
   }
 `;
 
@@ -137,22 +139,28 @@ const ImageMeme = styled.img`
   height: auto;
   object-fit: contain; /*Ajusta la imagen dentro del marco sin perder su proporción*/
   border-radius: 8px;
+  padding: 1px;
 `;
 
 const CardMeme = styled.div`
-  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
   padding: 0;
   border-color: black;
+  border: black;
 `;
 
 const TitleMeme = styled.h2`
   font-size: 32px;
-  color: black;
+  color: #0C2849;
 `;
 
 const Description = styled.p`
   font-size: 13px;
-  color: black;
+  color: #0C2849;
 `;
 
 const ErrorMessage = styled.p`
