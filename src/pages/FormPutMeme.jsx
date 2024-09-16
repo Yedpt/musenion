@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getMemeById, putMemes } from '../services/MinionServices';
 import { useForm } from 'react-hook-form';
+import styled from 'styled-components';
 
 const FormPutMeme = () => {
   const { id } = useParams(); // Obtener el id del meme desde la URL
@@ -31,9 +32,9 @@ const FormPutMeme = () => {
  // Función para manejar el envío del formulario
  const onSubmit = async (data) => {
   try {
-    // Actualizamos el meme en la base de datos
-    await putMemes (id, data); // Aquí hacemos la solicitud PUT con los datos actualizados
-    navigate('/gallery'); // Redirigimos a la galería después de guardar los cambios
+    // Actualizo el meme en la base de datos
+    await putMemes (id, data); // solicitud PUT con los datos actualizados
+    navigate('/gallery'); // después de guardar los cambios vamos a la galeria
     } catch (error) {
       setError('Error al actualizar el meme.');
     }
@@ -43,9 +44,12 @@ const FormPutMeme = () => {
   if (error) return <p>{error}</p>;
 
   return (
-    <div>
+    <Page>
+      <section>
+
+      </section>
       <h2>Editar Meme</h2>
-      {/* Mostrar la imagen del meme antes del formulario */}
+      {/* Mostrar la imagen del meme antes que el formulario */}
       {meme && <img src={meme.url} alt={meme.title} style={{ width: '300px', height: 'auto' }} />}
       {meme && (
         <form onSubmit={handleSubmit(onSubmit)}>
@@ -83,8 +87,24 @@ const FormPutMeme = () => {
           <button type="button" onClick={() => reset(meme)}>Cancelar</button> {/* Resetear el formulario */}
         </form>
       )}
-    </div>
+    </Page>
   );
 };
+
+const Page = styled.div`
+  display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      background: linear-gradient(to bottom, #FFDC59, #E2730C);
+`;
+
+
+
+
+
+
+
 
 export default FormPutMeme;
