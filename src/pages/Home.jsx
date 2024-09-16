@@ -13,7 +13,7 @@ const Home = () => {
           <h1>Musenion</h1>
         </title>
         <StyledFigure>
-          <img src="src\assets\HomeMobile.png" alt="" />
+          <img src="src\assets\images\homeMobile.png" alt="" />
         </StyledFigure>
       </section>
 
