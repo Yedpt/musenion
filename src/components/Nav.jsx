@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import { useState, useEffect } from "react";
 import styled from "styled-components";
 import BurgerButton from "./BurgerButton";
 
 function Navbar() {
   const [clicked, setClicked] = useState(false);
+  const [activeLetter, setActiveLetter] = useState(null);
 
   const handleClick = () => {
     setClicked(!clicked);
@@ -12,6 +13,19 @@ function Navbar() {
   const closeMenu = () => {
     setClicked(false);
   };
+
+  const handleLetterClick = (index) => {
+    setActiveLetter(index);
+  };
+
+  useEffect(() => {
+    const spans = document.querySelectorAll(".word span");
+    spans.forEach((span, idx) => {
+      setTimeout(() => {
+        span.classList.add("active");
+      }, 750 * (idx + 1));
+    });
+  }, []);
 
   return (
     <NavContainer>
@@ -43,6 +57,19 @@ function Navbar() {
 
         {/* Burger Button */}
         <BurgerButton handleClick={handleClick} clicked={clicked} />
+
+        {/* Animated Text MUSENION */}
+        <TextContainer>
+          <span className={activeLetter === 0 ? "active" : ""} onClick={() => handleLetterClick(0)}>M</span>
+          <span className={activeLetter === 1 ? "active" : ""} onClick={() => handleLetterClick(1)}>U</span>
+          <span className={activeLetter === 2 ? "active" : ""} onClick={() => handleLetterClick(2)}>S</span>
+          <span className={activeLetter === 3 ? "active" : ""} onClick={() => handleLetterClick(3)}>E</span>
+          <span className={activeLetter === 4 ? "active" : ""} onClick={() => handleLetterClick(4)}>N</span>
+          <span className={activeLetter === 5 ? "active" : ""} onClick={() => handleLetterClick(5)}>I</span>
+          <span className={activeLetter === 6 ? "active" : ""} onClick={() => handleLetterClick(6)}>O</span>
+          <span className={activeLetter === 7 ? "active" : ""} onClick={() => handleLetterClick(7)}>N</span>
+        </TextContainer>
+
         <BgDiv className={`initial ${clicked ? "active" : ""}`} />
       </Nav>
     </NavContainer>
@@ -133,5 +160,114 @@ const BgDiv = styled.div`
 
   &.active {
     right: 0;
+  }
+`;
+
+const TextContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.3rem;
+  font-family: 'Anton', sans-serif;
+  font-size: 40px;
+  font-weight: 400;
+  color: white;
+
+  span {
+    cursor: pointer;
+    display: inline-block;
+    user-select: none;
+    line-height: 0.8;
+  }
+
+  span:nth-child(1),
+  span:nth-child(5) {
+    font-weight: bold;
+  }
+
+  span.active:nth-child(1) {
+    animation: balance 1.5s ease-out;
+    transform-origin: bottom left;
+  }
+
+  span.active:nth-child(2) {
+    animation: shrinkjump 1s ease-in-out;
+    transform-origin: bottom center;
+  }
+
+  span.active:nth-child(3) {
+    animation: falling 2s ease-out;
+    transform-origin: bottom center;
+  }
+
+  span.active:nth-child(4) {
+    animation: rotate 1s ease-out;
+  }
+
+  span.active:nth-child(5) {
+    animation: toplong 1.5s linear;
+  }
+
+  @keyframes balance {
+    0%, 100% {
+      transform: rotate(0deg);
+    }
+    30%, 60% {
+      transform: rotate(-45deg);
+    }
+  }
+
+  @keyframes shrinkjump {
+    10%, 35% {
+      transform: scale(2, 0.2) translate(0, 0);
+    }
+    45%, 50% {
+      transform: scale(1) translate(0, -150px);
+    }
+    80% {
+      transform: scale(1) translate(0, 0);
+    }
+  }
+
+  @keyframes falling {
+    12% {
+      transform: rotateX(240deg);
+    }
+    24% {
+      transform: rotateX(150deg);
+    }
+    36% {
+      transform: rotateX(200deg);
+    }
+    48% {
+      transform: rotateX(175deg);
+    }
+    60%, 85% {
+      transform: rotateX(180deg);
+    }
+    100% {
+      transform: rotateX(0deg);
+    }
+  }
+
+  @keyframes rotate {
+    20%, 80% {
+      transform: rotateY(180deg);
+    }
+    100% {
+      transform: rotateY(360deg);
+    }
+  }
+
+  @keyframes toplong {
+    10%, 40% {
+      transform: translateY(-48vh) scaleY(1);
+    }
+    90% {
+      transform: translateY(-48vh) scaleY(4);
+    }
+  }
+
+  @media (min-width: 960px) {
+    display: none;
   }
 `;
