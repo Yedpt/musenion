@@ -12,9 +12,9 @@ const Home = () => {
         <title>
           <h1>Musenion</h1>
         </title>
-        <figure>
-          <img src="public\assets\images\2-minions.png" alt="" />
-        </figure>
+        <StyledFigure>
+          <img src="public\assets\images\homeMobile.png" alt="" />
+        </StyledFigure>
       </section>
 
       <SectionTwo>
@@ -34,11 +34,8 @@ const Home = () => {
   )
 }
 
-const StyledBody = styled.div `
-  background: linear-gradient(to bottom, #FFDC59, #E2730C);
-`;
 
-/* const section2 = styled.section `
+const StyledFigure = styled.figure`
   display: flex;
   justify-content: center;
   flex-direction: column;
