@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import { getMemeById } from '../services/MinionServices'; // Asegúrate de importar el servicio
 
 
+
 const MemeDetail = () => {
   const { id } = useParams(); // Obtener el id de la URL
   const [meme, setMeme] = useState(null); // Estado para guardar los detalles del meme
