@@ -5,7 +5,6 @@ import { deleteMemes } from '../services/MinionServices';
 import { getMemes } from '../services/MinionServices';
 import styled from 'styled-components';
 
-
 const MemeDetail = () => {
   const { id } = useParams(); // Obtener el id de la URL
   const [meme, setMeme] = useState(null); // Estado para guardar los detalles del meme
@@ -68,6 +67,7 @@ const MemeDetail = () => {
 
 return (
     <PageContainer>
+          <WallFrame>
           <FrameContainer>
             <ImageMeme src={meme.url} alt={meme.title} style={{ width: '300px', height: 'auto' }} />
           </FrameContainer>
@@ -79,60 +79,91 @@ return (
       ) : (
         <ErrorMessage>Meme no encontrado.</ErrorMessage>
       )}
+      </WallFrame>
       <Buttons>
         <ButtonUpdate onClick={() => handleEdit()}>Actualizar</ButtonUpdate>
         <ButtonDelete onClick={() => handleDelete(meme.id)}>Eliminar</ButtonDelete>
       </Buttons>
-        <ImageFloor src="public/assets/images/suelo-museo-3.png" alt="Fondo" />
-        </PageContainer>
+    </PageContainer>
   );
 };
+
 
 const PageContainer = styled.div`
   position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column; /* Asegúrate de que los elementos estén en columna */
+  flex-direction: column;
   width: 100vw;
-  background: #BFAC9E;
+  /* background: linear-gradient(to bottom, #FFDC59, #E2730C); */
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 `;
-const FrameContainer = styled.div`
+const WallFrame = styled.div`
+  display: flex;
+  background-image: url('/assets/images/pared_suelo_mobile.png');
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100vw;
+  
+  @media (min-width: 960px) {
+    background-image: url('/assets/images/pared_suelo_desktop.png'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    width: 100vw;
+  }
+`;
+const FrameContainer = styled.div`  /*Imagen del marco */
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  padding: 20px;
-  background-image: url('/assets/images/marco-meme.png'); /* Imagen del marco */
+  padding: 10%;
+  background-image: url('/assets/images/marco_aislado.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  width: 80%; /* Ajusta según sea necesario */
-  max-width: 400px; /* Ajusta según sea necesario */
-  height: fit-content;
+  width: 80%; /*Ajusta según sea necesario*/
+  max-width: 400px;  /*Ajusta según sea necesario */
+  min-width: 300px;  /* Evitar que el marco se haga demasiado pequeño */
+  /* height: fit-content; */
   margin-top: 30px;
+  aspect-ratio: 1 / 1;
+
+  @media (min-width: 960px) {
+    width: 60%;
+    /* max-width: 400px; */
+    min-width: 450px;
+  }`;
+
+  const ImageMeme = styled.img`
+    max-width: 100%;
+    max-height: 100%;
+    border-radius: 8px; 
+    object-fit: contain;
 `;
 
 const CardMeme = styled.div`
-padding: 0;
+  background: white;
+  padding: 0;
+  border-color: black;
 `;
 const TitleMeme = styled.h2`
   padding: 0;
-`;
-const ImageMeme = styled.img`
-  max-width: 100%;
-  max-height: 100vh;
-  border-radius: 8px; 
-
+  font-size: 32px;
+  color: black;
 `;
 const Description = styled.p`
-padding: 0;
+  font-size: 13px;
+  padding: 0;
+  color: black;
 `;
 const ErrorMessage = styled.p`
   padding: 0;
+  color: red;
 `;
 const Buttons = styled.div`
   display: flex;
@@ -141,7 +172,7 @@ const Buttons = styled.div`
   flex-direction: column; 
   width: 100vw;
 
-  @media (min-width: 600px) {
+  @media (min-width: 960px) {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -159,7 +190,7 @@ const ButtonUpdate = styled.button`
   margin-bottom: 10px;
   border-radius: 5px;
 
-  @media (min-width: 600px) {
+  @media (min-width: 960px) {
     margin: 0;
     margin-right: 20px;
     width: 15%;
@@ -172,19 +203,11 @@ const ButtonDelete = styled.button`
   margin-bottom: 30px;
   border-radius: 5px;
 
-  @media (min-width: 600px) {
+  @media (min-width: 960px) {
     margin: 0;
     margin-right: 20px;
     width: 15%;
   }
-`;
-const ImageFloor = styled.img`
-  position: absolute;
-  bottom: 0; /* Coloca la imagen al fondo de la página */
-  left: 50%; /* Centra la imagen horizontalmente */
-  transform: translateX(-50%); /* Ajusta para el centro exacto */
-  width: 100%; /* Ajusta el tamaño según sea necesario */
-  height: auto; /* Mantén la relación de aspecto */
 `;
 
 export default MemeDetail;
