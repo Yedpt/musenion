@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getMemeById } from '../services/MinionServices'; // Asegúrate de importar el servicio
 import { deleteMemes } from '../services/MinionServices';
 import { getMemes } from '../services/MinionServices';
-
+import styled from "styled-components";
 
 
 const MemeDetail = () => {
