@@ -1,17 +1,18 @@
 // nav y footer  
 import { Outlet } from 'react-router-dom'
-import Nav from '../components/Nav'
-import Footer from '../components/Footer'
+import Navbar from '../components/Navbar';
+import Footer from '../components/Footer'; 
 
-const layout = () => {
+const Layout = () => {
   return (
     <>
-      {/* <nav>Mi nav</nav> */}
-      <Outlet/>
-      <footer>Mi footer</footer>
+      <Navbar /> {/* Agregar Navbar */}
+      <main>
+        <Outlet />
+      </main>
+      <Footer /> {/* Agregar Footer */}
     </>
-  
-  )
-}
+  );
+};
 
-export default layout
+export default Layout;

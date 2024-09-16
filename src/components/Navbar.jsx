@@ -121,7 +121,7 @@ const Menu = styled.ul`
   }
 
   li a:hover {
-    color: #e2730c;
+    color: #E2730C00;
   }
 
   @media (max-width: 960px) {
@@ -134,7 +134,7 @@ const Menu = styled.ul`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: linear-gradient(to bottom, #FFDC59, #E2730C);
+    background: linear-gradient(to bottom, #FFDB5900, #E2730C00);
     gap: 2rem;
     transition: all 0.3s ease;
 
