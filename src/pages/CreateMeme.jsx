@@ -84,7 +84,7 @@ const CreateMeme = () => {
 const Container = styled.div`
   background-color: #ffd966;
   padding: 20px;
-  max-width: 100%;
+  max-width: 100vh;
   background: linear-gradient(to bottom, #FFDC59, #E2730C);
 
   @media (min-width: 768px) {
