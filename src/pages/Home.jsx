@@ -33,7 +33,7 @@ const Home = () => {
   )
 }
 
-const StyledBody = styled.body `
+const StyledBody = styled.div `
   background: linear-gradient(to bottom, #FFDC59, #E2730C);
 `;
 
