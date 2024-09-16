@@ -193,9 +193,9 @@ display: none;
 }
 `;
 
-
   const Advise = styled.span`
   color: red;
+  font-size: 13px;
   `;
 
 const ModalOverlay = styled.div`
@@ -326,13 +326,17 @@ function Contact() {
           {...register("files")}
         />
         <TermsAndSubmit>
-        <Conditions>
-          <Label htmlFor="terms">Acepto términos y condiciones.</Label>
-          <AcceptButton type="checkbox" id="terms" {...register("terms")} />
+        <Conditions> 
+            <Label htmlFor="terms">Acepto términos y condiciones.</Label>
+            <AcceptButton type="checkbox" id="terms" {...register("terms", {
+              required: "Debes aceptar los términos y condiciones."
+            })} />
+            {
+              errors.terms && <Advise>{errors.terms.message}</Advise>
+            }
         </Conditions>
         <SubmitButton type="submit">Enviar</SubmitButton>
         </TermsAndSubmit>
-
           <ImageContainer>
             <EmailImage src="../../public/assets/images/logo-correo-desktop.png"/>
           </ImageContainer>
