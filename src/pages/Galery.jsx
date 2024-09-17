@@ -3,7 +3,7 @@ import { getMemes } from '../services/MinionServices'; // Servicios para obtener
 import Carousel3D from '../components/carousel'; // Componente del carrusel 3D
 import { Link, useNavigate } from 'react-router-dom'; // Añadir useNavigate para la redirección
 import styled from 'styled-components'; // Importación de styled-components
-import nubeIcon from '../../public/assets/images/flecha_nube.png'; // Importamos la imagen de la nube
+import nubeIcon from '../assets/images/flecha_nube.png'; // Importamos la imagen de la nube
 
 const Gallery = () => {
   const [memes, setMemes] = useState([]);

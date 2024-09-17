@@ -3,6 +3,131 @@ import { useForm } from 'react-hook-form';
 import { useState } from "react";
 import axios from "axios";
 
+
+function Contact() {
+  const { register, handleSubmit, formState: { errors } } = useForm();
+  const [successMessage, setSuccessMessage] = useState("");
+  const [showModal, setShowModal] = useState(false);
+
+  const onSubmit = async (data) => {
+    try {
+      const response = await axios.post("https://jsonplaceholder.typicode.com/posts", data);
+
+      setSuccessMessage(`¡Hola ${data.nombre}!, Gracias por ponerte en contacto con nosotros. En breve, recibirás respuesta.`);
+
+      setShowModal(true);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+  };
+
+  return (
+    
+    <PageContainer>
+    <MainContainer>
+    <TitlePage>CONTÁCTANOS</TitlePage>
+    <SecondContainer>
+       <MinionImage src="src\assets\images\callcenter_minion.jpg"/> 
+        <FormContainer onSubmit={handleSubmit(onSubmit)}>
+
+          <Label htmlFor="nombre">Nombre</Label>
+          <Input 
+          type="text"
+          id="nombre" 
+          {...register("nombre",{
+            required: true
+          })
+        } />
+        {
+          errors.nombre && <Advise>Espacio requerido.</Advise>
+        }
+        
+        <Label htmlFor="surname">Apellidos</Label>
+          <Input 
+          type="text"
+          id="surname" 
+          {...register("surname",{
+            required: true
+          })
+        } />
+        {
+          errors.surname && <Advise>Espacio requerido.</Advise>
+        }
+
+
+          <Label htmlFor="correo">Correo</Label>
+          <Input type="email" id="correo" {...register("correo", {
+            required: {
+              value: true,
+              message: "El correo es un campo requerido."
+            },
+            pattern: {
+              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/, /*expresión regular*/
+              message: "El correo no es válido."
+            }
+
+          })} />
+
+          {
+            errors.correo && <Advise>{errors.correo.message}</Advise>
+          }
+
+          <Label htmlFor="message">Mensaje</Label>
+          <TextArea
+          type="text"
+          id="message" 
+          {...register("message",{
+            required: true
+          })
+        } />
+        {
+          errors.message && <Advise>Espacio requerido.</Advise>
+        }
+
+        <Label htmlFor="files"></Label>
+        <SearchFiles
+          type="file"
+          id="files"
+          {...register("files")}
+        />
+        <TermsAndSubmit>
+        <Conditions> 
+            <Label htmlFor="terms">Acepto términos y condiciones.</Label>
+            <AcceptButton type="checkbox" id="terms" {...register("terms", {
+              required: "Debes aceptar los términos y condiciones."
+            })} />
+            {
+              errors.terms && <Advise>{errors.terms.message}</Advise>
+            }
+        </Conditions>
+        <SubmitButton type="submit">Enviar</SubmitButton>
+        </TermsAndSubmit>
+          <ImageContainer>
+            <EmailImage src="../../public/assets/images/logo-correo-desktop.png"/>
+          </ImageContainer>
+        </FormContainer> 
+        {showModal && (
+        <ModalOverlay>
+          <ModalContent>
+            {successMessage && <p>{successMessage}</p>}
+            <CloseButton onClick={closeModal}>Cerrar</CloseButton>
+          </ModalContent>
+        </ModalOverlay>
+      )}
+    </SecondContainer>
+    </MainContainer>
+  </PageContainer>
+    
+  )
+}
+
+
+export default Contact;
+
 const PageContainer = styled.div`
       display: flex;
       flex-direction: column;
@@ -234,127 +359,3 @@ const CloseButton = styled.button`
   }
 `;
 
-
-function Contact() {
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  const [successMessage, setSuccessMessage] = useState("");
-  const [showModal, setShowModal] = useState(false);
-
-  const onSubmit = async (data) => {
-    try {
-      const response = await axios.post("https://jsonplaceholder.typicode.com/posts", data);
-
-      setSuccessMessage(`¡Hola ${data.nombre}!, Gracias por ponerte en contacto con nosotros. En breve, recibirás respuesta.`);
-
-      setShowModal(true);
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
-
-  const closeModal = () => {
-    setShowModal(false);
-  };
-
-  return (
-    
-    <PageContainer>
-    <MainContainer>
-    <TitlePage>CONTÁCTANOS</TitlePage>
-    <SecondContainer>
-       <MinionImage src="../../public/assets/images/callcenter_minion.jpg"/>
-        <FormContainer onSubmit={handleSubmit(onSubmit)}>
-
-          <Label htmlFor="nombre">Nombre</Label>
-          <Input 
-          type="text"
-          id="nombre" 
-          {...register("nombre",{
-            required: true
-          })
-        } />
-        {
-          errors.nombre && <Advise>Espacio requerido.</Advise>
-        }
-        
-        <Label htmlFor="surname">Apellidos</Label>
-          <Input 
-          type="text"
-          id="surname" 
-          {...register("surname",{
-            required: true
-          })
-        } />
-        {
-          errors.surname && <Advise>Espacio requerido.</Advise>
-        }
-
-
-          <Label htmlFor="correo">Correo</Label>
-          <Input type="email" id="correo" {...register("correo", {
-            required: {
-              value: true,
-              message: "El correo es un campo requerido."
-            },
-            pattern: {
-              value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/, /*expresión regular*/
-              message: "El correo no es válido."
-            }
-
-          })} />
-
-          {
-            errors.correo && <Advise>{errors.correo.message}</Advise>
-          }
-
-          <Label htmlFor="message">Mensaje</Label>
-          <TextArea
-          type="text"
-          id="message" 
-          {...register("message",{
-            required: true
-          })
-        } />
-        {
-          errors.message && <Advise>Espacio requerido.</Advise>
-        }
-
-        <Label htmlFor="files"></Label>
-        <SearchFiles
-          type="file"
-          id="files"
-          {...register("files")}
-        />
-        <TermsAndSubmit>
-        <Conditions> 
-            <Label htmlFor="terms">Acepto términos y condiciones.</Label>
-            <AcceptButton type="checkbox" id="terms" {...register("terms", {
-              required: "Debes aceptar los términos y condiciones."
-            })} />
-            {
-              errors.terms && <Advise>{errors.terms.message}</Advise>
-            }
-        </Conditions>
-        <SubmitButton type="submit">Enviar</SubmitButton>
-        </TermsAndSubmit>
-          <ImageContainer>
-            <EmailImage src="../../public/assets/images/logo-correo-desktop.png"/>
-          </ImageContainer>
-        </FormContainer> 
-        {showModal && (
-        <ModalOverlay>
-          <ModalContent>
-            {successMessage && <p>{successMessage}</p>}
-            <CloseButton onClick={closeModal}>Cerrar</CloseButton>
-          </ModalContent>
-        </ModalOverlay>
-      )}
-    </SecondContainer>
-    </MainContainer>
-  </PageContainer>
-    
-  )
-}
-
-
-export default Contact;
