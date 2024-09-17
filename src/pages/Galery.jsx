@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import  { useEffect, useState } from 'react';
 import { getMemes } from '../services/MinionServices'; // Servicios para obtener memes
 import Carousel3D from '../components/carousel'; // Componente del carrusel 3D
 import { Link, useNavigate } from 'react-router-dom'; // Añadir useNavigate para la redirección

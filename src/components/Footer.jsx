@@ -1,6 +1,6 @@
 import styled from 'styled-components';
-import img1 from '../../public/assets/images/white-minion1.svg';
-import img2 from '../../public/assets/images/white-minion2.svg';
+import img1 from '../assets/images/white-minion1.svg';
+import img2 from '../assets/images/white-minion2.svg';
 
 const Footer = () => {
   return (

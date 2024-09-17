@@ -81,7 +81,6 @@
 
   // Styled-components
 
-<<<<<<< HEAD
   const Container = styled.div`
     background-color: #121112;
     height: 90vh; /* Ocupar toda la altura de la pantalla */
@@ -89,24 +88,6 @@
     justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */
   `;
-=======
-// Styled-components
-const DragContainer = styled.div`
-  position: relative;
-  display: flex;
-  margin: auto;
-  transform-style: preserve-3d;
-  perspective: 1000px;
-
-  @media (min-width: 1024px) {
-    perspective: 1200px;
-  }
-
-  @media (min-width: 1440px) {
-    perspective: 1800px;
-  }
-`;
->>>>>>> feature-nav
 
   const DragContainer = styled.div`
     position: relative;
@@ -116,7 +97,6 @@ const DragContainer = styled.div`
     transform-style: preserve-3d;
     perspective: 1000px;
 
-<<<<<<< HEAD
     @media (min-width: 1024px) {
       perspective: 1200px;
     }
@@ -200,44 +180,3 @@ const DragContainer = styled.div`
     transform: translate(-50%, -50%) rotateX(90deg);
     background: radial-gradient(circle, #9993, transparent);
   `;
-=======
-  @media (min-width: 768px) {
-    width: ${imgWidth * 1.2}px;
-    height: ${imgHeight * 1.2}px;
-  }
-
-  @media (min-width: 1024px) {
-    width: ${imgWidth * 1.5}px;
-    height: ${imgHeight * 1.5}px;
-  }
-
-  @media (min-width: 1440px) {
-    width: ${imgWidth * 1.5}px;
-    height: ${imgHeight * 1.5}px;
-  }
-
-  img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    box-shadow: 0 0 5px #fff;
-    transition: transform 0.5s, box-shadow 0.5s;
-
-    &:hover {
-      transform: scale(1.2);
-      box-shadow: 0 0 10px #fffd;
-      cursor: pointer;
-    }
-  }
-`;
-
-const Ground = styled.div`
-  width: ${({ $radius }) => $radius * 2}px;
-  height: ${({ $radius }) => $radius * 2}px;
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotateX(90deg);
-  background: radial-gradient(circle, #9993, transparent);
-`;
->>>>>>> feature-nav
