@@ -91,6 +91,4 @@ const Pwhite = styled.p`
 }
 `
 
-
-
 export default Home
