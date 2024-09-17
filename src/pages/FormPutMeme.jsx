@@ -45,9 +45,9 @@ const FormPutMeme = () => {
 
   return (
     <Page>
-      <h2>Editar Meme</h2>
+      <TextH2>Editar Meme</TextH2>
       {/* Mostrar la imagen del meme antes que el formulario */}
-      {meme && <img src={meme.url} alt={meme.title} style={{ width: '300px', height: 'auto' }} />}
+      {meme && <Image src={meme.url} alt={meme.title} style={{ width: '75%', height: 'auto' }} />}
       {meme && (
         <FormContainer onSubmit={handleSubmit(onSubmit)}>
           <div>
@@ -80,13 +80,25 @@ const FormPutMeme = () => {
             />
             {errors.url && <p>{errors.url.message}</p>}
           </div>
-          <button type="submit">Guardar Cambios</button>
-          <button type="button" onClick={() => reset(meme)}>Cancelar</button> {/* Resetear el formulario */}
+          <SaveButton type="submit">Guardar Cambios</SaveButton>
+          <CancelButton type="button" onClick={() => reset(meme)}>Cancelar</CancelButton> {/* Resetear el formulario */}
         </FormContainer>
       )}
     </Page>
   );
 };
+
+
+const TextH2 = styled.h2`
+  text-transform: uppercase;
+  color: #0C2849;
+  margin-top: 5vh;
+  margin-bottom: 2vh;
+`
+const Image = styled.img`
+ border-radius: 8px;
+ width: 80%;
+`
 
 const Page = styled.div`
   display: flex;
@@ -94,8 +106,8 @@ const Page = styled.div`
   align-items: center;
   max-width: 90%;
   margin-left: 5%;
-  margin-bottom: 40px;
-  margin-top: 30px;
+  margin-bottom: 10vh;
+  margin-top: 15vh;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-color: #ffffff6e;
@@ -104,11 +116,11 @@ const Page = styled.div`
 const FormContainer = styled.form`
 display: flex;
 flex-direction: column;
+align-items: center;
 max-width: 80%;
-max-height: 90%;
-padding: 20px;
-margin-bottom: 40px;
-margin-top: 30px;
+padding: 3vh;
+margin-bottom: 10vh;
+margin-top: 6vh;
 border-radius: 10px;
 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 background-color: #ffffff6e;
@@ -120,7 +132,7 @@ font-size: 15px;
 `
 const Input = styled.input`
   display: flex;
-  margin-bottom: 12px;
+  margin-bottom: 15px;
   padding: 5px;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -132,7 +144,20 @@ const Input = styled.input`
     outline: none;
   }
 `
-
-
-
+const SaveButton = styled.button`
+  width: 25vh;
+  height: 4.5vh;
+  font-size:16px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #FFDC59;
+`
+const CancelButton = styled.button`
+  width: 25vh;
+  height: 4.5vh;
+  font-size:16px;
+  margin-top: 8%;
+  border-radius: 5px;
+`
+  
 export default FormPutMeme;
