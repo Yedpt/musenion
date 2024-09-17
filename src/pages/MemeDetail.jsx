@@ -94,6 +94,7 @@ const PageContainer = styled.div`
   justify-content: center;
   width: 100vw;
   background: linear-gradient(to bottom, #FFDC59, #E2730C);
+  margin-top: 100px;
 `;
 
 const WallFrame = styled.div`
@@ -131,7 +132,7 @@ const FrameContainer = styled.div`
   aspect-ratio: 1 / 1;
 
   @media (min-width: 700px) {
-    width: 50%; 
+    width: 100%; 
     max-width: 250px; 
     min-width: 250px;
     padding: 5%;
