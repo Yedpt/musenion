@@ -6,11 +6,10 @@ import BurgerButton from "./BurgerButton";
 function Navbar() {
   const [clicked, setClicked] = useState(false);
   const [activeLetter, setActiveLetter] = useState(null);
-  const [isHome, setIsHome] = useState(false); // Para verificar si estamos en la home
-  const location = useLocation(); // Para determinar la página actual
+  const [isHome, setIsHome] = useState(false);
+  const location = useLocation();
 
   useEffect(() => {
-    // Verifica si estamos en la Home
     setIsHome(location.pathname === "/");
   }, [location]);
 
@@ -26,7 +25,6 @@ function Navbar() {
     setActiveLetter(index);
   };
 
-  // Efecto aleatorio cada 5 segundos para las letras de MUSENION
   useEffect(() => {
     const spans = document.querySelectorAll(".word span");
     const animateRandomly = () => {
@@ -46,22 +44,19 @@ function Navbar() {
         {/* Menu (pantallas mayores a 960px) */}
         <Menu isHome={isHome} className={clicked ? "active" : ""}>
           <li className={location.pathname === "/" ? "selected" : ""}>
-            <Link to="../src/pages/Home.jsx" onClick={closeMenu}>Home</Link>
+            <Link to="/" onClick={closeMenu}>Home</Link>
           </li>
           <li className={location.pathname === "/galeria" ? "selected" : ""}>
-            <Link to="../src/pages/Galery.jsx" onClick={closeMenu}>Galería Virtual</Link>
+            <Link to="/gallery" onClick={closeMenu}>Galería Virtual</Link>
           </li>
-          <li className={location.pathname === "/meme" ? "selected" : ""}>
-            <Link to="../src/pages/EditMeme.jsx" onClick={closeMenu}>Sobre tu Meme</Link>
+          <li className={location.pathname === "/creatememe" ? "selected" : ""}>
+            <Link to="/creatememe" onClick={closeMenu}>Sube tu Meme</Link>
           </li>
           <li className={location.pathname === "/nosotros" ? "selected" : ""}>
-            <Link to="../src/pages/AboutUs.jsx" onClick={closeMenu}>Sobre Nosotros</Link>
-          </li>
-          <li className={location.pathname === "/creadores" ? "selected" : ""}>
-            <Link to="../src/pages/AboutUs.jsx" onClick={closeMenu}>Los Creadores</Link>
+            <Link to="/aboutus" onClick={closeMenu}>Sobre Nosotros</Link>
           </li>
           <li className={location.pathname === "/contact" ? "selected" : ""}>
-            <Link to="../src/pages/Contact.jsx" onClick={closeMenu}>Contacto</Link>
+            <Link to="/contactus" onClick={closeMenu}>Contacto</Link>
           </li>
         </Menu>
 
