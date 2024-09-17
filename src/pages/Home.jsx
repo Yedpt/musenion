@@ -1,21 +1,19 @@
-import React from 'react';
 import styled from 'styled-components';
+import homeMobile from '../assets/images/homeMobile.png';
+import homeDesktop from '../assets/images/homeDesktop.png';
+
 // import { useNavigate } from 'react-router-dom'; hay que importar esto para poder usar el useNavigate
 
 const Home = () => {
-
-  /* const navigate = useNavigate () , permite ejecutar una accion de navegacion sin necesidad de acceder directamente al dispatch */
   return (
     <>
     <div>
-    <section>
+    <SectionOne>
         <title>
           <h1>Musenion</h1>
         </title>
-        <StyledFigure>
-          <img src="public\assets\images\homeMobile.png" alt="" />
-        </StyledFigure>
-      </section>
+        <StyledFigure/>
+      </SectionOne>
 
       <SectionTwo>
         <div>
@@ -34,22 +32,40 @@ const Home = () => {
   )
 }
 
+const SectionOne = styled.section `
+  display: flex;
+  height: 50%;
+`
 
 const StyledFigure = styled.figure`
   display: flex;
   justify-content: center;
   flex-direction: column;
   width:100%;
-  background-image: url('src/assets/HomeMobile.png');
+  background-image: url(${homeMobile});
+  height: 75vh; 
+  background-size: cover;     
+  background-position: center;
 
 @media (min-width: 960px) {
-  background-image: url('src\assets\HomeDesktop.png'); 
+  background-image: url(${homeDesktop}); 
+  height: 104vh;  
+  background-size: cover;
+  background-position: center;
+  background-position: top;
 }
-`;
+`
 
 const SectionTwo = styled.section `
   display: flex;
-  margin: 8%;
+  margin: 10%;
+
+  @media (min-width: 960px) {
+    margin-top: 4%;
+    margin-left: 16%;
+    margin-right: 16%;
+    height: 35vh;
+}
 `
 const TituloA = styled.h2`
   text-transform: uppercase;
@@ -63,7 +79,13 @@ const TituloB = styled.h2`
 const Pwhite = styled.p`
   color: white;
   margin-top: 5%;
-`
+  font-size: 2.6vh;
 
+  @media (min-width: 960px) {
+    font-size: 3.3vh;
+    line-height:1.3;
+    margin-top: 3%;
+}
+`
 
 export default Home

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import  { useState } from "react";
 import styled from "styled-components";
 import { postMemes, subirImagenCloudinary } from '../services/MinionServices'; // Importar ambos servicios
 
@@ -43,7 +43,7 @@ const CreateMeme = () => {
     <Container>
       <MemeLayout>
        <ImageContainer>
-        <img src="/public/minion_artist.jpg" alt="Minion artist"/>
+        <img src="src\assets\images\minion_artist.jpg" alt="Minion artist"/>
         </ImageContainer>
       <MemeContainer>
         <TitleDiv>
