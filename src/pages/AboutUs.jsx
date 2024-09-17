@@ -34,7 +34,7 @@ const AboutUs = () => {
           <Creator>
             <CreatorImage>
               <img
-                src="public\assets\images\minion_artist.jpg"
+                src="src\assets\images\minion_artist.jpg"
                 alt="Yeder Pimentel"
               />
             </CreatorImage>
@@ -46,7 +46,7 @@ const AboutUs = () => {
           <Creator>
             <CreatorImage>
               <img
-                src="public\assets\images\minion_artist.jpg"
+                src="src\assets\images\minion_artist.jpg"
                 alt="Laura de Vega"
               />
             </CreatorImage>
@@ -58,7 +58,7 @@ const AboutUs = () => {
           <Creator>
             <CreatorImage>
               <img
-                src="public\assets\images\minion_artist.jpg"
+                src="src\assets\images\minion_artist.jpg"
                 alt="Anca Bacria"
               />
             </CreatorImage>
@@ -70,7 +70,7 @@ const AboutUs = () => {
           <Creator>
             <CreatorImage>
               <img
-                src="public\assets\images\minion_artist.jpg"
+                src="src\assets\images\minion_artist.jpg"
                 alt="Mariela Adimari"
               />
             </CreatorImage>
@@ -82,7 +82,7 @@ const AboutUs = () => {
           <Creator>
             <CreatorImage>
               <img
-                src="public\assets\images\minion_artist.jpg"
+                src="src\assets\images\minion_artist.jpg"
                 alt="Ana Maria Garcia"
               />
             </CreatorImage>
