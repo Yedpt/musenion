@@ -46,7 +46,7 @@ const FormPutMeme = () => {
   return (
     <Page>
       <TextH2>Editar Meme</TextH2>
-      {/* Mostrar la imagen del meme antes que el formulario */}
+      <ImageAndForm>
       {meme && <Image src={meme.url} alt={meme.title}/>}
       {meme && (
         <FormContainer onSubmit={handleSubmit(onSubmit)}>
@@ -83,7 +83,9 @@ const FormPutMeme = () => {
           <SaveButton type="submit">Guardar Cambios</SaveButton>
           <CancelButton type="button" onClick={() => reset(meme)}>Cancelar</CancelButton> {/* Resetear el formulario */}
         </FormContainer>
-      )}
+       )}
+      </ImageAndForm>
+      
     </Page>
   );
 };
@@ -94,18 +96,23 @@ const TextH2 = styled.h2`
   color: #0C2849;
   margin-top: 5vh;
   margin-bottom: 2vh;
+
+  @media (min-width: 960px){
+    margin-bottom: 0;
+  }
 `
+
 const Image = styled.img`
  border-radius: 8px;
  width: 80%;
  height: auto;
+ margin-top: 5vh;
 
  @media (min-width: 960px){
-  width: 10%;
-  height: 80vh;
+  width: auto;
+  height: 100%;
  }
 `
-
 
 const Page = styled.div`
   display: flex;
@@ -114,23 +121,33 @@ const Page = styled.div`
   max-width: 90%;
   margin-left: 5%;
   margin-bottom: 10vh;
-  margin-top: 15vh;
+  margin-top: 12vh;
+
+  @media (min-width: 960px){
+    margin-top:20vh;
+    margin-bottom: 20vh;
+    margin-left:10%;
+    margin-right:10%;
+  }
+`
+
+const ImageAndForm = styled.section`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-color: #ffffff6e;
 
-  @media (min-width: 960px){
-      display: flex;  
-      flex-direction: row;
-/*       justify-content: center; */
-      margin-top: 30px;
-      margin-bottom: 30px;
-      height: 100vh;
-    }
-
-
-`;
-
+@media (min-width: 960px){
+  display: flex;  
+  flex-direction: row;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  height: 70vh;
+  justify-content:space-between;
+}
+`
 const FormContainer = styled.form`
 display: flex;
 flex-direction: column;
@@ -142,6 +159,13 @@ margin-top: 6vh;
 border-radius: 10px;
 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 background-color: #ffffff6e;
+
+@media (min-width: 960px){
+border-radius: 0;
+box-shadow: none;
+background-color: transparent;
+margin-left:20vh;
+}
 `
 const Label = styled.label`
 font-weight: bold;
