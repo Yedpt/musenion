@@ -1,4 +1,3 @@
-import React from 'react';
 import styled from 'styled-components';
 import homeMobile from '../assets/images/homeMobile.png';
 import homeDesktop from '../assets/images/homeDesktop.png';
@@ -6,8 +5,6 @@ import homeDesktop from '../assets/images/homeDesktop.png';
 // import { useNavigate } from 'react-router-dom'; hay que importar esto para poder usar el useNavigate
 
 const Home = () => {
-
-  /* const navigate = useNavigate () , permite ejecutar una accion de navegacion sin necesidad de acceder directamente al dispatch */
   return (
     <>
     <div>
