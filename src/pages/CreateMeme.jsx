@@ -1,5 +1,6 @@
 import  { useState } from "react";
 import styled from "styled-components";
+import { useNavigate } from 'react-router-dom';
 import { postMemes, subirImagenCloudinary } from '../services/MinionServices'; // Importar ambos servicios
 
 
@@ -10,6 +11,7 @@ const CreateMeme = () => {
   const [imageFile, setImageFile] = useState(null);
   const [error, setError] = useState(null);
   const [successMessage, setSuccessMessage] = useState("");
+  const navigate = useNavigate()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,6 +35,7 @@ const CreateMeme = () => {
       setTitle('');
       setDescription(''); // Limpiar la descripción
       setImageFile(null); // Limpiar el archivo seleccionado
+      navigate('/gallery');
     } catch (err) {
       setError('Hubo un error al crear el meme.');
       setSuccessMessage('');
@@ -190,7 +193,7 @@ const MemeButton = styled.button`
   font-size: 1.2rem;
   cursor: pointer;
   &:hover {
-    background-color: #1565C0; / Cambia el color en hover */
+    background-color: #1565C0;
   }
   `;
 const SuccessMessage = styled.p`
