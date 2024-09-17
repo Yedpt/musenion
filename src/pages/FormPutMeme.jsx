@@ -99,19 +99,8 @@ const TextH2 = styled.h2`
 
   @media (min-width: 960px){
     margin-bottom: 0;
+    margin-top: 8vh;
   }
-`
-
-const Image = styled.img`
- border-radius: 8px;
- width: 80%;
- height: auto;
- margin-top: 5vh;
-
- @media (min-width: 960px){
-  width: auto;
-  height: 100%;
- }
 `
 
 const Page = styled.div`
@@ -124,10 +113,7 @@ const Page = styled.div`
   margin-top: 12vh;
 
   @media (min-width: 960px){
-    margin-top:20vh;
-    margin-bottom: 20vh;
-    margin-left:10%;
-    margin-right:10%;
+  
   }
 `
 
@@ -143,10 +129,22 @@ const ImageAndForm = styled.section`
   display: flex;  
   flex-direction: row;
   margin-top: 30px;
-  margin-bottom: 30px;
-  height: 70vh;
-  justify-content:space-between;
+  margin-bottom: 35px;
+  width:80%;
+  height: 100vh;
 }
+`
+const Image = styled.img`
+ border-radius: 8px;
+ width: 80%;
+ height: auto;
+ margin-top: 5vh;
+
+ @media (min-width: 960px){
+  width: auto;
+  height: 100%;
+  margin-top:0;
+ }
 `
 const FormContainer = styled.form`
 display: flex;
@@ -164,7 +162,7 @@ background-color: #ffffff6e;
 border-radius: 0;
 box-shadow: none;
 background-color: transparent;
-margin-left:20vh;
+width:28%;
 }
 `
 const Label = styled.label`
@@ -184,6 +182,10 @@ const Input = styled.input`
   &:focus {
     border-color: yellow;
     outline: none;
+  }
+
+  @media (min-width: 960px){
+    width:230%;
   }
 `
 const SaveButton = styled.button`
