@@ -7,7 +7,7 @@ import { postMemes, subirImagenCloudinary } from '../services/MinionServices'; /
 const Container = styled.div`
   max-width: 100%;
   min-height: 650px;
-  padding: 100px 20px;
+  padding: 150px 20px 100px;
   color: #0c2849;
 `;
 
@@ -16,7 +16,7 @@ const MemeLayout = styled.div`
   max-width: 1200px;
   width: 100%;
   background: rgba(250, 250, 250, 0.35);
-  border-radius: 8px;
+  border-radius: 4px;
   overflow: hidden;
   margin: 0 auto;
 
@@ -73,19 +73,21 @@ const MemeForm = styled.form`
   flex-direction: column;
 `;
 const StyledParagraph = styled.p`
-  color: red;
+font-size: 0.8rem;
+font-weight: bold;
   margin-bottom: 1.2rem;
 `;
 
 const MemeLabel = styled.label`
-  font-size: 1.2rem;
+  font-size: 0.8rem;
+  font-weight: bold;
   margin-bottom: 10px;
 `;
 const MemeInput = styled.input`
   margin-bottom: 1.2rem;
   padding: 10px;
-  border-radius: 8px;
-  border: 2px solid #0c2849;
+  border-radius: 4px;
+  border: 1px solid #ccc;
   font-size: 1rem;
   &:focus {
     outline: none;
@@ -97,7 +99,7 @@ const MemeButton = styled.button`
   color: #0C2849;
   background-color: #FFDA58;
   border: 2px solid #0C2849;
-  border-radius: 8px;
+  border-radius: 4px;
   font-size: 1.2rem;
   cursor: pointer;
   &:hover {
@@ -114,6 +116,10 @@ const ErrorMessage = styled.p`
   font-size: 1.1rem;
   text-align: center;
 `;
+
+
+
+
 const CreateMeme = () => {
   const [title, setTitle] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -172,7 +178,7 @@ const CreateMeme = () => {
             required
           />
 
-          <StyledParagraph>La imagen debe ser cuadrada.</StyledParagraph>
+          <StyledParagraph>NOTA: La imagen debe ser cuadrada.</StyledParagraph>
           <MemeButton type="submit">Crear Meme</MemeButton>
         </MemeForm>
 

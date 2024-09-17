@@ -34,7 +34,7 @@ const AboutUs = () => {
           <Creator>
             <CreatorImage>
               <img
-                src="src\assets\images\minion_artist.jpg"
+                src="src\assets\images\avatar-yeder.png"
                 alt="Yeder Pimentel"
               />
             </CreatorImage>
@@ -46,7 +46,7 @@ const AboutUs = () => {
           <Creator>
             <CreatorImage>
               <img
-                src="src\assets\images\minion_artist.jpg"
+                src="src\assets\images\avatar-laura.png"
                 alt="Laura de Vega"
               />
             </CreatorImage>
@@ -58,7 +58,7 @@ const AboutUs = () => {
           <Creator>
             <CreatorImage>
               <img
-                src="src\assets\images\minion_artist.jpg"
+                src="src\assets\images\avatar-anca.png"
                 alt="Anca Bacria"
               />
             </CreatorImage>
@@ -70,7 +70,7 @@ const AboutUs = () => {
           <Creator>
             <CreatorImage>
               <img
-                src="src\assets\images\minion_artist.jpg"
+                src="src\assets\images\avatar-mariela.png"
                 alt="Mariela Adimari"
               />
             </CreatorImage>
@@ -82,7 +82,7 @@ const AboutUs = () => {
           <Creator>
             <CreatorImage>
               <img
-                src="src\assets\images\minion_artist.jpg"
+                src="src\assets\images\avatar-ana.png"
                 alt="Ana Maria Garcia"
               />
             </CreatorImage>
@@ -108,7 +108,7 @@ const PageContainer = styled.div`
   width: 100vw;
   min-height: 100vh;
   background: linear-gradient(to bottom, #ffdc59, #e2730c);
-  padding: 100px 20px;
+  padding: 150px 20px 100px;
 `;
 
 const Content = styled.div`
