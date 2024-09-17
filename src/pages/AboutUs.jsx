@@ -19,31 +19,31 @@ const AboutUs = () => {
           <Creators>
           <Creator>
             <CreatorImage>
-              <img src="../src/assets/2-minions.png" alt="Yeder Pimentel" />
+              <img src="public\assets\images\minion_artist.jpg" alt="Yeder Pimentel" />
             </CreatorImage>
             <CreatorName><span className="medium">YEDER</span> <span className="bold">PIMENTEL</span></CreatorName>
           </Creator>
           <Creator>
             <CreatorImage>
-              <img src="../src/assets/2-minions.png" alt="Laura de Vega" />
+              <img src="public\assets\images\minion_artist.jpg" alt="Laura de Vega" />
             </CreatorImage>
             <CreatorName><span className="medium">LAURA</span> <span className="bold">DE VEGA</span></CreatorName>
           </Creator>
           <Creator>
             <CreatorImage>
-              <img src="../src/assets/2-minions.png" alt="Anca Bacria" />
+              <img src="public\assets\images\minion_artist.jpg" alt="Anca Bacria" />
             </CreatorImage>
             <CreatorName><span className="medium">ANCA</span> <span className="bold">BACRIA</span></CreatorName>
           </Creator>
           <Creator>
             <CreatorImage>
-              <img src="../src/assets/2-minions.png" alt="Mariela Adimari" />
+              <img src="public\assets\images\minion_artist.jpg" alt="Mariela Adimari" />
             </CreatorImage>
             <CreatorName><span className="medium">MARIELA</span>  <span className="bold">ADIMARI</span></CreatorName>
           </Creator>
           <Creator>
             <CreatorImage>
-              <img src="../src/assets/2-minions.png" alt="Ana Maria Garcia" />
+              <img src="public\assets\images\minion_artist.jpg" alt="Ana Maria Garcia" />
             </CreatorImage>
             <CreatorName><span className="medium">ANA MARIA</span> <span className="bold">GARCIA</span></CreatorName>
           </Creator>

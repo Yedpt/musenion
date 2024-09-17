@@ -1,180 +1,205 @@
-import React, { useState } from 'react';
-import styled from 'styled-components';
-import { useForm } from "react-hook-form"
-import { postMemes } from '../../src/services/MinionServices'
+import React, { useState } from "react";
+import styled from "styled-components";
+import { postMemes, subirImagenCloudinary } from '../services/MinionServices'; // Importar ambos servicios
+
 
 const CreateMeme = () => {
+  const [title, setTitle] = useState("");
+  // const [imageUrl, setImageUrl] = useState("");
+  const [description, setDescription] = useState(''); // Nuevo estado para la descripción
+  const [imageFile, setImageFile] = useState(null);
+  const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState("");
 
-  const [previewUrl, setPreviewUrl] = useState('');
-  const [submitStatus, setSubmitStatus] = useState({ success: '', error: '' });
-
-  const { register, handleSubmit, formState: { errors }, reset } = useForm();
-
-  const onSubmit = async (data) => {
-    const formData = new FormData();
-    formData.append('image', data.image[0]);
-    formData.append('text', data.memeText);
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
     try {
-      const response = await postMemes();
+      // Subir la imagen a Cloudinary primero
+      const imageUrl = await subirImagenCloudinary(imageFile);
 
-      if (response.ok) {
-        setSubmitStatus({ success: 'Meme uploaded successfully!', error: '' });
-        reset();
-        setPreviewUrl('');
-      } else {
-        setSubmitStatus({ success: '', error: 'Failed to upload meme. Please try again.' });
-      }
-    } catch (error) {
-      setSubmitStatus({ success: '', error: 'An error occurred. Please try again.' });
+      // Preparar los datos del meme
+      const memeData = {
+        nombre: title,
+        descripcion: description, // Añadir la descripción
+        url: imageUrl,
+      };
+
+      // Enviar los datos del meme a la fake API
+      await postMemes(memeData);
+      
+      setSuccessMessage('¡Meme creado con éxito!');
+      setError(null);
+      setTitle('');
+      setDescription(''); // Limpiar la descripción
+      setImageFile(null); // Limpiar el archivo seleccionado
+    } catch (err) {
+      setError('Hubo un error al crear el meme.');
+      setSuccessMessage('');
     }
   };
-
-  const handleFileChange = (e) => {
-    const file = e.target.files[0];
-    if (file) {
-      setPreviewUrl(URL.createObjectURL(file));
-    }
-  };
-
 
   return (
     <Container>
-    <Header>
-    </Header>
-    <Title>SUBE TU MINION MEME</Title>
-    <UploadArea>
-      {/* <ImagePreview>
-        {previewUrl && <img src={previewUrl} alt="Preview" style={{maxWidth: '100%', maxHeight: '100%'}} />}
-      </ImagePreview> */}
-      <Form onSubmit={handleSubmit(onSubmit)}>
-        <Input 
-          type="file" 
-          accept="image/*"
-          {...register('image', { 
-            required: 'Please select an image',
-            validate: {
-              fileSize: (files) => files[0]?.size <= 500 * 1024 || 'Image size should be less than 500KB',
-            }
-          })}
-          onChange={handleFileChange}
+      <MemeLayout>
+       <ImageContainer>
+        <img src="/public/minion_artist.jpg" alt="Minion artist"/>
+        </ImageContainer>
+      <MemeContainer>
+        <TitleDiv>
+          <MemeTitle>
+            <span className="medium">¡SUBE TU</span>
+          </MemeTitle>
+          <MemeTitle>
+            <span className="bold">MINION MEME!</span>
+          </MemeTitle>
+        </TitleDiv>
+       
+        <MemeForm onSubmit={handleSubmit}>
+          <MemeLabel>Título del meme:</MemeLabel>
+          <MemeInput
+            type="text"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+          <MemeLabel>Descripción del meme:</MemeLabel>
+        <MemeInput
+          type="text" // Input para la descripción
+          value={description}
+          onChange={(e) => setDescription(e.target.value)} // Capturar el valor de la descripción
+          required
         />
-        {errors.image && <ErrorMessage>{errors.image.message}</ErrorMessage>}
-        
-        <p>CONDICIONES DE LA IMAGEN</p>
-        <p>La imagen debe estar en uno de los siguientes formatos: PNG, JPG o SVG.</p>
-        <p>El tamaño del archivo debe ser menor a 500 KB.</p>
-        
-        <Input 
-          type="text" 
-          placeholder="Detalle de tu meme"
-          {...register('memeText', { required: 'Please enter meme text' })}
+        <StyledParagraph>Subir imagen del meme:</StyledParagraph>
+        <MemeInput
+          type="file" // Cambia a file para subir imágenes
+          onChange={(e) => setImageFile(e.target.files[0])} // Almacena el archivo seleccionado
+          required
         />
-        {errors.memeText && <ErrorMessage>{errors.memeText.message}</ErrorMessage>}
-        
-        <Button type="submit">SUBIR</Button>
-        {submitStatus.error && <ErrorMessage>{submitStatus.error}</ErrorMessage>}
-        {submitStatus.success && <SuccessMessage>{submitStatus.success}</SuccessMessage>}
-      </Form>
-    </UploadArea>
-  </Container>
-  )
-}
+        <MemeButton type="submit">Crear Meme</MemeButton>
+      </MemeForm>
+
+      {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
+      {error && <ErrorMessage>{error}</ErrorMessage>}
+    </MemeContainer>
+    </MemeLayout>
+    </Container>
+  );
+};
+
+export default CreateMeme;
+
+// Estilos minionescos usando styled-components
 
 const Container = styled.div`
-  background-color: #ffd966;
-  padding: 20px;
+  background: linear-gradient(to bottom, #ffdc59, #e2730c);
   max-width: 100%;
-  background: linear-gradient(to bottom, #FFDC59, #E2730C);
-
-  @media (min-width: 768px) {
-    max-width: 800px;
-    margin: 0 auto;
-  }
+  min-height: 650px;
+  padding: 20px;
+  color: #0c2849;
 `;
 
-const Header = styled.header`
+
+const MemeLayout = styled.div`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-
-  @media (min-width: 768px) {
-    display: none;
-  }
-`;
-
-const Title = styled.h2`
-  color: #333;
-  font-size: 20px;
-
-  @media (min-width: 768px) {
-    font-size: 24px;
-  }
-`;
-
-const UploadArea = styled.div`
-  @media (min-width: 768px) {
-    display: flex;
-    gap: 20px;
-  }
-`;
-
-const ImagePreview = styled.div`
+  max-width: 1200px;
   width: 100%;
-  height: 200px;
-  background-color: #fff;
-  border: 2px dashed #ccc;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 20px;
+  background: rgba(250, 250, 250, 0.35);
+  border-radius: 8px;
+  overflow: hidden;
 
-  @media (min-width: 768px) {
-    width: 300px;
-    height: 300px;
-    margin-bottom: 0;
+  @media (max-width: 768px) {
+    flex-direction: column;
+    border-radius: 0;
   }
 `;
 
-const Form = styled.form`
+
+const ImageContainer = styled.div`
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #fff;
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+`;
+
+const MemeContainer = styled.div`
+  padding: 20px;
+  max-width: 650px;
+  margin: 0 auto;
+
+  @media (max-width: 768px) {
+    max-width: 400px;
+  
+
+  }
+`;
+const MemeTitle = styled.h2`
+  display: flex;
+  text-align: left;
+
+  .medium {
+    font-weight: 500;
+  }
+
+  .bold {
+    font-weight: 700;
+  }
+`;
+const TitleDiv = styled.div`
+  margin-bottom: 1.2rem;
+`;
+
+
+const MemeForm = styled.form`
   display: flex;
   flex-direction: column;
-  gap: 10px;
-
-  @media (min-width: 768px) {
-    flex: 1;
-  }
 `;
-
-const Input = styled.input`
-  width: 100%;
-  padding: 10px;
-  border-radius: 8px;
-`;
-
-const Button = styled.button`
-  background-color: #FFDA58;
-  color: white;
-  padding: 10px;
-  border: none;
-  cursor: pointer;
-  border-radius: 8px;
-
-  @media (min-width: 768px) {
-    background-color: #FFDA58;
-    align-self: flex-start;
-  }
-`;
-
-const ErrorMessage = styled.p`
+const StyledParagraph = styled.p`
   color: red;
+  margin-bottom: 1.2rem;
 `;
 
+const MemeLabel = styled.label`
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+`;
+const MemeInput = styled.input`
+  margin-bottom: 1.2rem;
+  padding: 10px;
+  border-radius: 8px;
+  border: 2px solid #0c2849;
+  font-size: 1rem;
+  &:focus {
+    outline: none;
+    border-color: #ffda58;
+  }
+`;
+const MemeButton = styled.button`
+  padding: 10px;
+  color: #0C2849;
+  background-color: #FFDA58;
+  border: 2px solid #0C2849;
+  border-radius: 8px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  &:hover {
+    background-color: #1565C0; / Cambia el color en hover */
+  }
+  `;
 const SuccessMessage = styled.p`
   color: green;
+  font-size: 1.1rem;
+  text-align: center;
 `;
-
-
-export default CreateMeme
-
+const ErrorMessage = styled.p`
+  color: red;
+  font-size: 1.1rem;
+  text-align: center;
+`;

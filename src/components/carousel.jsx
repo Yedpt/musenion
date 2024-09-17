@@ -1,153 +1,182 @@
-import React, { useEffect, useRef } from 'react';
-import { useNavigate } from 'react-router-dom';
-import styled, { keyframes, css } from 'styled-components';
-import MemeDetail from '../pages/MemeDetail';
+  import React, { useEffect, useRef, useState } from 'react';
+  import { useNavigate } from 'react-router-dom';
+  import styled from 'styled-components';
 
-const radius = 240;
-const imgWidth = 120;
-const imgHeight = 170;
+  const imgWidth = 150;  // Tamaño base
+  const imgHeight = 200; // Tamaño base
 
-const Carousel3D = ({ memes, autoRotate = true, rotateSpeed = -60 }) => {
-  const spinContainerRef = useRef(null); // Referencia al contenedor giratorio
-  const navigate = useNavigate(); // Hook para redirigir
+  const Carousel3D = ({ memes, autoRotate = true, rotateSpeed = -20 }) => {
+    const [radius, setRadius] = useState(240);
+    const [angle, setAngle] = useState(0);
+    const spinContainerRef = useRef(null);
+    const navigate = useNavigate();
 
-  useEffect(() => {
-    let animationFrameId;
+    // Cambiar el radio dinámico basado en el tamaño de la pantalla
+    useEffect(() => {
+      const updateRadius = () => {
+        const screenWidth = window.innerWidth;
+        if (screenWidth >= 1440) {
+          setRadius(500);
+        } else if (screenWidth >= 1024) {
+          setRadius(450);
+        } else if (screenWidth >= 768) {
+          setRadius(400);
+        } else {
+          setRadius(340);
+        }
+      };
 
-    const aEle = document.querySelectorAll('.carousel-item');
+      updateRadius();
+      window.addEventListener('resize', updateRadius);
 
-    const initCarousel = (delayTime) => {
-      aEle.forEach((ele, i) => {
-        ele.style.transform = `rotateY(${i * (360 / aEle.length)}deg) translateZ(${radius}px)`;
-        ele.style.transition = "transform 1s";
-        ele.style.transitionDelay = `${delayTime || (aEle.length - i) / 4}s`;
-      });
-    };
+      return () => {
+        window.removeEventListener('resize', updateRadius);
+      };
+    }, []);
 
-    // Lógica de animación continua
-    const animateCarousel = () => {
-      if (spinContainerRef.current && autoRotate) {
-        spinContainerRef.current.style.transform = `rotateY(${Date.now() / 100 % 360}deg)`; // Movimiento continuo
+    // Manejar la rotación automática del carrusel
+    useEffect(() => {
+      let animationFrameId;
+
+      const rotateCarousel = () => {
+        setAngle((prev) => (prev + rotateSpeed / 200) % 360);
+        animationFrameId = requestAnimationFrame(rotateCarousel);
+      };
+
+      if (autoRotate) {
+        rotateCarousel();
       }
-      animationFrameId = requestAnimationFrame(animateCarousel);
+
+      return () => {
+        cancelAnimationFrame(animationFrameId);
+      };
+    }, [autoRotate, rotateSpeed]);
+
+    const handleImageClick = (meme) => {
+      navigate(`/MemeDetail/${meme.id}`);
     };
 
-    initCarousel(100);
-    if (autoRotate) {
-      animateCarousel(); // Iniciar la animación
-    }
-
-    // Listener para redimensionar ventana y reiniciar carrusel
-    const handleResize = () => {
-      initCarousel(0); // Reiniciar cuando cambie el tamaño de la ventana
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    // Cleanup
-    return () => {
-      cancelAnimationFrame(animationFrameId); // Detener la animación
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [memes, autoRotate]);
-
-  const handleImageClick = (meme) => {
-    navigate(`/MemeDetail/${meme.id}`); // Navegar a la página de detalles del meme
+    return (
+      <Container>
+        <DragContainer>
+          <SpinContainer ref={spinContainerRef} style={{ transform: `rotateY(${angle}deg)` }}>
+            {memes.slice(0, 10).map((meme, index) => (
+              <ImageContainer key={index} $radius={radius} $index={index}>
+                <img
+                  src={meme.url}
+                  alt={meme.title}
+                  className="carousel-item"
+                  onClick={() => handleImageClick(meme)}
+                />
+              </ImageContainer>
+            ))}
+          </SpinContainer>
+          <Ground $radius={radius} />
+        </DragContainer>
+      </Container>
+    );
   };
 
-  return (
-    <DragContainer>
-      <SpinContainer ref={spinContainerRef} $rotateSpeed={rotateSpeed}>
-        {memes.slice(0, 10).map((meme, index) => ( // Solo 10 primeros memes
-          <img
-            key={index}
-            src={meme.url}
-            alt={meme.title}
-            className="carousel-item"
-            onClick={() => handleImageClick(meme)} // Redirigir al hacer click
-          />
-        ))}
-      </SpinContainer>
-      <Ground />
-    </DragContainer>
-  );
-};
+  export default Carousel3D;
 
-export default Carousel3D;
+  // Styled-components
 
-// Styled-components
-const DragContainer = styled.div`
-  position: relative;
-  display: flex;
-  margin: auto;
-  transform-style: preserve-3d;
-  perspective: 800px;
-`;
+  const Container = styled.div`
+    background-color: #121112;
+    height: 90vh; /* Ocupar toda la altura de la pantalla */
+    display: flex;
+    justify-content: center; /* Centra horizontalmente */
+    align-items: center; /* Centra verticalmente */
+  `;
 
-const SpinContainer = styled.div`
-  position: relative;
-  display: flex;
-  margin: auto;
-  transform-style: preserve-3d;
-  width: ${imgWidth}px;
-  height: ${imgHeight}px;
+  const DragContainer = styled.div`
+    position: relative;
+    display: flex;
+    justify-content: center; /* Centrar horizontalmente */
+    align-items: center; /* Centrar verticalmente */
+    transform-style: preserve-3d;
+    perspective: 1000px;
 
-  /* Media queries para pantallas más grandes */
-  @media (min-width: 768px) { /* Tablet */
-    width: ${imgWidth * 2}px;
-    height: ${imgHeight * 2}px;
-  }
-
-  @media (min-width: 1024px) { /* Desktop */
-    width: ${imgWidth * 2}px;
-    height: ${imgHeight * 2}px;
-  }
-
-  img {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    box-shadow: 0 0 5px #fff;
-    transition: transform 0.5s, box-shadow 0.5s;
-
-    &:hover {
-      transform: scale(1.2); // Agrandar al pasar el ratón
-      box-shadow: 0 0 10px #fffd;
-      cursor: pointer;
+    @media (min-width: 1024px) {
+      perspective: 1200px;
     }
-  }
 
-  /* Animación continua usando spin o spinRever */
-  ${({ $rotateSpeed }) => $rotateSpeed && css`
-    animation: ${$rotateSpeed > 0 ? spin : spinRevert} ${Math.abs($rotateSpeed)}s infinite linear;
-  `}
-`;
+    @media (min-width: 1440px) {
+      perspective: 1800px;
+    }
+  `;
 
-const Ground = styled.div`
-  width: ${radius * 2}px;
-  height: ${radius * 2}px;
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translate(-50%, -50%) rotateX(90deg);
-  background: radial-gradient(circle, #9993, transparent);
-`;
+  const SpinContainer = styled.div`
+    position: relative;
+    display: flex;
+    justify-content: center; /* Centra horizontalmente las imágenes en el carrusel */
+    align-items: center; /* Centra verticalmente las imágenes en el carrusel */
+    transform-style: preserve-3d;
+    width: ${imgWidth}px;
+    height: ${imgHeight}px;
 
-// Animaciones
-const spin = keyframes`
-  from {
-    transform: rotateY(0deg);
-  }
-  to {
-    transform: rotateY(360deg);
-  }
-`;
+    @media (min-width: 768px) {
+      width: ${imgWidth * 1.3}px;  // Aumentar tamaño de imagen en tablet
+      height: ${imgHeight * 1.3}px;
+    }
 
-const spinRevert = keyframes`
-  from {
-    transform: rotateY(360deg);
-  }
-  to {
-    transform: rotateY(0deg);
-  }
-`;
+    @media (min-width: 1024px) {
+      width: ${imgWidth * 1.6}px;  // Aumentar tamaño de imagen en desktop
+      height: ${imgHeight * 1.6}px;
+    }
+  `;
+
+  // Componente de la imagen con reflejo y media queries para cambiar tamaño
+  const ImageContainer = styled.div`
+    position: absolute;
+    transform: rotateY(${({ $index }) => $index * (360 / 10)}deg) translateZ(${({ $radius }) => $radius}px);
+    
+    img {
+      position: relative;
+      width: ${imgWidth}px;  // Ancho fijo de la imagen
+      height: ${imgHeight}px; // Alto fijo de la imagen
+      box-shadow: 0 0 5px #fff;
+      transition: transform 0.5s, box-shadow 0.5s;
+
+      &:hover {
+        transform: scale(1.2);
+        box-shadow: 0 0 10px #fffd;
+        cursor: pointer;
+      }
+
+      &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 100%; /* Posiciona debajo de la imagen */
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0.3), transparent);
+        transform: scaleY(-1); /* Refleja verticalmente */
+        opacity: 0.4; /* Ajusta la transparencia del reflejo */
+      }
+
+      /* Media query para tablet */
+      @media (min-width: 768px) {
+        width: ${imgWidth * 1.3}px;  // Aumentar 30% en tablets
+        height: ${imgHeight * 1.3}px;
+      }
+
+      /* Media query para desktop */
+      @media (min-width: 1024px) {
+        width: ${imgWidth * 1.6}px;  // Aumentar 60% en desktops
+        height: ${imgHeight * 1.6}px;
+      }
+    }
+  `;
+
+  const Ground = styled.div`
+    width: ${({ $radius }) => $radius * 2}px;
+    height: ${({ $radius }) => $radius * 2}px;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotateX(90deg);
+    background: radial-gradient(circle, #9993, transparent);
+  `;
