@@ -107,7 +107,7 @@ function Contact() {
         <SubmitButton type="submit">Enviar</SubmitButton>
         </TermsAndSubmit>
           <ImageContainer>
-            <EmailImage src="../../public/assets/images/logo-correo-desktop.png"/>
+            <EmailImage src="src\assets\images\logo-correo-desktop.png"/>
           </ImageContainer>
         </FormContainer> 
         {showModal && (
