@@ -45,33 +45,30 @@ const FormPutMeme = () => {
 
   return (
     <Page>
-      <section>
-
-      </section>
       <h2>Editar Meme</h2>
       {/* Mostrar la imagen del meme antes que el formulario */}
       {meme && <img src={meme.url} alt={meme.title} style={{ width: '300px', height: 'auto' }} />}
       {meme && (
-        <form onSubmit={handleSubmit(onSubmit)}>
+        <FormContainer onSubmit={handleSubmit(onSubmit)}>
           <div>
-            <label>Título:</label>
-            <input
+            <Label>Título:</Label>
+            <Input
               type="text"
               {...register('title', { required: 'El título es obligatorio' })}
             />
             {errors.title && <p>{errors.title.message}</p>}
           </div>
           <div>
-            <label>Descripción:</label>
-            <input
+            <Label>Descripción:</Label>
+            <Input
               type="text"
               {...register('description', { required: 'La descripción es obligatoria' })}
             />
             {errors.description && <p>{errors.description.message}</p>}
           </div>
           <div>
-            <label>URL de la Imagen:</label>
-            <input
+            <Label>URL de la Imagen:</Label>
+            <Input
               type="text"
               {...register('url', {
                 required: 'La URL es obligatoria',
@@ -85,7 +82,7 @@ const FormPutMeme = () => {
           </div>
           <button type="submit">Guardar Cambios</button>
           <button type="button" onClick={() => reset(meme)}>Cancelar</button> {/* Resetear el formulario */}
-        </form>
+        </FormContainer>
       )}
     </Page>
   );
@@ -93,16 +90,48 @@ const FormPutMeme = () => {
 
 const Page = styled.div`
   display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      width: 100%;
+  flex-direction: column;
+  align-items: center;
+  max-width: 90%;
+  margin-left: 5%;
+  margin-bottom: 40px;
+  margin-top: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff6e;
 `;
 
+const FormContainer = styled.form`
+display: flex;
+flex-direction: column;
+max-width: 80%;
+max-height: 90%;
+padding: 20px;
+margin-bottom: 40px;
+margin-top: 30px;
+border-radius: 10px;
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+background-color: #ffffff6e;
+`
+const Label = styled.label`
+font-weight: bold;
+color: black;
+font-size: 15px;
+`
+const Input = styled.input`
+  display: flex;
+  margin-bottom: 12px;
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  color: gray;
 
-
-
-
+  &:focus {
+    border-color: yellow;
+    outline: none;
+  }
+`
 
 
 
