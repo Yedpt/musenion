@@ -97,7 +97,6 @@ const Page = styled.div`
       justify-content: center;
       align-items: center;
       width: 100%;
-      background: linear-gradient(to bottom, #FFDC59, #E2730C);
 `;
 
 

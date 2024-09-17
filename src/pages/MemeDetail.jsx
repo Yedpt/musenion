@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { getMemeById, deleteMemes, getMemes } from '../services/MinionServices';
 import styled from 'styled-components';
@@ -116,46 +116,54 @@ const FrameContainer = styled.div`
   justify-content: center;
   align-items: center;
   position: relative;
-  padding: 10%;
+  
   background-image: url('/assets/images/marco_aislado.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
-  width: 80%; /*Ajusta según sea necesario*/
-  max-width: 400px;  /*Ajusta según sea necesario */
+  padding: 15%;
+  width: 80%;
+  max-width: 300px;  /* Ajustado para no hacerse muy pequeño */
   min-width: 300px;  /* Evitar que el marco se haga demasiado pequeño */
   height: fit-content;
   margin-top: 30px;
   aspect-ratio: 1 / 1;
 
-  @media (min-width: 960px) {
-    width: 60%;
-    max-width: 400px;
-    min-width: 450px;
+  @media (min-width: 700px) {
+    width: 50%; /* Reducir el ancho */
+    max-width: 250px; /* Reducir el tamaño máximo */
+    min-width: 250px; /* Mantén un tamaño mínimo */
+    padding: 5%;
   }
   `;
 
-  const ImageMeme = styled.img`
-    max-width: 100%;
-    max-height: 100%;
-    border-radius: 8px; 
-    object-fit: contain;
+const ImageMeme = styled.img`
+  width: 100%;
+  height: auto;
+  object-fit: contain; /*Ajusta la imagen dentro del marco sin perder su proporción*/
+  border-radius: 8px;
+  padding: 1px;
 `;
 
 const CardMeme = styled.div`
-  background: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 15px;
   padding: 0;
   border-color: black;
+  border: black;
 `;
 
 const TitleMeme = styled.h2`
   font-size: 32px;
-  color: black;
+  color: #0C2849;
 `;
 
 const Description = styled.p`
   font-size: 13px;
-  color: black;
+  color: #0C2849;
 `;
 
 const ErrorMessage = styled.p`

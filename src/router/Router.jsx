@@ -8,6 +8,11 @@ import AboutUs from "../pages/AboutUs.jsx";
 import EditMeme from "../pages/EditMeme.jsx";
 import MemeDetail from "../pages/MemeDetail.jsx";
 import FormPutMeme from "../pages/FormPutMeme.jsx"; // Importa el componente para el formulario
+import Footer from "../components/Footer.jsx";
+import Navbar from "../components/Navbar.jsx";
+
+
+
 
 export const router = createBrowserRouter([{
     
@@ -43,12 +48,17 @@ export const router = createBrowserRouter([{
         element: <AboutUs/>
     },
     {
-        path: "/meme/:id", // Ruta para ver los detalles del meme
-        element: <MemeDetail />,
+        path:'/edit/:id', // Ruta para editar el meme
+        element: <FormPutMeme/>
+
+    },
+
+    {path:'nav',
+        element: <Navbar/>
     },
     {
-        path:'/edit/:id', // Ruta para editar el meme
-        element: <FormPutMeme/>, //la página de edición
+        path:'footer',
+        element: <Footer/>
     },
 ]
 
