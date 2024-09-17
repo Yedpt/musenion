@@ -47,7 +47,7 @@ const FormPutMeme = () => {
     <Page>
       <TextH2>Editar Meme</TextH2>
       {/* Mostrar la imagen del meme antes que el formulario */}
-      {meme && <Image src={meme.url} alt={meme.title} style={{ width: '75%', height: 'auto' }} />}
+      {meme && <Image src={meme.url} alt={meme.title}/>}
       {meme && (
         <FormContainer onSubmit={handleSubmit(onSubmit)}>
           <div>
@@ -98,7 +98,14 @@ const TextH2 = styled.h2`
 const Image = styled.img`
  border-radius: 8px;
  width: 80%;
+ height: auto;
+
+ @media (min-width: 960px){
+  width: 10%;
+  height: 80vh;
+ }
 `
+
 
 const Page = styled.div`
   display: flex;
@@ -111,6 +118,17 @@ const Page = styled.div`
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-color: #ffffff6e;
+
+  @media (min-width: 960px){
+      display: flex;  
+      flex-direction: row;
+/*       justify-content: center; */
+      margin-top: 30px;
+      margin-bottom: 30px;
+      height: 100vh;
+    }
+
+
 `;
 
 const FormContainer = styled.form`
