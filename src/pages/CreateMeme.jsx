@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 
-
 // Función para hacer el POST
 const postMemes = async (data) => {
   try {
-    const response = await axios.post("http://localhost:3000/musenion", data); ç
+    const response = await axios.post("http://localhost:3000/musenion", data);
+    ç;
     return response.data;
   } catch (error) {
     console.error("Error al postear el meme:", error);
@@ -17,13 +17,11 @@ const postMemes = async (data) => {
 // Estilos minionescos usando styled-components
 
 const Container = styled.div`
-  background: linear-gradient(to bottom, #ffdc59, #e2730c);
   max-width: 100%;
   min-height: 650px;
-  padding: 20px;
+  padding: 100px 20px;
   color: #0c2849;
 `;
-
 
 const MemeLayout = styled.div`
   display: flex;
@@ -32,6 +30,7 @@ const MemeLayout = styled.div`
   background: rgba(250, 250, 250, 0.35);
   border-radius: 8px;
   overflow: hidden;
+  margin: 0 auto;
 
   @media (max-width: 768px) {
     flex-direction: column;
@@ -54,14 +53,14 @@ const ImageContainer = styled.div`
 `;
 
 const MemeContainer = styled.div`
+  flex: 1;
   padding: 20px;
   max-width: 650px;
+  max-width: 100%;
   margin: 0 auto;
 
   @media (max-width: 768px) {
     max-width: 400px;
-  
-
   }
 `;
 const MemeTitle = styled.h2`
@@ -79,7 +78,6 @@ const MemeTitle = styled.h2`
 const TitleDiv = styled.div`
   margin-bottom: 1.2rem;
 `;
-
 
 const MemeForm = styled.form`
   display: flex;
@@ -127,6 +125,7 @@ const ErrorMessage = styled.p`
   font-size: 1.1rem;
   text-align: center;
 `;
+
 const CreateMeme = () => {
   const [title, setTitle] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -156,42 +155,45 @@ const CreateMeme = () => {
   return (
     <Container>
       <MemeLayout>
-       <ImageContainer>
-        <img src="/public/assets/images/minion_artist.jpg" alt="Minion artist"/>
+        <ImageContainer>
+          <img
+            src="/public/assets/images/minion_artist.jpg"
+            alt="Minion artist"
+          />
         </ImageContainer>
-      <MemeContainer>
-        <TitleDiv>
-          <MemeTitle>
-            <span className="medium">¡SUBE TU</span>
-          </MemeTitle>
-          <MemeTitle>
-            <span className="bold">MINION MEME!</span>
-          </MemeTitle>
-        </TitleDiv>
-       
-        <MemeForm onSubmit={handleSubmit}>
-          <MemeLabel>Título del meme:</MemeLabel>
-          <MemeInput
-            type="text"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-          <MemeLabel>URL de la imagen:</MemeLabel>
-          <MemeInput
-            type="text"
-            value={imageUrl}
-            onChange={(e) => setImageUrl(e.target.value)}
-            required
-          />
+        <MemeContainer>
+          <TitleDiv>
+            <MemeTitle>
+              <span className="medium">¡SUBE TU</span>
+            </MemeTitle>
+            <MemeTitle>
+              <span className="bold">MINION MEME!</span>
+            </MemeTitle>
+          </TitleDiv>
 
-          <StyledParagraph>La imagen debe ser cuadrada.</StyledParagraph>
-          <MemeButton type="submit">Crear Meme</MemeButton>
-        </MemeForm>
+          <MemeForm onSubmit={handleSubmit}>
+            <MemeLabel>Título del meme:</MemeLabel>
+            <MemeInput
+              type="text"
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              required
+            />
+            <MemeLabel>URL de la imagen:</MemeLabel>
+            <MemeInput
+              type="text"
+              value={imageUrl}
+              onChange={(e) => setImageUrl(e.target.value)}
+              required
+            />
 
-        {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
-        {error && <ErrorMessage>{error}</ErrorMessage>}
-      </MemeContainer>
+            <StyledParagraph>La imagen debe ser cuadrada.</StyledParagraph>
+            <MemeButton type="submit">Crear Meme</MemeButton>
+          </MemeForm>
+
+          {successMessage && <SuccessMessage>{successMessage}</SuccessMessage>}
+          {error && <ErrorMessage>{error}</ErrorMessage>}
+        </MemeContainer>
       </MemeLayout>
     </Container>
   );
