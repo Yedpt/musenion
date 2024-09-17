@@ -102,11 +102,11 @@ const WallFrame = styled.div`
   align-items: center;
   width: 100vw;
   min-height: 680px;
-  background-image: url('../../public/assets/images/fondo-mobile.png');
+  background-image: url('../src/assets/images/fondo-mobile.png');
   background-repeat: no-repeat;
 
   @media (min-width: 500px) {
-    background-image: url('../../public/assets/images/fondo-desktop.png');
+    background-image: url('../src/assets/images/fondo-desktop.png');
     width: 100vw;
     min-height: 700px;
   }
@@ -118,22 +118,22 @@ const FrameContainer = styled.div`
   align-items: center;
   position: relative;
   
-  background-image: url('/assets/images/marco_aislado.png');
+  background-image: url('../src/assets/images/marco_aislado.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
   padding: 15%;
   width: 80%;
-  max-width: 300px;  /* Ajustado para no hacerse muy pequeño */
-  min-width: 300px;  /* Evitar que el marco se haga demasiado pequeño */
+  max-width: 300px; 
+  min-width: 300px;
   height: fit-content;
   margin-top: 30px;
   aspect-ratio: 1 / 1;
 
   @media (min-width: 700px) {
-    width: 50%; /* Reducir el ancho */
-    max-width: 250px; /* Reducir el tamaño máximo */
-    min-width: 250px; /* Mantén un tamaño mínimo */
+    width: 50%; 
+    max-width: 250px; 
+    min-width: 250px;
     padding: 5%;
   }
   `;
@@ -141,7 +141,7 @@ const FrameContainer = styled.div`
 const ImageMeme = styled.img`
   width: 100%;
   height: auto;
-  object-fit: contain; /*Ajusta la imagen dentro del marco sin perder su proporción*/
+  object-fit: contain;
   border-radius: 8px;
   padding: 1px;
 `;
