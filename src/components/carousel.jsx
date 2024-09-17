@@ -2,7 +2,7 @@
   import { useNavigate } from 'react-router-dom';
   import styled from 'styled-components';
 
-  const imgWidth = 150;  // Tamaño base
+  const imgWidth = 170;  // Tamaño base
   const imgHeight = 200; // Tamaño base
 
   const Carousel3D = ({ memes, autoRotate = true, rotateSpeed = -20 }) => {
@@ -121,8 +121,8 @@
     }
 
     @media (min-width: 1024px) {
-      width: ${imgWidth * 1.6}px;  // Aumentar tamaño de imagen en desktop
-      height: ${imgHeight * 1.6}px;
+      width: ${imgWidth * 2}px;  // Aumentar tamaño de imagen en desktop
+      height: ${imgHeight * 2}px;
     }
   `;
 

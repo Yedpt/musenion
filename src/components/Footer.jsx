@@ -59,7 +59,7 @@ const FooterImages = styled.div`
   bottom: 0;
 
   img {
-    height: 50px;
+    height: 100px;
     width: auto;
     position: relative;
     top: -40px;

@@ -1,113 +1,151 @@
 {
   "musenion": [
     {
+      "id": "1",
+      "nombre": "minion1",
+      "descripcion": "primer meme ",
+      "url": "https://res.cloudinary.com/yederpt/image/upload/v1726572765/iuw8vneliblqgv9t2vuc.svg"
+    },
+    {
+      "id": "2",
+      "nombre": "memeDos",
+      "descripcion": "segundo meme",
+      "url": "https://res.cloudinary.com/yederpt/image/upload/v1726572797/qgi1gyrqy5zemdq9ip2i.svg"
+    },
+    {
+      "id": "3",
+      "nombre": "memeTres",
+      "descripcion": "Tercer meme",
+      "url": "https://res.cloudinary.com/yederpt/image/upload/v1726572812/rrkkdhoodhp9qedh8e3v.svg"
+    },
+    {
+      "id": "4",
+      "nombre": "memeCuatro",
+      "descripcion": "Cuarto meme",
+      "url": "https://res.cloudinary.com/yederpt/image/upload/v1726572832/k99kqveyzykgbgfhgqig.svg"
+    },
+    {
+      "id": "5",
+      "nombre": "memeCinco",
+      "descripcion": "Quinto meme",
+      "url": "https://res.cloudinary.com/yederpt/image/upload/v1726572845/wul12ycaox6qdzcmwx4t.svg"
+    },
+    {
+      "id": "6",
+      "nombre": "memeSeis",
+      "descripcion": "Sexto meme",
+      "url": "https://res.cloudinary.com/yederpt/image/upload/v1726572861/bhca509unsx9qfg8hggx.svg"
+    },
+    {
+      "id": "7",
+      "nombre": "memeSiete",
+      "descripcion": "septimo meme",
+      "url": "https://res.cloudinary.com/yederpt/image/upload/v1726572876/lgl8brruyecka2vacqza.svg"
+    },
+    {
+      "id": "8",
+      "nombre": "MemeOcho",
+      "descripcion": "Octavo meme",
+      "url": "https://res.cloudinary.com/yederpt/image/upload/v1726572892/utl5divsaawon8fn153o.svg"
+    },
+    {
+      "id": "9",
+      "nombre": "memeNueve",
+      "descripcion": "Noveno meme ",
+      "url": "https://res.cloudinary.com/yederpt/image/upload/v1726572934/cvtemkrezv8fdxznihbk.svg"
+    },
+    {
+      "id": "10",
+      "nombre": "memeDiez",
+      "descripcion": "Decimo Meme",
+      "url": "https://res.cloudinary.com/yederpt/image/upload/v1726572955/uaserydqiivunopprdvk.svg"
+    },
+    {
       "title": "banana",
       "url": "https://www.vectorkhazana.com/assets/images/products/Despicable_Me_Minions-_3.jpg",
-      "id": "1",
+      "id": "11",
       "descripcion": "este meme fue realizado y bañado en oro jejejosjsadojsa"
     },
     {
       "title": "banana",
       "url": "https://i.etsystatic.com/7869055/r/il/41c88e/2388697490/il_fullxfull.2388697490_1xah.jpg",
-      "id": "2"
+      "id": "12"
     },
     {
       "title": "banana",
       "url": "https://www.universalpictures.es/tl_files/content/movies/minions2/minions2_header-mobile.jpg",
-      "id": "3",
+      "id": "13",
       "description": "ajdvvvvvvvb"
     },
     {
       "title": "editado tarde",
       "url": "https://w7.pngwing.com/pngs/157/176/png-transparent-iphone-4s-iphone-5s-iphone-6-plus-iphone-5c-minion-cartoon-minion-stuart-cartoons-material-film.png",
-      "id": "4",
+      "id": "14",
       "description": "meme tarde"
     },
     {
       "title": "editado",
       "url": "https://w7.pngwing.com/pngs/157/176/png-transparent-iphone-4s-iphone-5s-iphone-6-plus-iphone-5c-minion-cartoon-minion-stuart-cartoons-material-film.png",
-      "id": "4"
+      "id": "15"
     },
     {
-<<<<<<< HEAD
-      "id": "9146",
-=======
-      "id": "5",
+      "id": "16",
       "nombre": "minions",
       "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb9IkZTIl9xhXzhYCn9nmC6sgADxZXmqc8qw&s",
       "title": "meme nuevo",
       "description": "prueba"
     },
     {
-      "id": "6",
-<<<<<<< HEAD
-=======
->>>>>>> 10bd5a040b64b386ce84f284cbc268f326e9490c
->>>>>>> feature-nav
+      "id": "17",
       "title": "minion",
       "url": "https://ih1.redbubble.net/image.5180322596.1776/flat,750x,075,f-pad,750x1000,f8f8f8.jpg"
     },
     {
-      "id": "7",
+      "id": "18",
       "title": "otro hola caracola",
       "url": "https://i.ebayimg.com/00/s/MTUwMFgxMDcx/z/~CsAAOSwjk9ZUjwX/$_57.JPG?set_id=8800005007",
       "description": "udfh"
     },
     {
-<<<<<<< HEAD
-      "id": "8",
-=======
-<<<<<<< HEAD
-      "id": "5",
-=======
-      "id": "8",
->>>>>>> 10bd5a040b64b386ce84f284cbc268f326e9490c
->>>>>>> feature-nav
+      "id": "19",
       "nombre": "minions",
       "url": "https://e7.pngegg.com/pngimages/329/770/png-clipart-minions-minions.png"
     },
     {
-      "id": "9",
+      "id": "20",
       "nombre": "minions",
       "url": "https://i.etsystatic.com/26158159/r/il/28354b/3425127382/il_570xN.3425127382_bbpp.jpg"
     },
     {
-      "id": "10",
+      "id": "21",
       "nombre": "minions",
       "url": "https://ih1.redbubble.net/image.5410466344.6139/bg,f8f8f8-flat,750x,075,f-pad,750x1000,f8f8f8.jpg"
     },
     {
-      "id": "11",
+      "id": "22",
       "nombre": "minions",
       "url": "https://images.squarespace-cdn.com/content/v1/6123a4a8f8760f03abcc48df/1692105216813-71KENAVGDLQVSJIDX7IN/bob_minion.jpg?format=1000w"
     },
     {
-      "id": "12",
+      "id": "23",
       "nombre": "minions",
       "url": "https://www.rockandpop.cl/wp-content/uploads/2019/05/Minions.jpg"
     },
     {
-      "id": "13",
+      "id": "24",
       "nombre": "minions",
       "url": "https://www.cadena3.com/admin/playerswf/fotos/ARCHI_936536.jpg"
     },
     {
-      "id": "14",
+      "id": "25",
       "nombre": "minions",
       "url": "https://t2.uc.ltmcdn.com/es/posts/5/6/3/stuart_40365_4_600.jpg"
     },
     {
-      "id": "15",
+      "id": "26",
       "nombre": "minions",
       "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_jfcULETGzxmnJs-omlOEgNgHXcZhtJ_JiKt317AuS1bva8b8iFkaHeUCuasZI3ALOdQ&usqp=CAU"
-<<<<<<< HEAD
-=======
-    },
-    {
-      "id": "7625",
-      "title": "sdadsadsa",
-      "imageUrl": "https://lh6.googleusercontent.com/proxy/IdXBE5HeNZMs3jXaTAubiNQps8G1lStSlN30GNdaxyY8kBv7aMtESeCP-qCsbVrJX-He9_a_AObGN0tPcfeLACYFUkm5qZaphmFrZ4d69n3w66Ew-q85"
->>>>>>> feature-nav
     }
+  
   ]
 }
