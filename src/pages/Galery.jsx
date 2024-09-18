@@ -52,7 +52,7 @@ const Gallery = () => {
 
       {/* Listar las demás imágenes debajo del carrusel */}
       <div style={{ marginTop: '50px', textAlign: 'center' }}>
-        <Heading3>Más memes</Heading3>
+        <Heading3>Colección temporal</Heading3>
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
           {memes.slice(10).map((meme) => (
             <img
@@ -90,11 +90,11 @@ const TituloA = styled.h2`
   font-weight: 400;
 
   @media (min-width: 768px) {
-    font-size: 2.4rem;
+    font-size: 1.8rem;
   }
 
   @media (min-width: 1024px) {
-    font-size: 3rem;
+    font-size: 2.2rem;
   }
 `;
 
@@ -105,11 +105,11 @@ const TituloB = styled.h2`
 
 
     @media (min-width: 768px) {
-    font-size: 2.4rem;
+    font-size: 2.0rem;
   }
 
   @media (min-width: 1024px) {
-    font-size: 3rem;
+    font-size: 2.4rem;
   }
 `
 

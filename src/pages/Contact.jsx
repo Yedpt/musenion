@@ -135,6 +135,7 @@ const PageContainer = styled.div`
       align-items: center;
       width: 100vw;
       margin: 0;
+      margin-top: 30px;
       // background: linear-gradient(to bottom, #FFDC59, #E2730C);
   `;
 
