@@ -55,7 +55,6 @@ const FooterImages = styled.div`
   display: flex;
   gap: 10px;
   position: absolute;
-  left: 0;
   right: 30px;
   bottom: 0;
 
