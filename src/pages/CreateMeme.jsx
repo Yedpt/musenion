@@ -128,13 +128,10 @@ const ImageContainer = styled.div`
 `;
 
 const MemeContainer = styled.div`
+ flex: 1; /* This ensures equal width */
   padding: 20px;
-  max-width: 100%;
+  max-width: 100%; /* Make sure the form takes full width */
   margin: 0 auto;
-
-  @media (min-width: 768px) {
-    max-width: 650px; /* Cambios para tablet */
-  }
 `;
 
 const MemeTitle = styled.h2`
