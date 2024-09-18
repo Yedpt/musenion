@@ -138,9 +138,6 @@ const MemeContainer = styled.div`
   max-width: 100%;
   margin: 0 auto;
 
-  @media (max-width: 768px) {
-    max-width: 400px;
-  }
 `;
 const MemeTitle = styled.h2`
   display: flex;
