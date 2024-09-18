@@ -70,8 +70,8 @@ const MemeDetail = () => {
           </FrameContainer>
         {meme ? (
         <CardMeme>
-          <TitleMeme>{meme.title}</TitleMeme>
-          <Description>{meme.description}</Description>
+          <TitleMeme>{meme.nombre}</TitleMeme>
+          <Description>{meme.descripcion}</Description>
         </CardMeme>
       ) : (
         <ErrorMessage>Meme no encontrado.</ErrorMessage>
