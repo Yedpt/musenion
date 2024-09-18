@@ -6,7 +6,7 @@ import Footer from '../components/Footer';
 const Layout = () => {
   return (
     <>
-      <Navbar /> {/* Agregar Navbar */}
+      <Navbar /> 
       <main>
         <Outlet />
       </main>
