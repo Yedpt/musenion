@@ -38,10 +38,10 @@ function Navbar() {
     <NavContainer isHome={isHome}>
       <Nav>
         {/* Burger Button para versión móvil */}
-        <BurgerButton handleClick={handleClick} clicked={clicked} />
+        <BurgerButton handleClick={handleClick} clicked={clicked.toString()} />
 
         {/* Menu (pantallas mayores a 960px) */}
-        <Menu className={clicked ? "active" : ""}>
+        <Menu clicked={clicked} isHome={isHome}>
           <li className={location.pathname === "/" ? "selected" : ""}>
             <Link to="/" onClick={closeMenu}>Home</Link>
           </li>
@@ -82,6 +82,7 @@ function Navbar() {
 
 export default Navbar;
 
+// Estilos
 const NavContainer = styled.div`
   width: 100%;
   position: fixed;
@@ -145,7 +146,7 @@ const Menu = styled.ul`
   @media (max-width: 960px) {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: ${(props) => (props.clicked ? "0" : "-100%")};
     height: 100vh;
     width: 100%;
     display: flex;
@@ -155,10 +156,6 @@ const Menu = styled.ul`
     background: linear-gradient(to bottom, #ffdb59, #e2730c);
     gap: 2rem;
     transition: all 0.3s ease;
-
-    &.active {
-      right: 0;
-    }
 
     li a {
       font-size: 1.5rem;
@@ -170,15 +167,11 @@ const BgDiv = styled.div`
   position: absolute;
   background: rgba(0, 0, 0, 0.5);
   top: 0;
-  right: -100%;
+  right: ${(props) => (props.clicked ? "0" : "-100%")};
   width: 100%;
   height: 100vh;
   transition: all 0.6s ease;
   z-index: -1;
-
-  &.active {
-    right: 0;
-  }
 `;
 
 const TextContainer = styled.div`

@@ -28,7 +28,9 @@ const Gallery = () => {
 
   return (
     <div>
-      <Heading2>Galería de Memes</Heading2>
+      <TituloA>Minion</TituloA>
+      <TituloB>Gallery</TituloB>
+    
 
       {/* Carrusel 3D que mostrará los primeros 10 memes */}
       {memes.length > 0 ? (
@@ -50,7 +52,7 @@ const Gallery = () => {
 
       {/* Listar las demás imágenes debajo del carrusel */}
       <div style={{ marginTop: '50px', textAlign: 'center' }}>
-        <Heading3>Más memes</Heading3>
+        <Heading3>Colección temporal</Heading3>
         <div style={{ display: 'flex', flexWrap: 'wrap', justifyContent: 'center' }}>
           {memes.slice(10).map((meme) => (
             <img
@@ -77,21 +79,39 @@ const Gallery = () => {
 export default Gallery;
 
 // Styled-components para el h2 y h3
-const Heading2 = styled.h2`
+const TituloA = styled.h2`
   color: #0C2849; /* Color minioneszco */
-  text-align: center;
+  text-align: left;
   font-size: 1.8rem;
-  margin-top: 20px;
-  margin-bottom: 50px;
+  margin-top: 100px;
+  margin-bottom: -10px;
+  margin-left: 100px;
+  text-transform: uppercase;
+  font-weight: 400;
 
   @media (min-width: 768px) {
-    font-size: 2.4rem;
+    font-size: 1.8rem;
   }
 
   @media (min-width: 1024px) {
-    font-size: 3rem;
+    font-size: 2.2rem;
   }
 `;
+
+const TituloB = styled.h2`
+  color: #0C2849; /* Color minioneszco */ 
+  text-transform: uppercase;
+  margin-left: 100px;
+
+
+    @media (min-width: 768px) {
+    font-size: 2.0rem;
+  }
+
+  @media (min-width: 1024px) {
+    font-size: 2.4rem;
+  }
+`
 
 const Heading3 = styled.h3`
   color: #0C2849; /* Color minioneszco */
