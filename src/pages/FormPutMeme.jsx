@@ -83,7 +83,7 @@ const FormPutMeme = () => {
             {errors.url && <p>{errors.url.message}</p>}
           </div>
           <SaveButton type="submit">Guardar Cambios</SaveButton>
-          <CancelButton type="button" onClick={() => reset(meme)}>Cancelar</CancelButton> {/* Resetear el formulario */}
+          <CancelButton type="button" onClick={() => navigate('/gallery')}>Cancelar</CancelButton> {/* Resetear el formulario */}
         </FormContainer>
        )}
       </ImageAndForm>
@@ -91,7 +91,6 @@ const FormPutMeme = () => {
     </Page>
   );
 };
-
 
 const TextH2 = styled.h2`
   text-transform: uppercase;
@@ -145,7 +144,6 @@ justify-content: center;
 @media (min-width: 960px){
   height:100%;
   width:auto;
-
 }
 `
 
@@ -154,11 +152,12 @@ const Image = styled.img`
  width: 75%;
  height: auto;
  margin-top: 5vh;
+ margin-top: 5vh;
  
 
  @media (min-width: 960px){
   width: auto;
-  height: 50%;
+  height: 100%;
   margin-top:0;
  }
 `
