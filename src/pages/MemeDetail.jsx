@@ -26,7 +26,6 @@ const WallFrame = styled.div`
     background-image: url("../src/assets/images/fondo-desktop.png");
     width: 100vw;
     min-height: 500px;
-    /* align-items: flex-start; */
   }
 `;
 
@@ -43,12 +42,10 @@ const FrameContainer = styled.div`
   width: 68%;
   max-width: 450px;
   height: fit-content;
-  /* margin-top: 30px; */
   aspect-ratio: 1 / 1;
-  margin-top: 100px;
+  margin-top: 80px;
 
   @media (min-width: 700px) {
-    /* max-width: 500px;  */
     padding: 8%;
     margin-left: 100px;
     box-sizing: content-box;
@@ -86,8 +83,9 @@ const CardMeme = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 1px;
+  margin-top: 35px;
   padding: 0;
+  text-align: center;
 
   @media (min-width: 960px) {
     width: 80%;
@@ -99,11 +97,21 @@ const CardMeme = styled.div`
 const TitleMeme = styled.h2`
   font-size: 32px;
   color: #0c2849;
+
+   @media (min-width: 960px) {
+   text-align: left;
+  }
 `;
 
 const Description = styled.p`
   font-size: 13px;
   color: #0c2849;
+  text-align: center;
+
+  @media (min-width: 960px) {
+   text-align: left;
+  }
+  
 `;
 
 const ErrorMessage = styled.p`
@@ -117,19 +125,20 @@ const Buttons = styled.div`
   align-items: center;
   width: 100vw;
   height: 20%;
+  margin-top: 100px;
 
   @media (min-width: 960px) {
     flex-direction: row;
     padding: 10px;
+    margin-top: 40px;
   }
 `;
 
 const ButtonUpdate = styled.button`
-  padding: 5px;
+  padding: 7px;
   width: 30%;
   background-color: #ffda58;
-  margin-top: 5px;
-  margin-bottom: 10px;
+  margin-bottom: 5px;
   border-radius: 5px;
 
   @media (min-width: 960px) {
@@ -139,7 +148,7 @@ const ButtonUpdate = styled.button`
 `;
 
 const ButtonDelete = styled.button`
-  padding: 5px;
+  padding: 7px;
   width: 30%;
   background-color: #ffda58;
   margin-top: 5px;
