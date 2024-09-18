@@ -6,9 +6,9 @@ import BurgerButton from "./BurgerButton";
 function Navbar() {
   const [clicked, setClicked] = useState(false);
   const [activeLetter, setActiveLetter] = useState(null);
-  const location = useLocation(); // Para detectar la ruta actual
+  const location = useLocation();
 
-  // Maneja el estado de si la ruta es Home para cambiar estilos
+  // Maneja si la ruta es Home o no
   const [isHome, setIsHome] = useState(location.pathname === "/");
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function Navbar() {
     setClicked(false);
   };
 
-  // Anima letras de manera aleatoria cada 5 segundos
+  // Animar letras de manera aleatoria cada 5 segundos
   useEffect(() => {
     const spans = document.querySelectorAll(".word span");
     const animateRandomly = () => {
@@ -37,11 +37,13 @@ function Navbar() {
   return (
     <NavContainer isHome={isHome}>
       <Nav>
-        {/* Burger Button para versión móvil */}
-        <BurgerButton handleClick={handleClick} clicked={clicked.toString()} />
+        {/* Burger Button para versión móvil (solo <960px) */}
+        <BurgerButtonContainer>
+          <BurgerButton handleClick={handleClick} clicked={clicked} />
+        </BurgerButtonContainer>
 
-        {/* Menu (pantallas mayores a 960px) */}
-        <Menu clicked={clicked} isHome={isHome}>
+        {/* Menu en pantallas mayores a 960px */}
+        <Menu className={clicked ? "active" : ""}>
           <li className={location.pathname === "/" ? "selected" : ""}>
             <Link to="/" onClick={closeMenu}>Home</Link>
           </li>
@@ -59,9 +61,9 @@ function Navbar() {
           </li>
         </Menu>
 
-        {/* Logo MUSENION */}
-        <Logo href="#home">
-          <TextContainer>
+        {/* Logo MUSENION siempre visible */}
+        <Logo>
+          <TextContainer className="word">
             <span className={activeLetter === 0 ? "active" : ""}>M</span>
             <span className={activeLetter === 1 ? "active" : ""}>U</span>
             <span className={activeLetter === 2 ? "active" : ""}>S</span>
@@ -73,7 +75,6 @@ function Navbar() {
           </TextContainer>
         </Logo>
 
-        {/* Fondo para cerrar el menú al hacer clic fuera */}
         <BgDiv className={`initial ${clicked ? "active" : ""}`} onClick={closeMenu} />
       </Nav>
     </NavContainer>
@@ -82,7 +83,6 @@ function Navbar() {
 
 export default Navbar;
 
-// Estilos
 const NavContainer = styled.div`
   width: 100%;
   position: fixed;
@@ -97,10 +97,11 @@ const NavContainer = styled.div`
 `;
 
 const Nav = styled.nav`
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem;
+  padding: 1.5rem; /* Cambiaremos esto para pantallas grandes */
   background: transparent;
   transition: all 0.3s ease;
 
@@ -108,15 +109,36 @@ const Nav = styled.nav`
     padding: 1.2rem 1rem;
     background: transparent;
   }
+
+  @media (min-width: 960px) {
+    padding: 1rem 1.5rem; /* Reducimos el padding (20% menos) */
+  }
 `;
 
-const Logo = styled.a`
+/* Burger button solo visible en pantallas pequeñas (<960px) */
+const BurgerButtonContainer = styled.div`
+  display: none;
+  
+  @media (max-width: 960px) {
+    display: block;
+  }
+`;
+
+/* Logo MUSENION, siempre a la derecha */
+const Logo = styled.div`
   font-size: 1.5rem;
   color: white;
   font-weight: bold;
   text-decoration: none;
+  position: absolute;
+  right: 20px;
+
+  @media (min-width: 960px) {
+    right: 30px;
+  }
 `;
 
+/* Menu, escondido en móviles y alineado a la izquierda en pantallas grandes */
 const Menu = styled.ul`
   list-style: none;
   display: flex;
@@ -130,7 +152,6 @@ const Menu = styled.ul`
     transition: 0.3s;
   }
 
-  /* Sección seleccionada */
   li.selected a {
     color: #33517d;
     background-color: white;
@@ -142,11 +163,10 @@ const Menu = styled.ul`
     color: #f4da4b;
   }
 
-  /* Versión móvil */
   @media (max-width: 960px) {
     position: fixed;
     top: 0;
-    right: ${(props) => (props.clicked ? "0" : "-100%")};
+    left: -100%;
     height: 100vh;
     width: 100%;
     display: flex;
@@ -157,9 +177,22 @@ const Menu = styled.ul`
     gap: 2rem;
     transition: all 0.3s ease;
 
+    &.active {
+      left: 0;
+    }
+
     li a {
       font-size: 1.5rem;
     }
+  }
+
+  @media (min-width: 960px) {
+    position: relative;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Alinear a la izquierda */
+    gap: 2rem; /* Secciones alineadas a la izquierda */
   }
 `;
 
@@ -167,11 +200,15 @@ const BgDiv = styled.div`
   position: absolute;
   background: rgba(0, 0, 0, 0.5);
   top: 0;
-  right: ${(props) => (props.clicked ? "0" : "-100%")};
+  right: -100%;
   width: 100%;
   height: 100vh;
   transition: all 0.6s ease;
   z-index: -1;
+
+  &.active {
+    right: 0;
+  }
 `;
 
 const TextContainer = styled.div`
@@ -203,7 +240,7 @@ const TextContainer = styled.div`
     }
   }
 
-  @media (min-width: 960px) {
-    display: none;
+  @media (max-width: 960px) {
+    font-size: 30px;
   }
 `;
