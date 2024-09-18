@@ -5,7 +5,7 @@ import CreateMeme from "../pages/CreateMeme.jsx";
 import Galery from "../pages/Galery.jsx";
 import Contact from "../pages/Contact.jsx"
 import AboutUs from "../pages/AboutUs.jsx";
-import EditMeme from "../pages/EditMeme.jsx";
+// import EditMeme from "../pages/EditMeme.jsx";
 import MemeDetail from "../pages/MemeDetail.jsx";
 import FormPutMeme from "../pages/FormPutMeme.jsx"; // Importa el componente para el formulario
 import Footer from "../components/Footer.jsx";
@@ -30,10 +30,6 @@ export const router = createBrowserRouter([{
     {
         path:'creatememe',
         element: <CreateMeme/>
-    },
-    {
-        path:'edit',
-        element: <EditMeme/>
     },
     {
         path:'contactus',

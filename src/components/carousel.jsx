@@ -2,8 +2,8 @@
   import { useNavigate } from 'react-router-dom';
   import styled from 'styled-components';
 
-  const imgWidth = 170;  // Tamaño base
-  const imgHeight = 200; // Tamaño base
+  const imgWidth = 120;  // Tamaño base
+  const imgHeight = 170; // Tamaño base
 
   const Carousel3D = ({ memes, autoRotate = true, rotateSpeed = -20 }) => {
     const [radius, setRadius] = useState(240);
@@ -18,11 +18,11 @@
         if (screenWidth >= 1440) {
           setRadius(500);
         } else if (screenWidth >= 1024) {
-          setRadius(450);
-        } else if (screenWidth >= 768) {
           setRadius(400);
+        } else if (screenWidth >= 768) {
+          setRadius(350);
         } else {
-          setRadius(340);
+          setRadius(180);
         }
       };
 
@@ -83,7 +83,7 @@
 
   const Container = styled.div`
     background-color: #121112;
-    height: 90vh; /* Ocupar toda la altura de la pantalla */
+    height: 80vh;  /* Ocupar toda la altura de la pantalla */
     display: flex;
     justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */
@@ -165,8 +165,8 @@
 
       /* Media query para desktop */
       @media (min-width: 1024px) {
-        width: ${imgWidth * 1.6}px;  // Aumentar 60% en desktops
-        height: ${imgHeight * 1.6}px;
+        width: ${imgWidth * 2}px;  // Aumentar 60% en desktops
+        height: ${imgHeight * 1.8}px;
       }
     }
   `;
