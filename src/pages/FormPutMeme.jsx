@@ -47,7 +47,9 @@ const FormPutMeme = () => {
     <Page>
       <TextH2>Editar Meme</TextH2>
       <ImageAndForm>
-      {meme && <Image src={meme.url} alt={meme.title}/>}
+      <Imagen>
+        {meme && <Image src={meme.url} alt={meme.title}/>}
+      </Imagen>
       {meme && (
         <FormContainer onSubmit={handleSubmit(onSubmit)}>
           <div>
@@ -103,6 +105,7 @@ const TextH2 = styled.h2`
   }
 `
 
+
 const Page = styled.div`
   display: flex;
   flex-direction: column;
@@ -121,6 +124,7 @@ const ImageAndForm = styled.section`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width:95%;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   background-color: #ffffff6e;
@@ -134,15 +138,27 @@ const ImageAndForm = styled.section`
   height: 100vh;
 }
 `
+const Imagen = styled.figure`
+display: flex;
+justify-content: center;
+
+@media (min-width: 960px){
+  height:100%;
+  width:auto;
+
+}
+`
+
 const Image = styled.img`
  border-radius: 8px;
- width: 80%;
+ width: 75%;
  height: auto;
  margin-top: 5vh;
+ 
 
  @media (min-width: 960px){
   width: auto;
-  height: 100%;
+  height: 50%;
   margin-top:0;
  }
 `
@@ -162,7 +178,8 @@ background-color: #ffffff6e;
 border-radius: 0;
 box-shadow: none;
 background-color: transparent;
-width:28%;
+width:100%;
+justify-content:flex-start;
 }
 `
 const Label = styled.label`
@@ -185,7 +202,7 @@ const Input = styled.input`
   }
 
   @media (min-width: 960px){
-    width:230%;
+    width:100%;
   }
 `
 const SaveButton = styled.button`
