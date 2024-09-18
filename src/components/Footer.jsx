@@ -76,46 +76,11 @@ const runAndJumpAnimation = keyframes`
 const FooterImages = styled.div`
   display: flex;
   position: absolute;
-<<<<<<< HEAD
-=======
   left: 0;
->>>>>>> 61a9c0a68d6c13f8ec638409b6de80260a56f454
   bottom: 0;
   margin-left: 50px;
 
   img {
-<<<<<<< HEAD
-    position: relative;
-  }
-
-  .image1 {
-    height: 100px;
-    width: auto;
-    margin-right: 5px;
-    top: -10px;
-    
-    @media (max-width: 960px) {
-      height: 80px;
-      top: -15px;
-    }
-  }
-
-  .image2 {
-    height: 80px;
-    width: auto;
-    margin-right: 25px;
-    top: 10px;
-    
-    /* @media (max-width: 960px) {
-      height: 50px;
-      top: -10px;
-      margin-right: 200px;
-    } */
-  }
-  
-  /* @media (max-width: 960px) {
-    bottom: 0; */
-=======
     height: 100px;
     width: auto;
     position: relative;
@@ -128,6 +93,5 @@ const FooterImages = styled.div`
       height: 50px;
       top: -30px;
     }
->>>>>>> 61a9c0a68d6c13f8ec638409b6de80260a56f454
   }
 `;
