@@ -6,12 +6,10 @@ import Footer from '../components/Footer';
 const Layout = () => {
   return (
     <>
-      <Navbar /> 
-      <main>
+      <Navbar /> {/* Agregar Navbar */}
         <Outlet />
-      </main>
       <Footer /> {/* Agregar Footer */}
-    </>
+      </>
   );
 };
 
