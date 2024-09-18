@@ -2,62 +2,62 @@
   "musenion": [
     {
       "id": "1",
-      "nombre": "minion1",
-      "descripcion": "primer meme ",
+      "nombre": "EL FUTURO DEL PAÍS",
+      "descripcion": "Autor: Paco Benítez ",
       "url": "https://res.cloudinary.com/yederpt/image/upload/v1726572765/iuw8vneliblqgv9t2vuc.svg"
     },
     {
       "id": "2",
-      "nombre": "memeDos",
-      "descripcion": "segundo meme",
+      "nombre": "ALMA CARITATIVA",
+      "descripcion": "Autor: Beatriz García",
       "url": "https://res.cloudinary.com/yederpt/image/upload/v1726572797/qgi1gyrqy5zemdq9ip2i.svg"
     },
     {
       "id": "3",
-      "nombre": "memeTres",
-      "descripcion": "Tercer meme",
+      "nombre": "EL EXISTENCIALISTA",
+      "descripcion": "Autor: Alexis Sabater",
       "url": "https://res.cloudinary.com/yederpt/image/upload/v1726572812/rrkkdhoodhp9qedh8e3v.svg"
     },
     {
       "id": "4",
-      "nombre": "memeCuatro",
-      "descripcion": "Cuarto meme",
+      "nombre": "¡QUÉ ALEGRÍA VOLVER A VERTE!",
+      "descripcion": "Autor: María Fernández",
       "url": "https://res.cloudinary.com/yederpt/image/upload/v1726572832/k99kqveyzykgbgfhgqig.svg"
     },
     {
       "id": "5",
-      "nombre": "memeCinco",
-      "descripcion": "Quinto meme",
+      "nombre": "HULK",
+      "descripcion": "Autor: Carlos Teruel",
       "url": "https://res.cloudinary.com/yederpt/image/upload/v1726572845/wul12ycaox6qdzcmwx4t.svg"
     },
     {
       "id": "6",
-      "nombre": "memeSeis",
-      "descripcion": "Sexto meme",
+      "nombre": "EL ALMA DE LA FIESTA",
+      "descripcion": "Autor: Isabel Benítez",
       "url": "https://res.cloudinary.com/yederpt/image/upload/v1726572861/bhca509unsx9qfg8hggx.svg"
     },
     {
       "id": "7",
-      "nombre": "memeSiete",
-      "descripcion": "septimo meme",
+      "nombre": "EUFORIA",
+      "descripcion": "Autor: Anabelén Malonda",
       "url": "https://res.cloudinary.com/yederpt/image/upload/v1726572876/lgl8brruyecka2vacqza.svg"
     },
     {
       "id": "8",
-      "nombre": "MemeOcho",
-      "descripcion": "Octavo meme",
+      "nombre": "EL EXISTENCIALISTA",
+      "descripcion": "Autor: Armando Casas",
       "url": "https://res.cloudinary.com/yederpt/image/upload/v1726572892/utl5divsaawon8fn153o.svg"
     },
     {
       "id": "9",
-      "nombre": "memeNueve",
-      "descripcion": "Noveno meme ",
+      "nombre": "LA MUERTE",
+      "descripcion": "Autor: Rosa García",
       "url": "https://res.cloudinary.com/yederpt/image/upload/v1726572934/cvtemkrezv8fdxznihbk.svg"
     },
     {
       "id": "10",
-      "nombre": "memeDiez",
-      "descripcion": "Decimo Meme",
+      "nombre": "DAME PACIENCIA SEÑOR",
+      "descripcion": "Autor: César Arcia",
       "url": "https://res.cloudinary.com/yederpt/image/upload/v1726572955/uaserydqiivunopprdvk.svg"
     },
     {

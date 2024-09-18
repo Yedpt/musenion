@@ -89,7 +89,7 @@ const CardMeme = styled.div`
 
   @media (min-width: 960px) {
     width: 80%;
-    padding: 50px;
+    padding-left: 50px;
     margin-top: 90px;
   }
 `;
