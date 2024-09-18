@@ -132,10 +132,6 @@ const MemeContainer = styled.div`
   padding: 20px;
   max-width: 100%; /* Make sure the form takes full width */
   margin: 0 auto;
-
-  @media (max-width: 768px) {
-    max-width: 400px;
-  }
 `;
 
 const MemeTitle = styled.h2`
