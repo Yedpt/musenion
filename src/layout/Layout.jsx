@@ -9,7 +9,7 @@ const Layout = () => {
       <Navbar /> {/* Agregar Navbar */}
         <Outlet />
       <Footer /> {/* Agregar Footer */}
-    </>
+      </>
   );
 };
 
