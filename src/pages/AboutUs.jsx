@@ -15,10 +15,15 @@ const AboutUs = () => {
             </Title>
           </TitleSection>
           <Paragraph>
-            Hay muchas variaciones de los pasajes de Lorem Ipsum disponibles,
-            pero la mayoría han sufrido alteraciones en alguna manera, ya sea
-            porque se le agregó humor, o palabras aleatorias que no parecen ni
-            un poco creíbles.
+            "¡Bello! Me Minions. Nosotro estaa pequee amarilla pepinos, con
+            overol y gafas. ¡BEE DO BEE DO! Nosotro trabajaa mucho para boss
+            grande, ¡grande villano! Nos gusta jugaa, baila, canta, y amaaa...
+            ¡BANANA! 🍌 Nosotro viaja mooondo entero, buscaa malvado boss paaa
+            servir. Keeekaa, fafa, na-na puy! Ukelele party, banana split,
+            gelato! Pero, oopsie, nosotro siempre hace locura y problema. Mee
+            cooopa! Haha! Nos ama amigooo y baila la "baa-naa-naa", siempre
+            feliz, siempre juntos. ¡Tulaliloo ti amo! 💛 Baaa-naa-naa for life!
+            Wuk wuk!"
           </Paragraph>
           <TitleSection>
             <Title>
@@ -57,10 +62,7 @@ const AboutUs = () => {
           </Creator>
           <Creator>
             <CreatorImage>
-              <img
-                src="src\assets\images\avatar-anca.png"
-                alt="Anca Bacria"
-              />
+              <img src="src\assets\images\avatar-anca.png" alt="Anca Bacria" />
             </CreatorImage>
             <CreatorName>
               <span className="medium">ANCA</span>{" "}
