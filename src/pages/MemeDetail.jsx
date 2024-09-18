@@ -26,7 +26,6 @@ const WallFrame = styled.div`
     background-image: url("../src/assets/images/fondo-desktop.png");
     width: 100vw;
     min-height: 500px;
-    /* align-items: flex-start; */
   }
 `;
 
@@ -43,12 +42,10 @@ const FrameContainer = styled.div`
   width: 68%;
   max-width: 450px;
   height: fit-content;
-  /* margin-top: 30px; */
   aspect-ratio: 1 / 1;
   margin-top: 100px;
 
   @media (min-width: 700px) {
-    /* max-width: 500px;  */
     padding: 8%;
     margin-left: 100px;
     box-sizing: content-box;
