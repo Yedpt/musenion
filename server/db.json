@@ -39,7 +39,7 @@
     {
       "id": "7",
       "nombre": "memeSiete",
-      "descripcion": "septimo meme",
+      "descripcion": "septimo meme hola caracola",
       "url": "https://res.cloudinary.com/yederpt/image/upload/v1726572876/lgl8brruyecka2vacqza.svg"
     },
     {
@@ -146,6 +146,5 @@
       "nombre": "minions",
       "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_jfcULETGzxmnJs-omlOEgNgHXcZhtJ_JiKt317AuS1bva8b8iFkaHeUCuasZI3ALOdQ&usqp=CAU"
     }
-  
   ]
 }

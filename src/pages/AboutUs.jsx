@@ -1,51 +1,95 @@
-import React from 'react';
-import styled from 'styled-components';
+import React from "react";
+import styled from "styled-components";
 
 const AboutUs = () => {
   return (
     <PageContainer>
       <Content>
         <Section>
-          <Title><span className="medium">SOBRE</span> <span className="bold">NOSOTROS</span></Title>
+          <TitleSection>
+            <Title>
+              <span className="medium">SOBRE</span>
+            </Title>{" "}
+            <Title>
+              <span className="bold">NOSOTROS</span>
+            </Title>
+          </TitleSection>
           <Paragraph>
             Hay muchas variaciones de los pasajes de Lorem Ipsum disponibles,
             pero la mayoría han sufrido alteraciones en alguna manera, ya sea
             porque se le agregó humor, o palabras aleatorias que no parecen ni
             un poco creíbles.
           </Paragraph>
-          <Title><span className="medium">LOS</span> <span className="bold">CREADORES</span></Title>
+          <TitleSection>
+            <Title>
+              <span className="medium">LOS</span>
+            </Title>{" "}
+            <Title>
+              <span className="bold">CREADORES</span>
+            </Title>
+          </TitleSection>
         </Section>
-          
-          <Creators>
+
+        <Creators>
           <Creator>
             <CreatorImage>
-              <img src="src\assets\images\minion_artist.jpg" alt="Yeder Pimentel" />
+              <img
+                src="src\assets\images\avatar-yeder.png"
+                alt="Yeder Pimentel"
+              />
             </CreatorImage>
-            <CreatorName><span className="medium">YEDER</span> <span className="bold">PIMENTEL</span></CreatorName>
+            <CreatorName>
+              <span className="medium">YEDER</span>{" "}
+              <span className="bold">PIMENTEL</span>
+            </CreatorName>
           </Creator>
           <Creator>
             <CreatorImage>
-              <img src="src\assets\images\minion_artist.jpg" alt="Laura de Vega" />
+              <img
+                src="src\assets\images\avatar-laura.png"
+                alt="Laura de Vega"
+              />
             </CreatorImage>
-            <CreatorName><span className="medium">LAURA</span> <span className="bold">DE VEGA</span></CreatorName>
+            <CreatorName>
+              <span className="medium">LAURA</span>{" "}
+              <span className="bold">DE VEGA</span>
+            </CreatorName>
           </Creator>
           <Creator>
             <CreatorImage>
-              <img src="src\assets\images\minion_artist.jpg" alt="Anca Bacria" />
+              <img
+                src="src\assets\images\avatar-anca.png"
+                alt="Anca Bacria"
+              />
             </CreatorImage>
-            <CreatorName><span className="medium">ANCA</span> <span className="bold">BACRIA</span></CreatorName>
+            <CreatorName>
+              <span className="medium">ANCA</span>{" "}
+              <span className="bold">BACRIA</span>
+            </CreatorName>
           </Creator>
           <Creator>
             <CreatorImage>
-              <img src="src\assets\images\minion_artist.jpg" alt="Mariela Adimari" />
+              <img
+                src="src\assets\images\avatar-mariela.png"
+                alt="Mariela Adimari"
+              />
             </CreatorImage>
-            <CreatorName><span className="medium">MARIELA</span>  <span className="bold">ADIMARI</span></CreatorName>
+            <CreatorName>
+              <span className="medium">MARIELA</span>{" "}
+              <span className="bold">ADIMARI</span>
+            </CreatorName>
           </Creator>
           <Creator>
             <CreatorImage>
-              <img src="src\assets\images\minion_artist.jpg" alt="Ana Maria Garcia" />
+              <img
+                src="src\assets\images\avatar-ana.png"
+                alt="Ana Maria Garcia"
+              />
             </CreatorImage>
-            <CreatorName><span className="medium">ANA MARIA</span> <span className="bold">GARCIA</span></CreatorName>
+            <CreatorName>
+              <span className="medium">ANA MARIA</span>{" "}
+              <span className="bold">GARCIA</span>
+            </CreatorName>
           </Creator>
         </Creators>
       </Content>
@@ -56,15 +100,15 @@ const AboutUs = () => {
 // Styled Components
 const PageContainer = styled.div`
   font-family: "Montserrat", sans-serif;
-  color: #0C2849;
+  color: #0c2849;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
   width: 100vw;
   min-height: 100vh;
-  background: linear-gradient(to bottom, #FFDC59, #E2730C);
-  padding: 20px 10px;
+  background: linear-gradient(to bottom, #ffdc59, #e2730c);
+  padding: 150px 20px 100px;
 `;
 
 const Content = styled.div`
@@ -79,12 +123,16 @@ const Section = styled.div`
   margin-bottom: 10px;
 `;
 
+const TitleSection = styled.div`
+  padding-bottom: 20px;
+`;
+
 const Title = styled.h2`
-  color: #0C2849;
+  color: #0c2849;
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 0px;
-  padding: 20px 20px;
+  padding-left: 20px;
 
   .medium {
     font-weight: 500; /* Montserrat Medium */
@@ -102,14 +150,21 @@ const Paragraph = styled.p`
   padding: 0 20px;
   max-width: 800px;
   text-align: left;
+  margin-bottom: 20px;
 `;
 
 const Creators = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 50px;
+  justify-items: center;
 
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px;
+  }
 `;
 
 const Creator = styled.div`
@@ -125,7 +180,7 @@ const CreatorImage = styled.div`
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
-    background-color: #ccc;  /* Placeholder background color */
+    background-color: #ccc; /* Placeholder background color */
   }
 `;
 
@@ -133,9 +188,9 @@ const CreatorName = styled.div`
   margin-top: 10px;
   font-size: 16px;
   font-weight: bold;
-  color: #0C2849;
+  color: #0c2849;
 
-   .medium {
+  .medium {
     font-weight: 500; /* Montserrat Medium */
   }
 
@@ -145,4 +200,3 @@ const CreatorName = styled.div`
 `;
 
 export default AboutUs;
-
