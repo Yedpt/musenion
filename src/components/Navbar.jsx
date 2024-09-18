@@ -16,11 +16,11 @@ function Navbar() {
   }, [location]);
 
   const handleClick = () => {
-    setClicked(!clicked);
+    setClicked(!clicked); // Cambia el estado de `clicked` al hacer clic
   };
 
   const closeMenu = () => {
-    setClicked(false);
+    setClicked(false); // Cierra el menú al hacer clic en la "X"
   };
 
   // Animar letras de manera aleatoria cada 5 segundos
@@ -42,8 +42,10 @@ function Navbar() {
           <BurgerButton handleClick={handleClick} clicked={clicked} />
         </BurgerButtonContainer>
 
-        {/* Menu en pantallas mayores a 960px */}
+        {/* Mostrar X cuando el menú está desplegado */}
         <Menu className={clicked ? "active" : ""}>
+          {/* Botón de cierre "X" visible solo cuando el menú está desplegado */}
+          {clicked && <CloseButton onClick={closeMenu}>✖</CloseButton>}
           <li className={location.pathname === "/" ? "selected" : ""}>
             <Link to="/" onClick={closeMenu}>Home</Link>
           </li>
@@ -115,6 +117,21 @@ const Nav = styled.nav`
   }
 `;
 
+/* Botón de cierre (X) visible solo en móviles */
+const CloseButton = styled.div`
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 2.5rem;
+  color: white;
+  cursor: pointer;
+  z-index: 101; /* Aseguramos que esté por encima del menú */
+
+  @media (min-width: 960px) {
+    display: none; /* Escondemos el botón en pantallas grandes */
+  }
+`;
+
 /* Burger button solo visible en pantallas pequeñas (<960px) */
 const BurgerButtonContainer = styled.div`
   display: none;
@@ -176,6 +193,7 @@ const Menu = styled.ul`
     background: linear-gradient(to bottom, #ffdb59, #e2730c);
     gap: 2rem;
     transition: all 0.3s ease;
+    z-index: 100; /* Colocar el menú por encima del fondo */
 
     &.active {
       left: 0;
@@ -204,7 +222,7 @@ const BgDiv = styled.div`
   width: 100%;
   height: 100vh;
   transition: all 0.6s ease;
-  z-index: -1;
+  z-index: 99; /* Ajustamos el fondo debajo de los elementos del menú */
 
   &.active {
     right: 0;
@@ -240,7 +258,7 @@ const TextContainer = styled.div`
     }
   }
 
-  @media (max-width: 960px) {
-    font-size: 30px;
+  @media (min-width: 960px) {
+    font-size: 50px;
   }
 `;
