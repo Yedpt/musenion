@@ -145,6 +145,12 @@
       "id": "26",
       "nombre": "minions",
       "url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR_jfcULETGzxmnJs-omlOEgNgHXcZhtJ_JiKt317AuS1bva8b8iFkaHeUCuasZI3ALOdQ&usqp=CAU"
+    },
+    {
+      "id": "408d",
+      "nombre": "Hurray Minion",
+      "descripcion": "Hurray minion",
+      "url": "https://res.cloudinary.com/yederpt/image/upload/v1726580951/ooi9dxki07qpkhsp93ft.jpg"
     }
   ]
 }
