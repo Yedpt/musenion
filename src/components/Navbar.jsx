@@ -133,9 +133,9 @@ const Logo = styled.div`
   position: absolute;
   right: 20px;
 
-  @media (min-width: 960px) {
+  /* @media (min-width: 960px) {
     right: 30px;
-  }
+  } */
 `;
 
 /* Menu, escondido en móviles y alineado a la izquierda en pantallas grandes */
@@ -191,8 +191,8 @@ const Menu = styled.ul`
     left: 0;
     display: flex;
     align-items: center;
-    justify-content: flex-start; /* Alinear a la izquierda */
-    gap: 2rem; /* Secciones alineadas a la izquierda */
+    justify-content: flex-start;
+    gap: 2rem; 
   }
 `;
 
