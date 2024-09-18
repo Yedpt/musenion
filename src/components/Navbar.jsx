@@ -34,6 +34,24 @@ function Navbar() {
     return () => clearInterval(intervalId);
   }, []);
 
+  useEffect(() => {
+    const spans = document.querySelectorAll('.word span');
+
+    spans.forEach((span, idx) => {
+      span.addEventListener('click', (e) => {
+        e.target.classList.add('active');
+      });
+      span.addEventListener('animationend', (e) => {
+        e.target.classList.remove('active');
+      });
+
+      // Initial animation
+      setTimeout(() => {
+        span.classList.add('active');
+      }, 750 * (idx + 1));
+    });
+  }, []);
+
   return (
     <NavContainer isHome={isHome}>
       <Nav>
@@ -245,20 +263,109 @@ const TextContainer = styled.div`
     line-height: 0.8;
   }
 
-  span.active {
-    animation: rotate 1.5s ease-out;
+  /* Efectos de animación para cada letra */
+  span:nth-child(1).active {
+    animation: balance 1.5s ease-out;
+    transform-origin: bottom left;
   }
 
-  @keyframes rotate {
+  span:nth-child(2).active {
+    animation: shrinkjump 1s ease-in-out;
+    transform-origin: bottom center;
+  }
+
+  span:nth-child(3).active {
+    animation: falling 2s ease-out;
+    transform-origin: bottom center;
+  }
+
+  span:nth-child(4).active {
+    animation: rotate 1s ease-out;
+  }
+
+  span:nth-child(5).active {
+    animation: toplong 1.5s linear;
+  }
+
+  span:nth-child(6).active {
+    animation: shrinkjump 1s ease-in-out;
+    transform-origin: bottom center;
+  }
+
+  span:nth-child(7).active {
+    animation: falling 2s ease-out;
+    transform-origin: bottom center;
+  }
+
+  span:nth-child(8).active {
+    animation: toplong 1.5s linear;
+  }
+
+  @keyframes balance {
     0%, 100% {
       transform: rotate(0deg);
     }
-    50% {
-      transform: rotate(360deg);
+    30%, 60% {
+      transform: rotate(-45deg);
+    }
+  }
+
+  @keyframes shrinkjump {
+    10%, 35% {
+      transform: scale(2, 0.2) translate(0, 0);
+    }
+    45%, 50% {
+      transform: scale(1) translate(0, -150px);
+    }
+    80% {
+      transform: scale(1) translate(0, 0);
+    }
+  }
+
+  @keyframes falling {
+    12% {
+      transform: rotateX(240deg);
+    }
+    24% {
+      transform: rotateX(150deg);
+    }
+    36% {
+      transform: rotateX(200deg);
+    }
+    48% {
+      transform: rotateX(175deg);
+    }
+    60%, 85% {
+      transform: rotateX(180deg);
+    }
+    100% {
+      transform: rotateX(0deg);
+    }
+  }
+
+  @keyframes rotate {
+    20%, 80% {
+      transform: rotateY(180deg);
+    }
+    100% {
+      transform: rotateY(360deg);
+    }
+  }
+
+  @keyframes toplong {
+    10%, 40% {
+      transform: translateY(-48vh) scaleY(1);
+    }
+    90% {
+      transform: translateY(-48vh) scaleY(4);
     }
   }
 
   @media (min-width: 960px) {
-    font-size: 50px;
+    display: flex; /* Mostrar en pantallas grandes */
+  }
+
+  @media (max-width: 960px) {
+    display: none; /* Ocultar en pantallas pequeñas */
   }
 `;
