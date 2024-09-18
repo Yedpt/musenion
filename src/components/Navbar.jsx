@@ -16,11 +16,11 @@ function Navbar() {
   }, [location]);
 
   const handleClick = () => {
-    setClicked(!clicked);
+    setClicked(!clicked); // Cambia el estado de `clicked` al hacer clic
   };
 
   const closeMenu = () => {
-    setClicked(false);
+    setClicked(false); // Cierra el menú al hacer clic en la "X"
   };
 
   // Animar letras de manera aleatoria cada 5 segundos
@@ -34,6 +34,24 @@ function Navbar() {
     return () => clearInterval(intervalId);
   }, []);
 
+  useEffect(() => {
+    const spans = document.querySelectorAll('.word span');
+
+    spans.forEach((span, idx) => {
+      span.addEventListener('click', (e) => {
+        e.target.classList.add('active');
+      });
+      span.addEventListener('animationend', (e) => {
+        e.target.classList.remove('active');
+      });
+
+      // Initial animation
+      setTimeout(() => {
+        span.classList.add('active');
+      }, 750 * (idx + 1));
+    });
+  }, []);
+
   return (
     <NavContainer isHome={isHome}>
       <Nav>
@@ -42,8 +60,10 @@ function Navbar() {
           <BurgerButton handleClick={handleClick} clicked={clicked} />
         </BurgerButtonContainer>
 
-        {/* Menu en pantallas mayores a 960px */}
+        {/* Mostrar X cuando el menú está desplegado */}
         <Menu className={clicked ? "active" : ""}>
+          {/* Botón de cierre "X" visible solo cuando el menú está desplegado */}
+          {clicked && <CloseButton onClick={closeMenu}>✖</CloseButton>}
           <li className={location.pathname === "/" ? "selected" : ""}>
             <Link to="/" onClick={closeMenu}>Home</Link>
           </li>
@@ -115,6 +135,21 @@ const Nav = styled.nav`
   }
 `;
 
+/* Botón de cierre (X) visible solo en móviles */
+const CloseButton = styled.div`
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 2.5rem;
+  color: white;
+  cursor: pointer;
+  z-index: 101; /* Aseguramos que esté por encima del menú */
+
+  @media (min-width: 960px) {
+    display: none; /* Escondemos el botón en pantallas grandes */
+  }
+`;
+
 /* Burger button solo visible en pantallas pequeñas (<960px) */
 const BurgerButtonContainer = styled.div`
   display: none;
@@ -176,6 +211,7 @@ const Menu = styled.ul`
     background: linear-gradient(to bottom, #ffdb59, #e2730c);
     gap: 2rem;
     transition: all 0.3s ease;
+    z-index: 100; /* Colocar el menú por encima del fondo */
 
     &.active {
       left: 0;
@@ -204,7 +240,7 @@ const BgDiv = styled.div`
   width: 100%;
   height: 100vh;
   transition: all 0.6s ease;
-  z-index: -1;
+  z-index: 99; /* Ajustamos el fondo debajo de los elementos del menú */
 
   &.active {
     right: 0;
@@ -227,20 +263,109 @@ const TextContainer = styled.div`
     line-height: 0.8;
   }
 
-  span.active {
-    animation: rotate 1.5s ease-out;
+  /* Efectos de animación para cada letra */
+  span:nth-child(1).active {
+    animation: balance 1.5s ease-out;
+    transform-origin: bottom left;
   }
 
-  @keyframes rotate {
+  span:nth-child(2).active {
+    animation: shrinkjump 1s ease-in-out;
+    transform-origin: bottom center;
+  }
+
+  span:nth-child(3).active {
+    animation: falling 2s ease-out;
+    transform-origin: bottom center;
+  }
+
+  span:nth-child(4).active {
+    animation: rotate 1s ease-out;
+  }
+
+  span:nth-child(5).active {
+    animation: toplong 1.5s linear;
+  }
+
+  span:nth-child(6).active {
+    animation: shrinkjump 1s ease-in-out;
+    transform-origin: bottom center;
+  }
+
+  span:nth-child(7).active {
+    animation: falling 2s ease-out;
+    transform-origin: bottom center;
+  }
+
+  span:nth-child(8).active {
+    animation: toplong 1.5s linear;
+  }
+
+  @keyframes balance {
     0%, 100% {
       transform: rotate(0deg);
     }
-    50% {
-      transform: rotate(360deg);
+    30%, 60% {
+      transform: rotate(-45deg);
     }
   }
 
+  @keyframes shrinkjump {
+    10%, 35% {
+      transform: scale(2, 0.2) translate(0, 0);
+    }
+    45%, 50% {
+      transform: scale(1) translate(0, -150px);
+    }
+    80% {
+      transform: scale(1) translate(0, 0);
+    }
+  }
+
+  @keyframes falling {
+    12% {
+      transform: rotateX(240deg);
+    }
+    24% {
+      transform: rotateX(150deg);
+    }
+    36% {
+      transform: rotateX(200deg);
+    }
+    48% {
+      transform: rotateX(175deg);
+    }
+    60%, 85% {
+      transform: rotateX(180deg);
+    }
+    100% {
+      transform: rotateX(0deg);
+    }
+  }
+
+  @keyframes rotate {
+    20%, 80% {
+      transform: rotateY(180deg);
+    }
+    100% {
+      transform: rotateY(360deg);
+    }
+  }
+
+  @keyframes toplong {
+    10%, 40% {
+      transform: translateY(-48vh) scaleY(1);
+    }
+    90% {
+      transform: translateY(-48vh) scaleY(4);
+    }
+  }
+
+  @media (min-width: 960px) {
+    display: flex; /* Mostrar en pantallas grandes */
+  }
+
   @media (max-width: 960px) {
-    font-size: 30px;
+    display: none; /* Ocultar en pantallas pequeñas */
   }
 `;
