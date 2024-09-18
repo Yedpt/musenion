@@ -8,8 +8,8 @@ const Footer = () => {
       <FooterBottom>
         <CopyRightText>Copyright © 2024 Musenion</CopyRightText>
         <FooterImages>
-          <img src={img1} alt="Image 1" />
-          <img src={img2} alt="Image 2" />
+          <img src={img1} alt="Image 1" className="image1" />
+          <img src={img2} alt="Image 2" className="image2" />
         </FooterImages>
       </FooterBottom>
     </FooterContainer>
@@ -53,29 +53,40 @@ const CopyRightText = styled.p`
 
 const FooterImages = styled.div`
   display: flex;
-  gap: 10px;
   position: absolute;
-  right: 30px;
   bottom: 0;
+  margin-left: 50px;
 
   img {
-    height: 50px;
-    width: auto;
     position: relative;
-    top: -40px;
   }
 
-  @media (max-width: 960px) {
-    right: 10px;
-    bottom: 0;
+  .image1 {
+    height: 100px;
+    width: auto;
+    margin-right: 5px;
+    top: -10px;
+    
+    @media (max-width: 960px) {
+      height: 80px;
+      top: -15px;
+    }
+  }
 
-    img {
+  .image2 {
+    height: 80px;
+    width: auto;
+    margin-right: 25px;
+    top: 10px;
+    
+    /* @media (max-width: 960px) {
       height: 50px;
-      top: -30px;
-    }
-    img {
-      height: 50px;
-      top: -30px;
-    }
+      top: -10px;
+      margin-right: 200px;
+    } */
+  }
+  
+  /* @media (max-width: 960px) {
+    bottom: 0; */
   }
 `;
