@@ -39,23 +39,23 @@ function Navbar() {
     <NavContainer isHome={isHome}>
       <Nav>
         {/* Burger Button para versión móvil */}
-        <BurgerButton handleClick={handleClick} clicked={clicked} />
+        <BurgerButton handleClick={handleClick} clicked={clicked.toString()} />
 
         {/* Menu (pantallas mayores a 960px) */}
-        <Menu isHome={isHome} className={clicked ? "active" : ""}>
+        <Menu clicked={clicked} isHome={isHome}>
           <li className={location.pathname === "/" ? "selected" : ""}>
             <Link to="/" onClick={closeMenu}>Home</Link>
           </li>
-          <li className={location.pathname === "/galeria" ? "selected" : ""}>
+          <li className={location.pathname === "/gallery" ? "selected" : ""}>
             <Link to="/gallery" onClick={closeMenu}>Galería Virtual</Link>
           </li>
           <li className={location.pathname === "/creatememe" ? "selected" : ""}>
             <Link to="/creatememe" onClick={closeMenu}>Sube tu Meme</Link>
           </li>
-          <li className={location.pathname === "/nosotros" ? "selected" : ""}>
+          <li className={location.pathname === "/aboutus" ? "selected" : ""}>
             <Link to="/aboutus" onClick={closeMenu}>Sobre Nosotros</Link>
           </li>
-          <li className={location.pathname === "/contact" ? "selected" : ""}>
+          <li className={location.pathname === "/contactus" ? "selected" : ""}>
             <Link to="/contactus" onClick={closeMenu}>Contacto</Link>
           </li>
         </Menu>
@@ -74,7 +74,7 @@ function Navbar() {
           </TextContainer>
         </Logo>
 
-        <BgDiv className={`initial ${clicked ? "active" : ""}`} onClick={closeMenu} />
+        <BgDiv clicked={clicked} onClick={closeMenu} />
       </Nav>
     </NavContainer>
   );
@@ -82,6 +82,7 @@ function Navbar() {
 
 export default Navbar;
 
+// Estilos
 const NavContainer = styled.div`
   width: 100%;
   position: fixed;
@@ -143,7 +144,7 @@ const Menu = styled.ul`
   @media (max-width: 960px) {
     position: fixed;
     top: 0;
-    right: -100%;
+    right: ${(props) => (props.clicked ? "0" : "-100%")};
     height: 100vh;
     width: 100%;
     display: flex;
@@ -153,10 +154,6 @@ const Menu = styled.ul`
     background: linear-gradient(to bottom, #ffdb59, #e2730c);
     gap: 2rem;
     transition: all 0.3s ease;
-
-    &.active {
-      right: 0;
-    }
 
     li a {
       font-size: 1.5rem;
@@ -168,15 +165,11 @@ const BgDiv = styled.div`
   position: absolute;
   background: rgba(0, 0, 0, 0.5);
   top: 0;
-  right: -100%;
+  right: ${(props) => (props.clicked ? "0" : "-100%")};
   width: 100%;
   height: 100vh;
   transition: all 0.6s ease;
   z-index: -1;
-
-  &.active {
-    right: 0;
-  }
 `;
 
 const TextContainer = styled.div`
@@ -269,10 +262,10 @@ const TextContainer = styled.div`
       transform: rotateX(200deg);
     }
     48% {
-      transform: rotateX(175deg);
+      transform: rotateX(170deg);
     }
-    60%, 85% {
-      transform: rotateX(180deg);
+    60% {
+      transform: rotateX(200deg);
     }
     100% {
       transform: rotateX(0deg);
@@ -280,20 +273,23 @@ const TextContainer = styled.div`
   }
 
   @keyframes rotate {
-    20%, 80% {
-      transform: rotateY(180deg);
+    0%, 100% {
+      transform: rotate(0deg);
     }
-    100% {
-      transform: rotateY(360deg);
+    30%, 60% {
+      transform: rotate(360deg);
     }
   }
 
   @keyframes toplong {
-    10%, 40% {
-      transform: translateY(-48vh) scaleY(1);
+    10%, 50% {
+      transform: translateY(-200px) scaleY(2);
     }
-    90% {
-      transform: translateY(-48vh) scaleY(4);
+    60% {
+      transform: translateY(3px) scaleY(2);
+    }
+    80%, 100% {
+      transform: translateY(0px) scaleY(1);
     }
   }
 
