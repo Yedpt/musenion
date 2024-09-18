@@ -98,12 +98,11 @@ const TextH2 = styled.h2`
   margin-top: 5vh;
   margin-bottom: 2vh;
 
-  @media (min-width: 960px){
-    margin-bottom: 0;
-    margin-top: 8vh;
-  }
+@media (min-width: 960px){
+  margin-bottom: 0;
+  margin-top: 8vh;
+}
 `
-
 
 const Page = styled.div`
   display: flex;
@@ -113,10 +112,6 @@ const Page = styled.div`
   margin-left: 5%;
   margin-bottom: 10vh;
   margin-top: 12vh;
-
-  @media (min-width: 960px){
-  
-  }
 `
 
 const ImageAndForm = styled.section`
@@ -138,8 +133,8 @@ const ImageAndForm = styled.section`
 }
 `
 const Imagen = styled.figure`
-display: flex;
-justify-content: center;
+  display: flex;
+  justify-content: center;
 
 @media (min-width: 960px){
   height:100%;
@@ -155,36 +150,36 @@ const Image = styled.img`
  margin-top: 5vh;
  
 
- @media (min-width: 960px){
+@media (min-width: 960px){
   width: auto;
   height: 100%;
   margin-top:0;
- }
+}
 `
 const FormContainer = styled.form`
-display: flex;
-flex-direction: column;
-align-items: center;
-max-width: 80%;
-padding: 3vh;
-margin-bottom: 10vh;
-margin-top: 6vh;
-border-radius: 10px;
-box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-background-color: #ffffff6e;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 80%;
+  padding: 3vh;
+  margin-bottom: 10vh;
+  margin-top: 6vh;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff6e;
 
 @media (min-width: 960px){
-border-radius: 0;
-box-shadow: none;
-background-color: transparent;
-width:100%;
-justify-content:flex-start;
+  border-radius: 0;
+  box-shadow: none;
+  background-color: transparent;
+  width:100%;
+  justify-content:flex-start;
 }
 `
 const Label = styled.label`
-font-weight: bold;
-color: black;
-font-size: 15px;
+  font-weight: bold;
+  color: black;
+  font-size: 15px;
 `
 const Input = styled.input`
   display: flex;
@@ -195,14 +190,14 @@ const Input = styled.input`
   font-size: 16px;
   color: gray;
 
-  &:focus {
-    border-color: yellow;
-    outline: none;
-  }
+&:focus {
+  border-color: yellow;
+  outline: none;
+}
 
-  @media (min-width: 960px){
-    width:100%;
-  }
+@media (min-width: 960px){
+   width:100%;
+}
 `
 const SaveButton = styled.button`
   width: 25vh;
