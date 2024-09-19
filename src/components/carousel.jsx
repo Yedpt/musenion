@@ -2,7 +2,7 @@
   import { useNavigate } from 'react-router-dom';
   import styled from 'styled-components';
 
-  const imgWidth = 120;  // Tamaño base
+  const imgWidth = 110;  // Tamaño base
   const imgHeight = 170; // Tamaño base
 
   const Carousel3D = ({ memes, autoRotate = true, rotateSpeed = -20 }) => {
@@ -22,7 +22,7 @@
         } else if (screenWidth >= 768) {
           setRadius(350);
         } else {
-          setRadius(180);
+          setRadius(160);
         }
       };
 
@@ -83,7 +83,7 @@
 
   const Container = styled.div`
     background-color: #121112;
-    height: 80vh;  /* Ocupar toda la altura de la pantalla */
+    height: 70vh;  /* Ocupar toda la altura de la pantalla */
     display: flex;
     justify-content: center; /* Centra horizontalmente */
     align-items: center; /* Centra verticalmente */
