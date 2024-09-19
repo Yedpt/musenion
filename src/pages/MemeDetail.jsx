@@ -125,7 +125,7 @@ const Buttons = styled.div`
   align-items: center;
   width: 100vw;
   height: 20%;
-  margin-top: 100px;
+  margin-top: 20px;
 
   @media (min-width: 960px) {
     flex-direction: row;
