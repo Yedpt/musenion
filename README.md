@@ -36,7 +36,7 @@ npm install
 npm start
 
 
-### 8. **Enhanced Folder Structure with Descriptions:**
+**Enhanced Folder Structure with Descriptions:**
 Provide descriptions for each folder and its contents:
 ```markdown
 ## Folder Structure 📂
@@ -76,26 +76,11 @@ Screenshots 📸 and Usage
 Once the app is running:
 
 Navigate to the Home page to see the latest updates.
-![image](https://github.com/user-attachments/assets/94418be0-fcd7-49e5-9db5-2d040659d149)
 
 - **Virtual Gallery**: Explore a 3D gallery with dynamic, real-time updates of artworks and memes.
-
-![image](https://github.com/user-attachments/assets/c941e163-fe6f-4540-b756-447e82854043)
-
 - **Meme Uploader**: Seamlessly upload images and contribute to the growing collection.
-
-![image](https://github.com/user-attachments/assets/977ffd61-e1b2-4406-9a83-3b18d28d0667)
-![image](https://github.com/user-attachments/assets/a5f3562b-3af3-41e2-aeb5-edb32c4daed0)
-
 - **Responsive Design**: Optimized for any device, providing a smooth experience across all screen sizes.
-View additional pages like About Us and Contact for more details.
-
-![image](https://github.com/user-attachments/assets/9e089c69-db20-4514-bc63-5e203434c41f)
-
 - **User-Friendly Interface**: Clean and intuitive design for easy navigation.
-
-![image](https://github.com/user-attachments/assets/95c0a606-b119-495c-b3ec-aea7fe5149dc)
-
 
 ## Contributing 🛠
 We welcome contributions from the community! To get started:
