@@ -84,7 +84,7 @@ function Contact() {
     max-width: 80%;
     max-height: 50%;
     width: 350px;
-    height: 430px;
+    height: 500px;
     padding: 20px;
     margin-bottom: 40px;
     margin-top: 20px;
