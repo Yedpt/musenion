@@ -56,7 +56,7 @@ const FormPutMeme = () => {
             <Label>Título:</Label>
             <Input
               type="text"
-              {...register('title', { required: 'El título es obligatorio' })}
+              {...register('nombre', { required: 'El título es obligatorio' })}
             />
             {errors.title && <p>{errors.title.message}</p>}
           </div>
@@ -64,7 +64,7 @@ const FormPutMeme = () => {
             <Label>Descripción:</Label>
             <Input
               type="text"
-              {...register('description', { required: 'La descripción es obligatoria' })}
+              {...register('descripcion', { required: 'La descripción es obligatoria' })}
             />
             {errors.description && <p>{errors.description.message}</p>}
           </div>
