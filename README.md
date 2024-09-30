@@ -33,7 +33,10 @@ Pre-requisites:
 Install dependencies:
 
 npm install
-npm start
+
+Start api:
+
+npm run api
 
 
 **Enhanced Folder Structure with Descriptions:**
