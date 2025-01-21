@@ -3,7 +3,7 @@
 
 Musenion 🎨
 Musenion is a creative web platform where users can explore an interactive virtual gallery and upload memes for community engagement. 
-This project was built using React, Styled Components, and React Router.
+This project was built using ReactJS, Styled Components, and React Router.
 
 Table of Contents
 Installation
